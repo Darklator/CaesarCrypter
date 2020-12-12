@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Caesar Crypter</string>
+    <string name="encrypting_key">Введите шифрующий ключ</string>
+    <string name="decrypting_key">Введите дешифрующий ключ</string>
+    <string name="toggle_button_encrypt">Шифровать</string>
+    <string name="toggle_button_decrypt">Дешифровать</string>
+    <string name="text_to_be_translated">Введите текст, который вы хотите преобразовать</string>
+    <string name="translated_text">Ваш преобразованный текст появится здесь</string>
+</resources>
