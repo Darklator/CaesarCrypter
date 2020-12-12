@@ -6,4 +6,5 @@
     <string name="toggle_button_decrypt">Decrypt</string>
     <string name="text_to_be_translated">Enter text you want to be translated here</string>
     <string name="translated_text">Your translated text will appear here</string>
+    <string name="translate">Translate</string>
 </resources>

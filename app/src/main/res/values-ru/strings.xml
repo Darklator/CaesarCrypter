@@ -6,4 +6,5 @@
     <string name="toggle_button_decrypt">Дешифровать</string>
     <string name="text_to_be_translated">Введите текст, который вы хотите преобразовать</string>
     <string name="translated_text">Ваш преобразованный текст появится здесь</string>
+    <string name="translate">Преобразовать</string>
 </resources>
