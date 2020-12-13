@@ -22,7 +22,8 @@
             android:inputType="number"
             android:digits="0123456789 "
             android:background="@drawable/border_for_components"
-            android:elevation="@dimen/components_elevation"/>
+            android:elevation="@dimen/components_elevation"
+            android:textColor="@color/textColor"/>
 
         <Button
             style="@style/Widget.AppCompat.Button.Borderless"
@@ -60,7 +61,8 @@
                 android:hint="@string/text_to_be_translated"
                 android:gravity="left|top"
                 android:background="@drawable/border_for_components"
-                android:elevation="@dimen/components_elevation"/>
+                android:elevation="@dimen/components_elevation"
+                android:textColor="@color/textColor"/>
 
             <TextView
                 android:layout_marginTop="10dp"
