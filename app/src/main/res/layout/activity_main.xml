@@ -25,21 +25,23 @@
             android:elevation="@dimen/components_elevation"
             android:textColor="@color/textColor"/>
 
-        <Button
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_marginLeft="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="@string/translate"
-            android:elevation="@dimen/components_elevation"/>
-
         <ToggleButton
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_marginLeft="5dp"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:textOn="@string/toggle_button_decrypt"
             android:textOff="@string/toggle_button_encrypt"
+            android:elevation="@dimen/components_elevation"/>
+
+        <Button
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_marginLeft="5dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.1"
+            android:text="@string/translate"
             android:elevation="@dimen/components_elevation"/>
     </LinearLayout>
 
