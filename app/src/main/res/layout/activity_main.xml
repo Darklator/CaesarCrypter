@@ -36,7 +36,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:textOn="@string/toggle_button_decrypt"
-            android:textOff="@string/toggle_button_encrypt" />
+            android:textOff="@string/toggle_button_encrypt"
+            android:radius="10dp"/>
     </LinearLayout>
 
     <LinearLayout
