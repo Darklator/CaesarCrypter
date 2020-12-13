@@ -13,41 +13,47 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
+        <EditText
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/encrypting_key" />
+            android:layout_height="match_parent"
+            android:hint="@string/encrypting_key"
+            android:inputType="number"
+            android:digits="0123456789 "/>
 
-        <TextView
-            android:layout_marginLeft="10dp"
+        <Button
+            android:layout_marginLeft="5dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/translate" />
+            android:layout_height="match_parent"
+            android:text="@string/translate"/>
 
-        <TextView
-            android:layout_marginLeft="10dp"
+        <ToggleButton
+            android:layout_marginLeft="5dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/toggle_button_encrypt" />
+            android:layout_height="match_parent"
+            android:textOn="@string/toggle_button_decrypt"
+            android:textOff="@string/toggle_button_encrypt" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="vertical">
-            <TextView
+            <EditText
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="@string/text_to_be_translated" />
+                android:hint="@string/text_to_be_translated"
+                android:gravity="left|top"/>
 
             <TextView
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="@string/translated_text" />
+                android:hint="@string/translated_text"
+                android:background="@color/colorPrimary"/>
     </LinearLayout>
 
 </LinearLayout>
