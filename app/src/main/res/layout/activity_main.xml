@@ -14,29 +14,33 @@
         android:orientation="horizontal">
 
         <EditText
+            android:paddingLeft="5dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:hint="@string/enter_key"
             android:inputType="number"
-            android:digits="0123456789 "/>
+            android:digits="0123456789 "
+            android:background="@drawable/border_for_components"
+            android:elevation="@dimen/components_elevation"
+            android:textColor="@color/textColor"/>
 
         <Button
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_marginLeft="5dp"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/translate"/>
+            android:text="@string/translate"
+            android:elevation="@dimen/components_elevation"/>
 
         <ToggleButton
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_marginLeft="5dp"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:textOn="@string/toggle_button_decrypt"
-            android:textOff="@string/toggle_button_encrypt" />
+            android:textOff="@string/toggle_button_encrypt"
+            android:elevation="@dimen/components_elevation"/>
     </LinearLayout>
 
     <LinearLayout
@@ -52,7 +56,9 @@
                 android:padding="5dp"
                 android:hint="@string/text_to_be_translated"
                 android:gravity="left|top"
-                android:background="@color/colorPrimary"/>
+                android:background="@drawable/border_for_components"
+                android:elevation="@dimen/components_elevation"
+                android:textColor="@color/textColor"/>
 
             <TextView
                 android:layout_marginTop="10dp"
@@ -61,8 +67,9 @@
                 android:layout_weight="1"
                 android:padding="5dp"
                 android:text="@string/translated_text"
-                android:background="@color/colorPrimary"
-                android:textIsSelectable="true"/>
+                android:textIsSelectable="true"
+                android:background="@drawable/border_for_components"
+                android:elevation="@dimen/components_elevation"/>
     </LinearLayout>
 
 </LinearLayout>

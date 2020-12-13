@@ -7,7 +7,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColor">@color/textColor</item>
         <item name="android:textColorHint">@color/textColor</item>
-        <item name="android:textSize">15dp</item>
+        <item name="android:textSize">17dp</item>
     </style>
 
 </resources>
