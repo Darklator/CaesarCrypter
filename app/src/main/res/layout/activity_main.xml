@@ -29,7 +29,7 @@
             android:textOn="@string/toggle_button_decrypt"
             android:textOff="@string/toggle_button_encrypt"
             android:textAllCaps="false"
-            android:background="@drawable/border_for_components"/>
+            android:background="@drawable/inset_toggle_en_de_button"/>
 
         <Button
             android:layout_width="0dp"
@@ -38,7 +38,7 @@
             android:text="@string/translate"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
-            android:background="@drawable/inset_buttons"/>
+            android:background="@drawable/inset_translate_button"/>
     </LinearLayout>
 
     <LinearLayout
