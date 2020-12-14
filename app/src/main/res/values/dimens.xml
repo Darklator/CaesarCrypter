@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="components_elevation">4dp</dimen>
+    <dimen name="components_elevation">2dp</dimen>
+    <dimen name="insetVertical_translate_en_de_buttons">5dp</dimen>
+    <dimen name="insetHorizontal_translate_en_de_buttons">10dp</dimen>
 </resources>
