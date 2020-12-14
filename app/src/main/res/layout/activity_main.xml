@@ -9,7 +9,7 @@
     tools:context=".MainActivity">
 
     <LinearLayout
-        android:paddingTop="45dp"
+        android:paddingTop="35dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -29,7 +29,8 @@
             android:textOn="@string/toggle_button_decrypt"
             android:textOff="@string/toggle_button_encrypt"
             android:textAllCaps="false"
-            android:background="@drawable/inset_toggle_en_de_button"/>
+            android:background="@drawable/inset_toggle_en_de_button"
+            android:textColor="@color/textColorHint"/>
 
         <Button
             android:layout_width="0dp"
