@@ -4,5 +4,5 @@
     <color name="colorPrimaryDark">#D5A814</color>
     <color name="colorAccent">#FFBF00</color>
     <color name="colorInsideComponents">#FFFDF6</color>
-    <color name="textColor">#292929</color>
+    <color name="textColorHint">#7A7A7A</color>
 </resources>
