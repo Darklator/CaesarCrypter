@@ -56,6 +56,7 @@
         android:paddingHorizontal="10dp"
         android:paddingBottom="105dp">
             <EditText
+                android:id="@+id/text_to_be_translated"
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -67,6 +68,7 @@
                 android:background="@drawable/border_for_components"/>
 
             <TextView
+                android:id="@+id/translated_text"
                 android:layout_marginTop="25dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
