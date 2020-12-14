@@ -21,8 +21,6 @@
             android:hint="@string/enter_key"
             android:inputType="number"
             android:digits="0123456789 "
-            android:background="@drawable/border_for_components"
-            android:elevation="@dimen/components_elevation"
             android:textColor="@color/textColor"/>
 
         <ToggleButton
