@@ -24,6 +24,7 @@
             android:paddingHorizontal="6dp"/>
 
         <ToggleButton
+            android:id="@+id/encrypt_or_decrypt_button"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -31,16 +32,19 @@
             android:textOff="@string/toggle_button_encrypt"
             android:textAllCaps="false"
             android:background="@drawable/inset_toggle_en_de_button"
-            android:textColor="@color/textColorHint"/>
+            android:textColor="@color/textColorHint"
+            android:onClick="onClickEncryptOrDecrypt"/>
 
         <Button
+            android:id="@+id/translate_button"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1.1"
             android:text="@string/translate"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
-            android:background="@drawable/inset_translate_button"/>
+            android:background="@drawable/inset_translate_button"
+            android:onClick="onClickTranslate"/>
     </LinearLayout>
 
     <LinearLayout
