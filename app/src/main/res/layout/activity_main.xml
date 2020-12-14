@@ -23,19 +23,22 @@
             android:textColor="@color/textColor"/>
 
         <ToggleButton
-            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:textOn="@string/toggle_button_decrypt"
-            android:textOff="@string/toggle_button_encrypt"/>
+            android:textOff="@string/toggle_button_encrypt"
+            android:textAllCaps="false"
+            android:background="@drawable/border_for_components"/>
 
         <Button
-            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1.1"
-            android:text="@string/translate"/>
+            android:text="@string/translate"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/inset_buttons"/>
     </LinearLayout>
 
     <LinearLayout
@@ -51,7 +54,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:padding="5dp"
+                android:padding="10dp"
                 android:hint="@string/text_to_be_translated"
                 android:gravity="left|top"
                 android:background="@drawable/border_for_components"
@@ -62,7 +65,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:padding="5dp"
+                android:padding="10dp"
                 android:text="@string/translated_text"
                 android:textIsSelectable="true"
                 android:background="@drawable/border_for_components"/>
