@@ -9,6 +9,7 @@
     tools:context=".MainActivity">
 
     <LinearLayout
+        android:paddingTop="45dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -53,7 +54,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:padding="10dp"
+                android:padding="15dp"
                 android:hint="@string/text_to_be_translated"
                 android:gravity="left|top"
                 android:background="@drawable/border_for_components"/>
@@ -63,7 +64,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:padding="10dp"
+                android:padding="15dp"
                 android:hint="@string/translated_text"
                 android:textIsSelectable="true"
                 android:background="@drawable/border_for_components"/>
