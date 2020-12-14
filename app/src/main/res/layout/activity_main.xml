@@ -9,69 +9,66 @@
     tools:context=".MainActivity">
 
     <LinearLayout
+        android:paddingTop="35dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <EditText
-            android:paddingLeft="5dp"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:hint="@string/enter_key"
             android:inputType="number"
             android:digits="0123456789 "
-            android:background="@drawable/border_for_components"
-            android:elevation="@dimen/components_elevation"
-            android:textColor="@color/textColor"/>
+            android:paddingHorizontal="6dp"/>
 
         <ToggleButton
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_marginLeft="5dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:textOn="@string/toggle_button_decrypt"
             android:textOff="@string/toggle_button_encrypt"
-            android:elevation="@dimen/components_elevation"/>
+            android:textAllCaps="false"
+            android:background="@drawable/inset_toggle_en_de_button"
+            android:textColor="@color/textColorHint"/>
 
         <Button
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_marginLeft="5dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1.1"
             android:text="@string/translate"
-            android:elevation="@dimen/components_elevation"/>
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/inset_translate_button"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingTop="25dp"
+        android:paddingHorizontal="10dp"
+        android:paddingBottom="105dp">
             <EditText
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:padding="5dp"
+                android:padding="15dp"
                 android:hint="@string/text_to_be_translated"
                 android:gravity="left|top"
-                android:background="@drawable/border_for_components"
-                android:elevation="@dimen/components_elevation"
-                android:textColor="@color/textColor"/>
+                android:background="@drawable/border_for_components"/>
 
             <TextView
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="25dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:padding="5dp"
-                android:text="@string/translated_text"
+                android:padding="15dp"
+                android:hint="@string/translated_text"
                 android:textIsSelectable="true"
-                android:background="@drawable/border_for_components"
-                android:elevation="@dimen/components_elevation"/>
+                android:background="@drawable/border_for_components"/>
     </LinearLayout>
 
 </LinearLayout>
