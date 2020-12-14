@@ -2,7 +2,7 @@
 <inset
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:drawable="@drawable/border_for_components"
-    android:insetTop="5dp"
-    android:insetRight="10dp"
-    android:insetBottom="5dp"
-    android:insetLeft="10dp"/>
+    android:insetTop="@dimen/insetVertical_translate_en_de_buttons"
+    android:insetRight="@dimen/insetHorizontal_translate_en_de_buttons"
+    android:insetBottom="@dimen/insetVertical_translate_en_de_buttons"
+    android:insetLeft="@dimen/insetHorizontal_translate_en_de_buttons"/>
