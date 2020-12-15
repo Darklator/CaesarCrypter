@@ -43,6 +43,7 @@ public class CaesarCrypter {
             for (int j = 0; j < alphabet[0].length; j++) { // Find letter's index
                 if (letterToChange == alphabet[0][j]) {
                     index = (j + 1) % 33;
+
                 }
             }
 
