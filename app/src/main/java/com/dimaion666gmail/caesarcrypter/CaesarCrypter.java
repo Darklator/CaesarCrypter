@@ -5,7 +5,6 @@ import android.util.Log;
 public class CaesarCrypter {
     // "абвгдеёжзийклмнопрстуфхцчшщъыьэюя" "abcdefghijklmnopqrstuvwxyz"
     private char[][] alphabet = new char[2][];
-    private int[] letterShiftsInt;
 
 
     public CaesarCrypter() {
@@ -13,53 +12,53 @@ public class CaesarCrypter {
         alphabet[1] = "abcdefghijklmnopqrstuvwxyz".toCharArray();
     }
 
-    public String translate(int encryptOrDecrypt, String letterShift, String text) {
-        // Turn letterShift into an array of shifts
-        String[] letterShiftsString = letterShift.split(" ");
-        letterShiftsInt = new int[letterShiftsString.length];
+    public String translate(int encryptOrDecrypt, String letterShifts, String text) {
+        // Splitting string letterShifts (user's key) by space and turning gotten array's elements
+        // into integers.
+        String[] stringLetterShifts = letterShifts.split(" ");
+        int[] integerLetterShifts = new int[stringLetterShifts.length];
 
-        for (int i = 0; i < letterShiftsString.length; i++) {
-            letterShiftsInt[i] = Integer.parseInt(letterShiftsString[i]);
-        }
+        for (int i = 0; i < stringLetterShifts.length; i++)
+            integerLetterShifts[i] = Integer.parseInt(stringLetterShifts[i]);
 
-        // Define encrypting or decrypting letter shifts
+        // Definition of either encrypting or decrypting
         if (encryptOrDecrypt == 0) {
-            for (int i = 0; i < letterShiftsInt.length; i++)
-                letterShiftsInt[i] = Math.abs(letterShiftsInt[i]);
+            for (int i = 0; i < integerLetterShifts.length; i++)
+                integerLetterShifts[i] = Math.abs(integerLetterShifts[i]);
         } else {
-            for (int i = 0; i < letterShiftsInt.length; i++)
-                letterShiftsInt[i] = letterShiftsInt[i] * (-1);
+            for (int i = 0; i < integerLetterShifts.length; i++)
+                integerLetterShifts[i] = integerLetterShifts[i] * (-1);
         }
 
-        // Translate text
+        // Translating user's text
         StringBuilder newString = new StringBuilder();
-        int letterShiftsIntIndex = 0;
+        int letterShiftIndex = 0; // Which length of shift we use now from integerLetterShifts
 
         for (int i = 0; i < text.length(); i++) { // Go through every letter
-            int index = -1;
-            char letterToChange = text.charAt(i);
+            int indexInAnAlphabet = -1; // -1 means that the letter is not found
+            char letterToChange = text.charAt(i); // We take the letter from user's text
             boolean isUpperCase = Character.isUpperCase(letterToChange);
             letterToChange = Character.toLowerCase(letterToChange);
 
-            for (int j = 0; j < alphabet[0].length; j++) { // Find letter's index
-                if (letterToChange == alphabet[0][j]) {
-                    index = (j + letterShiftsInt[letterShiftsIntIndex]) % 33;
-                    letterShiftsIntIndex++;
-                    if (letterShiftsIntIndex > (letterShiftsInt.length - 1)) {
-                        letterShiftsIntIndex = 0;
+            for (int j = 0; j < alphabet[0].length; j++) { // Find letter's index in an alphabet
+                if (letterToChange == alphabet[0][j]) { // If the letter has been found then we get its shifted index
+                    indexInAnAlphabet = (j + integerLetterShifts[letterShiftIndex]) % 33;
+                    letterShiftIndex++;
+                    if (letterShiftIndex > (integerLetterShifts.length - 1)) {
+                        letterShiftIndex = 0; // We start going through every key again
                     }
+                    break;
                 }
             }
 
-            if (index != -1) { // If the letter is found in the alphabet then we shift it, else we do nothing
-                letterToChange = alphabet[0][index];
-            }
+            if (indexInAnAlphabet != -1) // If the letter has been found in an alphabet then we use
+                                        // its shifted version, else we do nothing
+                letterToChange = alphabet[0][indexInAnAlphabet];
 
-            if (isUpperCase) { // We return upper case to the letter if it had it before
+            if (isUpperCase) // We return upper case to the letter if it had it before
                 letterToChange = Character.toUpperCase(letterToChange);
-            }
 
-            newString.append(letterToChange); // We build a new string
+            newString.append(letterToChange); // We build a new string using every shifted letter
         }
 
         return newString.toString();
