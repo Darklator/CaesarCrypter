@@ -1,5 +1,7 @@
 package com.dimaion666gmail.caesarcrypter;
 
+import android.util.Log;
+
 public class CaesarCrypter {
     // "абвгдеёжзийклмнопрстуфхцчшщъыьэюя" "abcdefghijklmnopqrstuvwxyz"
     private char[][] alphabet = new char[2][];
@@ -19,6 +21,7 @@ public class CaesarCrypter {
         for (int i = 0; i < letterShiftsString.length; i++) {
             letterShiftsInt[i] = Integer.parseInt(letterShiftsString[i]);
         }
+
         // Define encrypting or decrypting letter shifts
         if (encryptOrDecrypt == 0) {
             for (int i = 0; i < letterShiftsInt.length; i++)
@@ -27,7 +30,33 @@ public class CaesarCrypter {
             for (int i = 0; i < letterShiftsInt.length; i++)
                 letterShiftsInt[i] = letterShiftsInt[i] * (-1);
         }
+
         // Translate text
-        return null;
+        StringBuilder newString = new StringBuilder();
+
+        for (int i = 0; i < text.length(); i++) { // Go through every letter
+            int index = -1;
+            char letterToChange = text.charAt(i);
+            boolean isUpperCase = Character.isUpperCase(letterToChange);
+            letterToChange = Character.toLowerCase(letterToChange);
+
+            for (int j = 0; j < alphabet[0].length; j++) { // Find letter's index
+                if (letterToChange == alphabet[0][j]) {
+                    index = (j + 1) % 33;
+                }
+            }
+
+            if (index != -1) { // If the letter is found in the alphabet then we shift it, else we do nothing
+                letterToChange = alphabet[0][index];
+            }
+
+            if (isUpperCase) { // We return upper case to the letter if it had it before
+                letterToChange = Character.toUpperCase(letterToChange);
+            }
+
+            newString.append(letterToChange); // We build a new string
+        }
+
+        return newString.toString();
     }
 }
