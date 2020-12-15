@@ -14,6 +14,11 @@ public class CaesarCrypterUnitTest {
 
     @Test
     public void translateTest() {
-        assertEquals("Б", caesarCrypter.translate(1, "А"));
+        assertEquals("БВГ", caesarCrypter.translate(0,"1", "АБВ"));
+        assertEquals("Бвг", caesarCrypter.translate(0,"1", "Абв"));
+        assertEquals("Изж", caesarCrypter.translate(0,"10", "Яюэ"));
+        assertEquals("Ир", caesarCrypter.translate(0,"33", "Ир"));
+        assertEquals("/*-+", caesarCrypter.translate(0,"2", "/*-+"));
+        assertEquals("БГЕЖ", caesarCrypter.translate(0,"1 2 3 4", "АБВГ"));
     }
 }

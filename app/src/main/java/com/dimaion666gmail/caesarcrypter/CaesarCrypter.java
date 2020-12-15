@@ -7,7 +7,7 @@ public class CaesarCrypter {
         this.alphabetsToBeUsedCode = alphabetsToBeUsedCode;
     }
 
-    public String translate(int letterShift, String textToBeTranslated) {
+    public String translate(int encryptOrDecrypt, String letterShift, String textToBeTranslated) {
         return null;
     }
 }
