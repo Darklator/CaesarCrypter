@@ -1,13 +1,16 @@
 package com.dimaion666gmail.caesarcrypter;
 
 public class CaesarCrypter {
-    private int alphabetsToBeUsedCode;
+    // "абвгдеёжзийклмнопрстуфхцчшщъыьэюя" "abcdefghijklmnopqrstuvwxyz"
+    private char[][] alphabet = new char[2][];
 
-    public CaesarCrypter(int alphabetsToBeUsedCode) {
-        this.alphabetsToBeUsedCode = alphabetsToBeUsedCode;
+
+    public CaesarCrypter() {
+        alphabet[0] = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя".toCharArray();
+        alphabet[1] = "abcdefghijklmnopqrstuvwxyz".toCharArray();
     }
 
-    public String translate(int encryptOrDecrypt, String letterShift, String textToBeTranslated) {
+    public String translate(int encryptOrDecrypt, String letterShift, String text) {
         return null;
     }
 }

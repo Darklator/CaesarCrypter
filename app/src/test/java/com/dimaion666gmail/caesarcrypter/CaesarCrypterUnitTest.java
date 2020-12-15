@@ -9,7 +9,7 @@ public class CaesarCrypterUnitTest {
 
     @Before
     public void setUp() throws Exception{
-        caesarCrypter = new CaesarCrypter(1);
+        caesarCrypter = new CaesarCrypter();
     }
 
     @Test
