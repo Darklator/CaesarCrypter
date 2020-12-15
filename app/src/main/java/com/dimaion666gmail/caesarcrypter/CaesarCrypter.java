@@ -1,7 +1,5 @@
 package com.dimaion666gmail.caesarcrypter;
 
-import android.util.Log;
-
 public class CaesarCrypter {
     // "абвгдеёжзийклмнопрстуфхцчшщъыьэюя" "abcdefghijklmnopqrstuvwxyz"
     private char[][] alphabet = new char[2][];
@@ -41,8 +39,11 @@ public class CaesarCrypter {
             letterToChange = Character.toLowerCase(letterToChange);
 
             for (int j = 0; j < alphabet[0].length; j++) { // Find letter's index in an alphabet
-                if (letterToChange == alphabet[0][j]) { // If the letter has been found then we get its shifted index
-                    indexInAnAlphabet = (j + integerLetterShifts[letterShiftIndex]) % 33;
+                if (letterToChange == alphabet[0][j]) { // If the letter has been found then we get
+                                                       // its shifted index.
+                    // FIXME
+                    indexInAnAlphabet = (j + integerLetterShifts[letterShiftIndex]) % 33; // Mistake
+
                     letterShiftIndex++;
                     if (letterShiftIndex > (integerLetterShifts.length - 1)) {
                         letterShiftIndex = 0; // We start going through every key again
@@ -52,7 +53,7 @@ public class CaesarCrypter {
             }
 
             if (indexInAnAlphabet != -1) // If the letter has been found in an alphabet then we use
-                                        // its shifted version, else we do nothing
+                                        // its shifted version, else we do nothing.
                 letterToChange = alphabet[0][indexInAnAlphabet];
 
             if (isUpperCase) // We return upper case to the letter if it had it before

@@ -21,6 +21,7 @@ public class CaesarCrypterUnitTest {
         assertEquals("Ир", caesarCrypter.translate(0,"33", "Ир"));
         assertEquals("/*-+", caesarCrypter.translate(0,"2", "/*-+"));
         assertEquals("БГЕЖ", caesarCrypter.translate(0,"1 2 3 4", "АБВГ"));
-        assertEquals("АБВ", caesarCrypter.translate(1,"1", "БВГ"));
+        assertEquals("ЯАБ", caesarCrypter.translate(1,"1", "АБВ"));
+        assertEquals("ЦЧШ", caesarCrypter.translate(1,"10", "АБВ"));
     }
 }
