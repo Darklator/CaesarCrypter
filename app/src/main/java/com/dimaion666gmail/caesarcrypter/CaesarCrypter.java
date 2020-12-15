@@ -33,6 +33,7 @@ public class CaesarCrypter {
 
         // Translate text
         StringBuilder newString = new StringBuilder();
+        int letterShiftsIntIndex = 0;
 
         for (int i = 0; i < text.length(); i++) { // Go through every letter
             int index = -1;
@@ -42,8 +43,11 @@ public class CaesarCrypter {
 
             for (int j = 0; j < alphabet[0].length; j++) { // Find letter's index
                 if (letterToChange == alphabet[0][j]) {
-                    index = (j + 1) % 33;
-
+                    index = (j + letterShiftsInt[letterShiftsIntIndex]) % 33;
+                    letterShiftsIntIndex++;
+                    if (letterShiftsIntIndex > (letterShiftsInt.length - 1)) {
+                        letterShiftsIntIndex = 0;
+                    }
                 }
             }
 
