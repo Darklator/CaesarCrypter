@@ -3,7 +3,6 @@ package com.dimaion666gmail.caesarcrypter;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -28,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
 
             EditText userKeyEditTextView = (EditText) findViewById(R.id.user_key);
-            ToggleButton isDecryptingToggleButton = (ToggleButton) findViewById(R.id.is_decrypting_button);
+            ToggleButton isDecryptingToggleButton = (ToggleButton) findViewById(R.id.is_decrypting_toggle_button);
             EditText toBeTranslatedEditTextView = (EditText) findViewById(R.id.text_to_be_translated);
             TextView translatedTextView = (TextView) findViewById(R.id.translated_text);
 
@@ -49,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         savedInstanceState.putString("translatedText", translatedText);
     }
 
-    public void onClickEncryptOrDecrypt(View view) {
+    public void onClickEncryptingOrDecrypting(View view) {
         ToggleButton isDecryptingToggleButton = (ToggleButton) view;
         isDecrypting = isDecryptingToggleButton.isChecked();
     }
