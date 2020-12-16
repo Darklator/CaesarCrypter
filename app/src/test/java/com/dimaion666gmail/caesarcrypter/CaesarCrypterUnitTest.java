@@ -14,16 +14,18 @@ public class CaesarCrypterUnitTest {
 
     @Test
     public void translateTest() {
-        assertEquals("БВГ", caesarCrypter.translate(0,"1", "АБВ"));
-        assertEquals("Бвг", caesarCrypter.translate(0,"1", "Абв"));
-        assertEquals("Аяю", caesarCrypter.translate(0,"1", "Яюэ"));
-        assertEquals("Изж", caesarCrypter.translate(0,"10", "Яюэ"));
-        assertEquals("Ир", caesarCrypter.translate(0,"33", "Ир"));
-        assertEquals("/*-+", caesarCrypter.translate(0,"2", "/*-+"));
-        assertEquals("БГЕЖ", caesarCrypter.translate(0,"1 2 3 4", "АБВГ"));
-        assertEquals("ЦЧШ", caesarCrypter.translate(1,"10", "АБВ"));
-        assertEquals("ЯАБ", caesarCrypter.translate(1,"1", "АБВ"));
-        assertEquals("BCD", caesarCrypter.translate(0,"1", "ABC"));
-        assertEquals("ZAB", caesarCrypter.translate(1,"1", "ABC"));
+        assertEquals("БВГ", caesarCrypter.translate(false,"1", "АБВ"));
+        assertEquals("Бвг", caesarCrypter.translate(false,"1", "Абв"));
+        assertEquals("Аяю", caesarCrypter.translate(false,"1", "Яюэ"));
+        assertEquals("Изж", caesarCrypter.translate(false,"10", "Яюэ"));
+        assertEquals("Ир", caesarCrypter.translate(false,"33", "Ир"));
+        assertEquals("/*-+", caesarCrypter.translate(false,"2", "/*-+"));
+        assertEquals("БГЕЖ", caesarCrypter.translate(false,"1 2 3 4", "АБВГ"));
+        assertEquals("ЦЧШ", caesarCrypter.translate(true,"10", "АБВ"));
+        assertEquals("ЯАБ", caesarCrypter.translate(true,"1", "АБВ"));
+        assertEquals("BCD", caesarCrypter.translate(false,"1", "ABC"));
+        assertEquals("ZAB", caesarCrypter.translate(true,"1", "ABC"));
+        assertEquals("ZAB", caesarCrypter.translate(false,"-1", "ABC"));
+        assertEquals("ZAB", caesarCrypter.translate(false,"3-3", "ABC"));
     }
 }

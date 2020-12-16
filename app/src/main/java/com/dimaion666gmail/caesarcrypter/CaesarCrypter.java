@@ -10,7 +10,7 @@ public class CaesarCrypter {
         alphabet[1] = "abcdefghijklmnopqrstuvwxyz".toCharArray();
     }
 
-    public String translate(int encryptOrDecrypt, String letterShifts, String text) {
+    public String translate(boolean decrypting, String letterShifts, String text) {
         // Splitting string letterShifts (user's key) by space and turning gotten array's elements
         // into integers.
         String[] stringLetterShifts = letterShifts.split(" ");
@@ -19,14 +19,10 @@ public class CaesarCrypter {
         for (int i = 0; i < stringLetterShifts.length; i++)
             integerLetterShifts[i] = Integer.parseInt(stringLetterShifts[i]);
 
-        // Definition of either encrypting or decrypting key (user cannot enter negative numbers)
-        if (encryptOrDecrypt == 0) {
-            for (int i = 0; i < integerLetterShifts.length; i++)
-                integerLetterShifts[i] = Math.abs(integerLetterShifts[i]);
-        } else if (encryptOrDecrypt == 1) {
+        // Definition of either encrypting or decrypting key
+        if (decrypting == true)
             for (int i = 0; i < integerLetterShifts.length; i++)
                 integerLetterShifts[i] = integerLetterShifts[i] * (-1);
-        }
 
         // Translating user's text
         StringBuilder newString = new StringBuilder();
