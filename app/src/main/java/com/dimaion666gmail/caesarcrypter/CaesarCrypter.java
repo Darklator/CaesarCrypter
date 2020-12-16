@@ -34,27 +34,35 @@ public class CaesarCrypter {
 
         for (int i = 0; i < text.length(); i++) { // Go through every letter
             int indexInAnAlphabet = -1; // -1 means that the letter is not found
+            int shiftedIndexInAnAlphabet = 0;
             char letterToChange = text.charAt(i); // We take the letter from user's text
             boolean isUpperCase = Character.isUpperCase(letterToChange);
             letterToChange = Character.toLowerCase(letterToChange);
 
-            for (int j = 0; j < alphabet[0].length; j++) { // Find letter's index in an alphabet
-                if (letterToChange == alphabet[0][j]) { // If the letter has been found then we get
-                                                       // its shifted index.
-                    // FIXME
-                    indexInAnAlphabet = (j + integerLetterShifts[letterShiftIndex]) % 33; // Mistake
+            for (int j = 0; j < alphabet.length; j++) { // Find letter's index in an alphabet        // If the letter has been found then we get
+                for (int k = 0; k < alphabet[j].length; k++) {                                                                                           // its shifted index.
+                     if (letterToChange == alphabet[j][k]) {
+                         indexInAnAlphabet = k;
+                         shiftedIndexInAnAlphabet = (indexInAnAlphabet +
+                                 integerLetterShifts[letterShiftIndex]) % alphabet[j].length;
 
-                    letterShiftIndex++;
-                    if (letterShiftIndex > (integerLetterShifts.length - 1)) {
-                        letterShiftIndex = 0; // We start going through every key again
-                    }
-                    break;
-                }
+                         if (shiftedIndexInAnAlphabet < 0)
+                             shiftedIndexInAnAlphabet = alphabet[j].length - Math.abs(shiftedIndexInAnAlphabet);
+
+                         letterShiftIndex++;
+                         if (letterShiftIndex > (integerLetterShifts.length - 1)) {
+                             letterShiftIndex = 0; // We start going through every key again
+                         }
+                         break;
+                     }
+                 }
+
+
             }
 
             if (indexInAnAlphabet != -1) // If the letter has been found in an alphabet then we use
                                         // its shifted version, else we do nothing.
-                letterToChange = alphabet[0][indexInAnAlphabet];
+                letterToChange = alphabet[j][shiftedIndexInAnAlphabet];
 
             if (isUpperCase) // We return upper case to the letter if it had it before
                 letterToChange = Character.toUpperCase(letterToChange);
