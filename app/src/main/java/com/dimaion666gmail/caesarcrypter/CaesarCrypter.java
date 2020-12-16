@@ -10,7 +10,7 @@ public class CaesarCrypter {
         alphabet[1] = "abcdefghijklmnopqrstuvwxyz".toCharArray();
     }
 
-    public String translate(int encryptOrDecrypt, String letterShifts, String text) {
+    public String translate(boolean decrypting, String letterShifts, String text) {
         // Splitting string letterShifts (user's key) by space and turning gotten array's elements
         // into integers.
         String[] stringLetterShifts = letterShifts.split(" ");
@@ -19,44 +19,47 @@ public class CaesarCrypter {
         for (int i = 0; i < stringLetterShifts.length; i++)
             integerLetterShifts[i] = Integer.parseInt(stringLetterShifts[i]);
 
-        // Definition of either encrypting or decrypting
-        if (encryptOrDecrypt == 0) {
-            for (int i = 0; i < integerLetterShifts.length; i++)
-                integerLetterShifts[i] = Math.abs(integerLetterShifts[i]);
-        } else {
+        // Definition of either encrypting or decrypting key.
+        if (decrypting == true)
             for (int i = 0; i < integerLetterShifts.length; i++)
                 integerLetterShifts[i] = integerLetterShifts[i] * (-1);
-        }
 
         // Translating user's text
         StringBuilder newString = new StringBuilder();
-        int letterShiftIndex = 0; // Which length of shift we use now from integerLetterShifts
+        int letterShiftIndex = 0; // Which length of shift we use from integerLetterShifts array
+                                                                                        // now.
 
-        for (int i = 0; i < text.length(); i++) { // Go through every letter
-            int indexInAnAlphabet = -1; // -1 means that the letter is not found
-            int alphabetLanguageIndex = 0;
-            int shiftedIndexInAnAlphabet = 0;
-            char letterToChange = text.charAt(i); // We take the letter from user's text
-            boolean isUpperCase = Character.isUpperCase(letterToChange);
-            letterToChange = Character.toLowerCase(letterToChange);
+        for (int i = 0; i < text.length(); i++) { // Go through every letter.
+            int alphabetLanguageIndex = 0; // Index of language alphabet.
+            int indexInAnAlphabet = -1; // -1 means that the letter is not found in an alphabet.
+            int shiftedIndexInAnAlphabet = 0; // Shifted version of letter's index.
+            char letterToChange = text.charAt(i); // We take the letter from user's text.
+            boolean isUpperCase = Character.isUpperCase(letterToChange); // We remember if the
+                                                                        // letter is uppercase.
+            letterToChange = Character.toLowerCase(letterToChange); // We change the letter to
+            // lowercase, so that it is can be compared with lowercase letters in alphabets.
+            everyLetterOfEveryAlphabet: // We tag outerloop to use break completely.
+            for (int j = 0; j < alphabet.length; j++) { // Go through every alphabet.
+                for (int k = 0; k < alphabet[j].length; k++) { // Go through every letter in the
+                                                                // current alphabet.
+                     if (letterToChange == alphabet[j][k]) { // If the letter was found:
+                         alphabetLanguageIndex = j; // remember the alphabet index
+                         indexInAnAlphabet = k; // remember the letter index in the alphabet
 
-            for (int j = 0; j < alphabet.length; j++) { // Find letter's index in an alphabet        // If the letter has been found then we get
-                for (int k = 0; k < alphabet[j].length; k++) {                                                                                           // its shifted index.
-                     if (letterToChange == alphabet[j][k]) {
-                         indexInAnAlphabet = k;
+                         // We compute shifted version of the letter index
                          shiftedIndexInAnAlphabet = (indexInAnAlphabet +
                                  integerLetterShifts[letterShiftIndex]) % alphabet[j].length;
 
-                         alphabetLanguageIndex = j;
-
+                         // If shifted version of the letter index is negative, we do that
                          if (shiftedIndexInAnAlphabet < 0)
-                             shiftedIndexInAnAlphabet = alphabet[j].length - Math.abs(shiftedIndexInAnAlphabet);
+                             shiftedIndexInAnAlphabet = alphabet[j].length -
+                                     Math.abs(shiftedIndexInAnAlphabet);
 
                          letterShiftIndex++;
-                         if (letterShiftIndex > (integerLetterShifts.length - 1)) {
-                             letterShiftIndex = 0; // We start going through every key again
-                         }
-                         break;
+                         if (letterShiftIndex > (integerLetterShifts.length - 1))
+                             letterShiftIndex = 0; // We start going through every member of user's
+                                                    // key again.
+                         break everyLetterOfEveryAlphabet;
                      }
                  }
             }
@@ -70,7 +73,6 @@ public class CaesarCrypter {
 
             newString.append(letterToChange); // We build a new string using every shifted letter
         }
-
         return newString.toString();
     }
 }
