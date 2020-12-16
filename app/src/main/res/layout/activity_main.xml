@@ -16,6 +16,7 @@
         android:orientation="horizontal">
 
         <EditText
+            android:id="@+id/user_key"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:hint="@string/enter_key"

@@ -19,8 +19,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickTranslate(View view) {
+        CaesarCrypter caesarCrypter = new CaesarCrypter();
+
+        EditText userKeyEditTextView = (EditText)findViewById(R.id.user_key);
         EditText toBeTranslatedEditTextView = (EditText)findViewById(R.id.text_to_be_translated);
         TextView translatedTextView = (TextView)findViewById(R.id.translated_text);
-        translatedTextView.setText(toBeTranslatedEditTextView.getText());
+
+        String userKey = String.valueOf(userKeyEditTextView.getText());
+        String toBeTranslatedText = String.valueOf(toBeTranslatedEditTextView.getText());
+        String translatedText = caesarCrypter.translate(false, userKey, toBeTranslatedText);
+
+        translatedTextView.setText(translatedText);
     }
 }
