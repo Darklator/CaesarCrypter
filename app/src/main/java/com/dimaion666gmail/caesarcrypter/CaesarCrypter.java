@@ -19,18 +19,18 @@ public class CaesarCrypter {
         for (int i = 0; i < stringLetterShifts.length; i++)
             integerLetterShifts[i] = Integer.parseInt(stringLetterShifts[i]);
 
-        // Definition of either encrypting or decrypting
+        // Definition of either encrypting or decrypting key (user cannot enter negative numbers)
         if (encryptOrDecrypt == 0) {
             for (int i = 0; i < integerLetterShifts.length; i++)
                 integerLetterShifts[i] = Math.abs(integerLetterShifts[i]);
-        } else {
+        } else if (encryptOrDecrypt == 1) {
             for (int i = 0; i < integerLetterShifts.length; i++)
                 integerLetterShifts[i] = integerLetterShifts[i] * (-1);
         }
 
         // Translating user's text
         StringBuilder newString = new StringBuilder();
-        int letterShiftIndex = 0; // Which length of shift we use now from integerLetterShifts
+        int letterShiftIndex = 0; // Which length of shift we use now from integerLetterShifts array
 
         for (int i = 0; i < text.length(); i++) { // Go through every letter
             int indexInAnAlphabet = -1; // -1 means that the letter is not found
