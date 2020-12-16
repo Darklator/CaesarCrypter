@@ -25,7 +25,7 @@
             android:paddingHorizontal="6dp"/>
 
         <ToggleButton
-            android:id="@+id/encrypt_or_decrypt_button"
+            android:id="@+id/is_decrypting_button"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
