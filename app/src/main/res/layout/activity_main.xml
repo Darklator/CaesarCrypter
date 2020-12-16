@@ -66,7 +66,8 @@
                 android:paddingVertical="15dp"
                 android:hint="@string/text_to_be_translated"
                 android:gravity="left|top"
-                android:background="@drawable/border_for_components"/>
+                android:background="@drawable/border_for_components"
+                android:textStyle="normal"/>
 
             <TextView
                 android:id="@+id/translated_text"

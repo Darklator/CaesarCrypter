@@ -4,7 +4,6 @@ public class CaesarCrypter {
     // "абвгдеёжзийклмнопрстуфхцчшщъыьэюя" "abcdefghijklmnopqrstuvwxyz"
     private char[][] alphabet = new char[2][];
 
-
     public CaesarCrypter() {
         alphabet[0] = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя".toCharArray();
         alphabet[1] = "abcdefghijklmnopqrstuvwxyz".toCharArray();
@@ -13,6 +12,10 @@ public class CaesarCrypter {
     public String translate(boolean decrypting, String letterShifts, String text) {
         // Splitting string letterShifts (user's key) by space and turning gotten array's elements
         // into integers.
+
+        if (letterShifts.isEmpty()) return text; // If there is no letter shifts then we just return
+                                                //  the same text.
+
         String[] stringLetterShifts = letterShifts.split(" ");
         int[] integerLetterShifts = new int[stringLetterShifts.length];
 
