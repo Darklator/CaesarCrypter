@@ -34,6 +34,7 @@ public class CaesarCrypter {
 
         for (int i = 0; i < text.length(); i++) { // Go through every letter
             int indexInAnAlphabet = -1; // -1 means that the letter is not found
+            int alphabetLanguageIndex = 0;
             int shiftedIndexInAnAlphabet = 0;
             char letterToChange = text.charAt(i); // We take the letter from user's text
             boolean isUpperCase = Character.isUpperCase(letterToChange);
@@ -46,6 +47,8 @@ public class CaesarCrypter {
                          shiftedIndexInAnAlphabet = (indexInAnAlphabet +
                                  integerLetterShifts[letterShiftIndex]) % alphabet[j].length;
 
+                         alphabetLanguageIndex = j;
+
                          if (shiftedIndexInAnAlphabet < 0)
                              shiftedIndexInAnAlphabet = alphabet[j].length - Math.abs(shiftedIndexInAnAlphabet);
 
@@ -56,13 +59,11 @@ public class CaesarCrypter {
                          break;
                      }
                  }
-
-
             }
 
             if (indexInAnAlphabet != -1) // If the letter has been found in an alphabet then we use
                                         // its shifted version, else we do nothing.
-                letterToChange = alphabet[j][shiftedIndexInAnAlphabet];
+                letterToChange = alphabet[alphabetLanguageIndex][shiftedIndexInAnAlphabet];
 
             if (isUpperCase) // We return upper case to the letter if it had it before
                 letterToChange = Character.toUpperCase(letterToChange);
