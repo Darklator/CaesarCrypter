@@ -19,40 +19,44 @@ public class CaesarCrypter {
         for (int i = 0; i < stringLetterShifts.length; i++)
             integerLetterShifts[i] = Integer.parseInt(stringLetterShifts[i]);
 
-        // Definition of either encrypting or decrypting key
+        // Definition of either encrypting or decrypting key.
         if (decrypting == true)
             for (int i = 0; i < integerLetterShifts.length; i++)
                 integerLetterShifts[i] = integerLetterShifts[i] * (-1);
 
         // Translating user's text
         StringBuilder newString = new StringBuilder();
-        int letterShiftIndex = 0; // Which length of shift we use now from integerLetterShifts array
+        int letterShiftIndex = 0; // Which length of shift we use from integerLetterShifts array
+                                                                                        // now.
 
-        for (int i = 0; i < text.length(); i++) { // Go through every letter
-            int indexInAnAlphabet = -1; // -1 means that the letter is not found
-            int alphabetLanguageIndex = 0;
-            int shiftedIndexInAnAlphabet = 0;
+        for (int i = 0; i < text.length(); i++) { // Go through every letter.
+            int indexInAnAlphabet = -1; // -1 means that the letter is not found in an alphabet.
+            int alphabetLanguageIndex = 0; // Index of language alphabet.
+            int shiftedIndexInAnAlphabet = 0; // Shifted version letter's index
             char letterToChange = text.charAt(i); // We take the letter from user's text
-            boolean isUpperCase = Character.isUpperCase(letterToChange);
-            letterToChange = Character.toLowerCase(letterToChange);
-
-            for (int j = 0; j < alphabet.length; j++) { // Find letter's index in an alphabet        // If the letter has been found then we get
-                for (int k = 0; k < alphabet[j].length; k++) {                                                                                           // its shifted index.
-                     if (letterToChange == alphabet[j][k]) {
-                         indexInAnAlphabet = k;
+            boolean isUpperCase = Character.isUpperCase(letterToChange); // We remember if the
+                                                                        // letter is uppercase.
+            letterToChange = Character.toLowerCase(letterToChange); // We change the letter to
+            // lowercase, so that it is can be compared with lowercase letters in alphabets.
+            everyLetterOfEveryAlphabet: // We tag outerloop to use break completely
+            for (int j = 0; j < alphabet.length; j++) { // Go through every alphabet
+                for (int k = 0; k < alphabet[j].length; k++) { // Go through every letter in the
+                                                                // current alphabet.
+                     if (letterToChange == alphabet[j][k]) { // If the letter was found
+                         alphabetLanguageIndex = j; // Remember the alphabet index
+                         indexInAnAlphabet = k; // Remember the letter index in the alphabet
                          shiftedIndexInAnAlphabet = (indexInAnAlphabet +
                                  integerLetterShifts[letterShiftIndex]) % alphabet[j].length;
 
-                         alphabetLanguageIndex = j;
-
                          if (shiftedIndexInAnAlphabet < 0)
-                             shiftedIndexInAnAlphabet = alphabet[j].length - Math.abs(shiftedIndexInAnAlphabet);
+                             shiftedIndexInAnAlphabet = alphabet[j].length -
+                                     Math.abs(shiftedIndexInAnAlphabet);
 
                          letterShiftIndex++;
                          if (letterShiftIndex > (integerLetterShifts.length - 1)) {
                              letterShiftIndex = 0; // We start going through every key again
                          }
-                         break;
+                         break everyLetterOfEveryAlphabet;
                      }
                  }
             }

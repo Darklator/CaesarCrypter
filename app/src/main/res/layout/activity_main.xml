@@ -20,7 +20,7 @@
             android:layout_height="match_parent"
             android:hint="@string/enter_key"
             android:inputType="number"
-            android:digits="0123456789- "
+            android:digits="0123456789 "
             android:paddingHorizontal="6dp"/>
 
         <ToggleButton
