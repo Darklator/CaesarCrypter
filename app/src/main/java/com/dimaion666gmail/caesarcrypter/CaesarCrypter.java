@@ -3,10 +3,12 @@ package com.dimaion666gmail.caesarcrypter;
 import android.annotation.SuppressLint;
 
 public class CaesarCrypter {
-    // "абвгдеёжзийклмнопрстуфхцчшщъыьэюя" [1072; 1103] U [1077]
-    // английский алфавит [97; 122]
+
+    private LanguageHandler[] languageHandlers = new LanguageHandler[2];
 
     public CaesarCrypter() {
+        languageHandlers[0] = new EnglishLanguageHandler();
+        languageHandlers[1] = new RussianLanguageHandler();
     }
 
     public String translate(boolean decrypting, String letterShifts, String text) {
@@ -32,23 +34,19 @@ public class CaesarCrypter {
                                                                                         // now.
 
         for (int i = 0; i < text.length(); i++) { // Go through every letter.
-            int alphabetLanguageIndex = 0; // Index of language alphabet.
-            int indexInAnAlphabet; // -1 means that the letter is not found in an alphabet.
-            int shiftedIndexInAnAlphabet = 0; // Shifted version of letter's index.
-            char letterToChange = text.charAt(i); // We take the letter from user's text.
-            boolean isUpperCase = Character.isUpperCase(letterToChange); // We remember if the
-                                                                        // letter is uppercase.
-            letterToChange = Character.toLowerCase(letterToChange); // We change the letter to
-            // lowercase, so that it is can be compared with lowercase letters in alphabets.
-            // We tag outerloop to use break completely.
+            char letterToBeChanged = text.charAt(i);
 
-            indexInAnAlphabet = (int)letterToChange;
-            indexInAnAlphabet++;
-            letterToChange = (char)indexInAnAlphabet;
+            for (int j = 0; j < languageHandlers.length; j++) {
+                if (languageHandlers[j].doesTheLetterExistHere(letterToBeChanged)) {
+                    letterToBeChanged = languageHandlers[j].shiftLetter(integerLetterShifts[letterShiftIndex], letterToBeChanged);
 
-            if(isUpperCase) letterToChange = Character.toUpperCase(letterToChange);
+                    letterShiftIndex++;
+                    if (letterShiftIndex >= integerLetterShifts.length) letterShiftIndex = 0;
 
-            newString.append(letterToChange); // We build a new string using every shifted letter
+                    break;
+                }
+            }
+            newString.append(letterToBeChanged);
         }
         return newString.toString();
     }

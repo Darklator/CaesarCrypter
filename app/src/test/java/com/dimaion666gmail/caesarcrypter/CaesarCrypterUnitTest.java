@@ -15,6 +15,8 @@ public class CaesarCrypterUnitTest {
     @Test
     public void translateTest() {
         assertEquals("BCD", caesarCrypter.translate(false,"1", "ABC"));
+        assertEquals("A", caesarCrypter.translate(false,"1", "Z"));
+        assertEquals("Z", caesarCrypter.translate(true,"1", "A"));
         // TODO: I should make it possible to input negative key memebers
     }
 }
