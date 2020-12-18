@@ -2,12 +2,21 @@ package com.dimaion666gmail.caesarcrypter;
 
 public class StandartLanguageHandler extends LanguageHandler {
     // abcdefghijklmnopqrstuvwxyz - [97; 122]
+    private int theStartInUnicode;
+    private int theEndInUnicode;
+    private int conversion;
+
+    public StandartLanguageHandler(int theStartInUnicode, int theEndInUnicode) {
+        this.theStartInUnicode = theStartInUnicode;
+        this.theEndInUnicode = theEndInUnicode;
+        this.conversion = theStartInUnicode;
+    }
 
     @Override
     public boolean doesTheLetterExistHere(char theLetterWeSeacrh) {
         theLetterWeSeacrh = Character.toLowerCase(theLetterWeSeacrh);
 
-        if(97 <= (int)theLetterWeSeacrh && (int)theLetterWeSeacrh <= 122)
+        if(theStartInUnicode <= (int)theLetterWeSeacrh && (int)theLetterWeSeacrh <= theEndInUnicode)
             return true;
         else
             return false;
@@ -15,20 +24,20 @@ public class StandartLanguageHandler extends LanguageHandler {
 
     @Override
     public char shiftLetter(int shiftStep, char letterToBeShifted) {
-        shiftStep = shiftStep % 26;
+        shiftStep = shiftStep % (theEndInUnicode - theStartInUnicode);
 
         boolean isUpperCase = Character.isUpperCase(letterToBeShifted);
         letterToBeShifted = Character.toLowerCase(letterToBeShifted);
 
-        int letterIndex = (int)letterToBeShifted - 97;
+        int letterIndex = (int)letterToBeShifted - conversion;
 
-        letterIndex = (letterIndex + shiftStep) % 26;
+        letterIndex = (letterIndex + shiftStep) % (theEndInUnicode - theStartInUnicode);
 
         if (letterIndex < 0) {
-            letterIndex = 26 - Math.abs(letterIndex);
+            letterIndex = (theEndInUnicode - theStartInUnicode) - Math.abs(letterIndex);
         }
 
-        letterIndex += 97;
+        letterIndex += conversion;
 
         char shiftedLetter = (char)letterIndex;
 
