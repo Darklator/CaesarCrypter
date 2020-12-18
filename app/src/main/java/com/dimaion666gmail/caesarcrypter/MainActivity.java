@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.ToggleButton;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     // TODO: User paste string must not save its previous font
@@ -62,8 +63,14 @@ public class MainActivity extends AppCompatActivity {
 
         userKey = String.valueOf(userKeyEditTextView.getText());
         toBeTranslatedText = String.valueOf(toBeTranslatedEditTextView.getText());
-        translatedText = caesarCrypter.translate(isDecrypting, userKey, toBeTranslatedText);
-
-        translatedTextView.setText(translatedText);
+        try {
+            translatedText = caesarCrypter.translate(isDecrypting, userKey, toBeTranslatedText);
+            translatedTextView.setText(translatedText);
+        }
+        catch (InvalidKeyException ikex) {
+            Toast exceptionMessage = new Toast(this);
+            exceptionMessage.makeText(this, ikex.getMessage(), Toast.LENGTH_SHORT);
+            exceptionMessage.show();
+        }
     }
 }

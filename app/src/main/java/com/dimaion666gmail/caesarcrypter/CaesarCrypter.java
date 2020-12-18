@@ -10,7 +10,7 @@ public class CaesarCrypter {
         languageHandlers[1] = new RussianLanguageHandler();
     }
 
-    public String translate(boolean isDecrypting, String letterShifts, String text) {
+    public String translate(boolean isDecrypting, String letterShifts, String text) throws InvalidKeyException{
         // Получение длин сдвигов в соответствии с порядковым номером каждой буквы в каждом алфавите
         if (letterShifts.isEmpty()) return text;
 
@@ -20,17 +20,17 @@ public class CaesarCrypter {
             char letterKey = letterShifts.charAt(i);
             for (int j = 0; j < languageHandlers.length; j++) {
                 if (languageHandlers[j].doesTheLetterExistHere(letterKey)) {
-                    // Получение порядкового номера в алфавите и сохранение в качестве длины шага
                     integerLetterShifts[i] = languageHandlers[j].getOrderInAlphabet(letterKey);
                     break;
                 } else {
                     // Выбрасываем исключение
+                    // TODO: тут что-то не так
+                    throw new InvalidKeyException(letterShifts);
                 }
-
             }
         }
 
-        // Definition of either encrypting or decrypting key.
+        // Дешифровка или шифровка?
         if (isDecrypting == true)
             for (int i = 0; i < integerLetterShifts.length; i++)
                 integerLetterShifts[i] = integerLetterShifts[i] * (-1);
