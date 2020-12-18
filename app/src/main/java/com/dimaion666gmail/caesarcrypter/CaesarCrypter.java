@@ -1,18 +1,18 @@
 package com.dimaion666gmail.caesarcrypter;
 
 public class CaesarCrypter {
-    // "абвгдеёжзийклмнопрстуфхцчшщъыьэюя" "abcdefghijklmnopqrstuvwxyz"
-    private char[][] alphabet = new char[2][];
+
+    private LanguageHandler[] languageHandlers = new LanguageHandler[2];
 
     public CaesarCrypter() {
-        alphabet[0] = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя".toCharArray();
-        alphabet[1] = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+        // Инициализируем обработчика каждому алфавиту
+        languageHandlers[0] = new StandartLanguageHandler(97, 122);  // abcdefghijklmnopqrstuvwxyz - [97; 122]
+        languageHandlers[1] = new RussianLanguageHandler();
     }
 
-    public String translate(boolean decrypting, String letterShifts, String text) {
+    public String translate(boolean isDecrypting, String letterShifts, String text) {
         // Splitting string letterShifts (user's key) by space and turning gotten array's elements
         // into integers.
-
         if (letterShifts.isEmpty()) return text; // If there is no letter shifts then we just return
                                                 //  the same text.
 
@@ -23,58 +23,31 @@ public class CaesarCrypter {
             integerLetterShifts[i] = Integer.parseInt(stringLetterShifts[i]);
 
         // Definition of either encrypting or decrypting key.
-        if (decrypting == true)
+        if (isDecrypting == true)
             for (int i = 0; i < integerLetterShifts.length; i++)
                 integerLetterShifts[i] = integerLetterShifts[i] * (-1);
 
-        // Translating user's text
+        // Перевод пользовательского текста
         StringBuilder newString = new StringBuilder();
-        int letterShiftIndex = 0; // Which length of shift we use from integerLetterShifts array
-                                                                                        // now.
+        int letterShiftIndex = 0; // Какую длину шага сдвига мы используем из integerLetterShifts.
 
-        for (int i = 0; i < text.length(); i++) { // Go through every letter.
-            int alphabetLanguageIndex = 0; // Index of language alphabet.
-            int indexInAnAlphabet = -1; // -1 means that the letter is not found in an alphabet.
-            int shiftedIndexInAnAlphabet = 0; // Shifted version of letter's index.
-            char letterToChange = text.charAt(i); // We take the letter from user's text.
-            boolean isUpperCase = Character.isUpperCase(letterToChange); // We remember if the
-                                                                        // letter is uppercase.
-            letterToChange = Character.toLowerCase(letterToChange); // We change the letter to
-            // lowercase, so that it is can be compared with lowercase letters in alphabets.
-            everyLetterOfEveryAlphabet: // We tag outerloop to use break completely.
-            for (int j = 0; j < alphabet.length; j++) { // Go through every alphabet.
-                for (int k = 0; k < alphabet[j].length; k++) { // Go through every letter in the
-                                                                // current alphabet.
-                     if (letterToChange == alphabet[j][k]) { // If the letter was found:
-                         alphabetLanguageIndex = j; // remember the alphabet index
-                         indexInAnAlphabet = k; // remember the letter index in the alphabet
+        for (int i = 0; i < text.length(); i++) { // Прохождение по каждой букве.
+            char letterToBeChanged = text.charAt(i);
 
-                         // We compute shifted version of the letter index
-                         shiftedIndexInAnAlphabet = (indexInAnAlphabet +
-                                 integerLetterShifts[letterShiftIndex]) % alphabet[j].length;
+            for (int j = 0; j < languageHandlers.length; j++) { // Поиск нужного обработчика алфавита.
+                if (languageHandlers[j].doesTheLetterExistHere(letterToBeChanged)) {
+                    // Если нужный обработчик найден, то мы меняем букву в соответствии с его указаниями.
+                    letterToBeChanged = languageHandlers[j].shiftLetter(integerLetterShifts[letterShiftIndex], letterToBeChanged);
 
-                         // If shifted version of the letter index is negative, we do that
-                         if (shiftedIndexInAnAlphabet < 0)
-                             shiftedIndexInAnAlphabet = alphabet[j].length -
-                                     Math.abs(shiftedIndexInAnAlphabet);
+                    letterShiftIndex++; // Используем следующую длину шага сдвига
+                    // Если была использована последняя длина, то начинаем с первой.
+                    if (letterShiftIndex >= integerLetterShifts.length) letterShiftIndex = 0;
 
-                         letterShiftIndex++;
-                         if (letterShiftIndex > (integerLetterShifts.length - 1))
-                             letterShiftIndex = 0; // We start going through every member of user's
-                                                    // key again.
-                         break everyLetterOfEveryAlphabet;
-                     }
-                 }
+                    break;
+                }
             }
-
-            if (indexInAnAlphabet != -1) // If the letter has been found in an alphabet then we use
-                                        // its shifted version, else we do nothing.
-                letterToChange = alphabet[alphabetLanguageIndex][shiftedIndexInAnAlphabet];
-
-            if (isUpperCase) // We return upper case to the letter if it had it before
-                letterToChange = Character.toUpperCase(letterToChange);
-
-            newString.append(letterToChange); // We build a new string using every shifted letter
+            // Включение полученного символа в новую строку
+            newString.append(letterToBeChanged);
         }
         return newString.toString();
     }

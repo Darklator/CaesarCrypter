@@ -1,5 +1,7 @@
 package com.dimaion666gmail.caesarcrypter;
 
+import android.icu.text.SymbolTable;
+
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -14,18 +16,13 @@ public class CaesarCrypterUnitTest {
 
     @Test
     public void translateTest() {
-        assertEquals("БВГ", caesarCrypter.translate(false,"1", "АБВ"));
-        assertEquals("Бвг", caesarCrypter.translate(false,"1", "Абв"));
-        assertEquals("Аяю", caesarCrypter.translate(false,"1", "Яюэ"));
-        assertEquals("Изж", caesarCrypter.translate(false,"10", "Яюэ"));
-        assertEquals("Ир", caesarCrypter.translate(false,"33", "Ир"));
-        assertEquals("/*-+", caesarCrypter.translate(false,"2", "/*-+"));
-        assertEquals("БГЕЖ", caesarCrypter.translate(false,"1 2 3 4", "АБВГ"));
-        assertEquals("ЦЧШ", caesarCrypter.translate(true,"10", "АБВ"));
-        assertEquals("ЯАБ", caesarCrypter.translate(true,"1", "АБВ"));
-        assertEquals("BCD", caesarCrypter.translate(false,"1", "ABC"));
-        assertEquals("ZAB", caesarCrypter.translate(true,"1", "ABC"));
-        assertEquals("ABC", caesarCrypter.translate(true,"", "ABC"));
+        assertEquals("B", caesarCrypter.translate(false,"1", "A"));
+        assertEquals("A", caesarCrypter.translate(false,"1", "Z"));
+        assertEquals("Z", caesarCrypter.translate(true,"1", "A"));
+
+        assertEquals("Б", caesarCrypter.translate(false,"1", "А"));
+        assertEquals("А", caesarCrypter.translate(false,"1", "Я"));
+        assertEquals("Я", caesarCrypter.translate(true,"1", "А"));
         // TODO: I should make it possible to input negative key memebers
     }
 }
