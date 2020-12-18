@@ -24,6 +24,7 @@ public class RussianLanguageHandler extends LanguageHandler {
 
     @Override
     public int getOrderInAlphabet(char letter) {
+        letter = Character.toLowerCase(letter);
         int order = 0;
         for (int i = 0; i < alphabetLength; i++) {
             if (alphabet[i] == letter) {

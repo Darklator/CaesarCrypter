@@ -21,6 +21,7 @@ public class CaesarCrypter {
             for (int j = 0; j < languageHandlers.length; j++) {
                 if (languageHandlers[j].doesTheLetterExistHere(letterKey)) {
                     // Получение порядкового номера в алфавите и сохранение в качестве длины шага
+                    integerLetterShifts[i] = languageHandlers[j].getOrderInAlphabet(letterKey);
                     break;
                 } else {
                     // Выбрасываем исключение
