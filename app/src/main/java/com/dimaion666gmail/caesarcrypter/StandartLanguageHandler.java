@@ -14,26 +14,31 @@ public class StandartLanguageHandler extends LanguageHandler {
     }
 
     @Override
-    public boolean doesTheLetterExistHere(char theLetterWeSeacrh) {
-        theLetterWeSeacrh = Character.toLowerCase(theLetterWeSeacrh);
+    public boolean doesTheLetterExistHere(char letter) {
+        letter = Character.toLowerCase(letter);
 
-        if(theStartInUnicode <= (int)theLetterWeSeacrh && (int)theLetterWeSeacrh <= theEndInUnicode)
+        if(theStartInUnicode <= (int)letter && (int)letter <= theEndInUnicode)
             return true;
         else
             return false;
     }
 
     @Override
-    public char shiftLetter(int shiftStep, char letterToBeShifted) {
+    public int getOrderInAlphabet(char letter) {
+        return (int)letter - conversion;
+    }
+
+    @Override
+    public char shiftLetter(int shiftStep, char letter) {
         shiftStep = shiftStep % alphabetLength; // Отбрасываем лишнюю длину сдвига.
 
         // Если буква в верхнем регистре, то запоминаем, потом возвращаем.
-        boolean isUpperCase = Character.isUpperCase(letterToBeShifted);
+        boolean isUpperCase = Character.isUpperCase(letter);
         // В алфавите мы работаем с буквами в нижнем регистре.
-        letterToBeShifted = Character.toLowerCase(letterToBeShifted);
+        letter = Character.toLowerCase(letter);
 
         // Получаем порядковый номер буквы в алфавите.
-        int letterIndex = (int)letterToBeShifted - conversion;
+        int letterIndex = (int)letter - conversion;
 
         // Сдвигаем порядковый номер и ищем букву. Если номер уходит за границы алфавита в конце,
         // то он всё равно уходит в начало по формуле.

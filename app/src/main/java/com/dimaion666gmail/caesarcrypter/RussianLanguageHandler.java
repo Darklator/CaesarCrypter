@@ -13,29 +13,40 @@ public class RussianLanguageHandler extends LanguageHandler {
     }
 
     @Override
-    public boolean doesTheLetterExistHere(char theLetterWeSeacrh) {
-        theLetterWeSeacrh = Character.toLowerCase(theLetterWeSeacrh);
+    public boolean doesTheLetterExistHere(char letter) {
+        letter = Character.toLowerCase(letter);
 
-        if(1072 <= (int)theLetterWeSeacrh && (int)theLetterWeSeacrh <= 1103 || (int)theLetterWeSeacrh == 1105)
+        if(1072 <= (int)letter && (int)letter <= 1103 || (int)letter == 1105)
             return true;
         else
             return false;
     }
 
     @Override
-    public char shiftLetter(int shiftStep, char letterToBeShifted) {
+    public int getOrderInAlphabet(char letter) {
+        int order = 0;
+        for (int i = 0; i < alphabetLength; i++) {
+            if (alphabet[i] == letter) {
+                order = i;
+            }
+        }
+        return order;
+    }
+
+    @Override
+    public char shiftLetter(int shiftStep, char letter) {
         shiftStep = shiftStep % alphabetLength; // Отбрасываем лишнюю длину сдвига.
 
         // Если буква в верхнем регистре, то запоминаем, потом возвращаем.
-        boolean isUpperCase = Character.isUpperCase(letterToBeShifted);
+        boolean isUpperCase = Character.isUpperCase(letter);
         // В алфавите мы работаем с буквами в нижнем регистре.
-        letterToBeShifted = Character.toLowerCase(letterToBeShifted);
+        letter = Character.toLowerCase(letter);
 
         int letterIndex = 0;
 
         // Ищем порядковый номер буквы в массиве алфавита.
         for (int i = 0; i < alphabetLength; i++) {
-            if (alphabet[i] == letterToBeShifted) {
+            if (alphabet[i] == letter) {
                 letterIndex = i;
             }
         }

@@ -1,6 +1,7 @@
 package com.dimaion666gmail.caesarcrypter;
 
 public abstract class LanguageHandler {
-    public abstract boolean doesTheLetterExistHere(char letterToBeShifted);
-    public abstract char shiftLetter(int shiftStep, char letterToBeShifted);
+    public abstract boolean doesTheLetterExistHere(char letter);
+    public abstract int getOrderInAlphabet(char letter);
+    public abstract char shiftLetter(int shiftStep, char letter);
 }

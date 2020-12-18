@@ -11,16 +11,23 @@ public class CaesarCrypter {
     }
 
     public String translate(boolean isDecrypting, String letterShifts, String text) {
-        // Splitting string letterShifts (user's key) by space and turning gotten array's elements
-        // into integers.
-        if (letterShifts.isEmpty()) return text; // If there is no letter shifts then we just return
-                                                //  the same text.
+        // Получение длин сдвигов в соответствии с порядковым номером каждой буквы в каждом алфавите
+        if (letterShifts.isEmpty()) return text;
 
-        String[] stringLetterShifts = letterShifts.split(" ");
-        int[] integerLetterShifts = new int[stringLetterShifts.length];
+        int[] integerLetterShifts = new int[letterShifts.length()];
 
-        for (int i = 0; i < stringLetterShifts.length; i++)
-            integerLetterShifts[i] = Integer.parseInt(stringLetterShifts[i]);
+        for (int i = 0; i < letterShifts.length(); i++) {
+            char letterKey = letterShifts.charAt(i);
+            for (int j = 0; j < languageHandlers.length; j++) {
+                if (languageHandlers[j].doesTheLetterExistHere(letterKey)) {
+                    // Получение порядкового номера в алфавите и сохранение в качестве длины шага
+                    break;
+                } else {
+                    // Выбрасываем исключение
+                }
+
+            }
+        }
 
         // Definition of either encrypting or decrypting key.
         if (isDecrypting == true)
