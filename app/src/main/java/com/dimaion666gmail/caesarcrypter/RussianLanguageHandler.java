@@ -1,13 +1,15 @@
 package com.dimaion666gmail.caesarcrypter;
 
-import java.util.HashMap;
-
 public class RussianLanguageHandler extends LanguageHandler {
     // "абвгдеёжзийклмнопрстуфхцчшщъыьэюя" [1072; 1103] U [1105]
-    char[] alphabet;
+    private char[] alphabet;
+    private int alphabetLength;
 
     public RussianLanguageHandler() {
+        // Порядок алфавита в unicode нарушен, а работу с массивом я считаю наиболее
+        // оптимальным решением из найденных.
         alphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя".toCharArray();
+        alphabetLength = alphabet.length;
     }
 
     @Override
@@ -22,29 +24,39 @@ public class RussianLanguageHandler extends LanguageHandler {
 
     @Override
     public char shiftLetter(int shiftStep, char letterToBeShifted) {
-        shiftStep = shiftStep % 33;
+        shiftStep = shiftStep % alphabetLength; // Отбрасываем лишнюю длину сдвига.
 
+        // Если буква в верхнем регистре, то запоминаем, потом возвращаем.
         boolean isUpperCase = Character.isUpperCase(letterToBeShifted);
+        // В алфавите мы работаем с буквами в нижнем регистре.
         letterToBeShifted = Character.toLowerCase(letterToBeShifted);
 
-        int letterIndex = -1;
+        int letterIndex = 0;
 
-        for (int i = 0; i < 33; i++) {
+        // Ищем порядковый номер буквы в массиве алфавита.
+        for (int i = 0; i < alphabetLength; i++) {
             if (alphabet[i] == letterToBeShifted) {
                 letterIndex = i;
             }
         }
 
-        letterIndex = (letterIndex + shiftStep) % 33;
+        // Сдвигаем порядковый номер и ищем букву. Если номер уходит за границы алфавита в конце,
+        // то он всё равно уходит в начало по формуле.
+        letterIndex = (letterIndex + shiftStep) % alphabetLength;
 
+        // Если номер уходит за границы алфавита в начале, то он всё равно уходит в конец по
+        // условию.
         if (letterIndex < 0) {
-            letterIndex = 33 - Math.abs(letterIndex);
+            letterIndex = alphabetLength - Math.abs(letterIndex);
         }
 
+        // Получаем смещённую букву.
         char shiftedLetter = alphabet[letterIndex];
 
+        // Возвращаем верхний регистр, если он был.
         if (isUpperCase) shiftedLetter = Character.toUpperCase(shiftedLetter);
 
+        // Вовзращаем смещённую букву.
         return shiftedLetter;
     }
 }
