@@ -4,23 +4,10 @@ import java.util.HashMap;
 
 public class RussianLanguageHandler extends LanguageHandler {
     // "абвгдеёжзийклмнопрстуфхцчшщъыьэюя" [1072; 1103] U [1105]
-    HashMap<Integer, Integer> unicodeToSimpleCode = new HashMap(); // unicode - simple code
-    HashMap<Integer, Integer> simpleCodeToUnicode = new HashMap(); // simple code - unicode
-
+    char[] alphabet;
 
     public RussianLanguageHandler() {
-        for (int i = 0; i < 33; i++) {
-            if (i < 6) {
-                simpleCodeToUnicode.put(i, i + 1072);
-                unicodeToSimpleCode.put(i + 1072, i);
-            } else if (i == 6) {
-                simpleCodeToUnicode.put(i, 1105);
-                unicodeToSimpleCode.put(1105, i);
-            } else {
-                simpleCodeToUnicode.put(i, (i + 1072 - 1));
-                unicodeToSimpleCode.put((i + 1072 - 1), i);
-            }
-        }
+        alphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя".toCharArray();
     }
 
     @Override
@@ -40,7 +27,13 @@ public class RussianLanguageHandler extends LanguageHandler {
         boolean isUpperCase = Character.isUpperCase(letterToBeShifted);
         letterToBeShifted = Character.toLowerCase(letterToBeShifted);
 
-        int letterIndex = unicodeToSimpleCode.get((int)letterToBeShifted);
+        int letterIndex = -1;
+
+        for (int i = 0; i < 33; i++) {
+            if (alphabet[i] == letterToBeShifted) {
+                letterIndex = i;
+            }
+        }
 
         letterIndex = (letterIndex + shiftStep) % 33;
 
@@ -48,7 +41,7 @@ public class RussianLanguageHandler extends LanguageHandler {
             letterIndex = 33 - Math.abs(letterIndex);
         }
 
-        char shiftedLetter = (char)(int)simpleCodeToUnicode.get(letterIndex);
+        char shiftedLetter = alphabet[letterIndex];
 
         if (isUpperCase) shiftedLetter = Character.toUpperCase(shiftedLetter);
 

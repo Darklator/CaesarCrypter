@@ -1,6 +1,6 @@
 package com.dimaion666gmail.caesarcrypter;
 
-public class EnglishLanguageHandler extends LanguageHandler {
+public class StandartLanguageHandler extends LanguageHandler {
     // abcdefghijklmnopqrstuvwxyz - [97; 122]
 
     @Override

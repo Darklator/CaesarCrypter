@@ -19,14 +19,11 @@ public class CaesarCrypterUnitTest {
         assertEquals("BCD", caesarCrypter.translate(false,"1", "ABC"));
         assertEquals("A", caesarCrypter.translate(false,"1", "Z"));
         assertEquals("Z", caesarCrypter.translate(true,"1", "A"));
+        assertEquals("Y", caesarCrypter.translate(false,"25", "Z"));
 
         assertEquals("БВГ", caesarCrypter.translate(false,"1", "АБВ"));
         assertEquals("А", caesarCrypter.translate(false,"1", "Я"));
         assertEquals("Я", caesarCrypter.translate(true,"1", "А"));
-
-        assertEquals("Ё", caesarCrypter.translate(false,"1", "Е"));
-        assertEquals("Ж", caesarCrypter.translate(false,"1", "Ё"));
-        assertEquals("Ж", caesarCrypter.translate(false,"2", "Е"));
         // TODO: I should make it possible to input negative key memebers
     }
 }
