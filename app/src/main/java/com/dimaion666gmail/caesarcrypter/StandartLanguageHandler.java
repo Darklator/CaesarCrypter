@@ -1,6 +1,6 @@
 package com.dimaion666gmail.caesarcrypter;
 
-public class StandartLanguageHandler extends {
+public class StandartLanguageHandler {
     // abcdefghijklmnopqrstuvwxyz - [97; 122]
     private int theStartInUnicode;
     private int theEndInUnicode;
