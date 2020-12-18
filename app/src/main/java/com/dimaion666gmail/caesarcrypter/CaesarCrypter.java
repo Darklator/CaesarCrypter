@@ -5,7 +5,7 @@ public class CaesarCrypter {
     private LanguageHandler[] languageHandlers = new LanguageHandler[2];
 
     public CaesarCrypter() {
-        languageHandlers[0] = new StandartLanguageHandler();
+        languageHandlers[0] = new StandartLanguageHandler(97, 122);
         languageHandlers[1] = new RussianLanguageHandler();
     }
 
