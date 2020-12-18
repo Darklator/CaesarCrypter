@@ -1,7 +1,27 @@
 package com.dimaion666gmail.caesarcrypter;
 
+import java.util.HashMap;
+
 public class RussianLanguageHandler extends LanguageHandler {
     // "абвгдеёжзийклмнопрстуфхцчшщъыьэюя" [1072; 1103] U [1105]
+    HashMap<Integer, Integer> unicodeToSimpleCode = new HashMap(); // unicode - simple code
+    HashMap<Integer, Integer> simpleCodeToUnicode = new HashMap(); // simple code - unicode
+
+
+    public RussianLanguageHandler() {
+        for (int i = 0; i < 33; i++) {
+            if (i < 6) {
+                simpleCodeToUnicode.put(i, i + 1072);
+                unicodeToSimpleCode.put(i + 1072, i);
+            } else if (i == 6) {
+                simpleCodeToUnicode.put(i, 1105);
+                unicodeToSimpleCode.put(1105, i);
+            } else {
+                simpleCodeToUnicode.put(i, (i + 1072 - 1));
+                unicodeToSimpleCode.put((i + 1072 - 1), i);
+            }
+        }
+    }
 
     @Override
     public boolean doesTheLetterExistHere(char theLetterWeSeacrh) {
@@ -15,22 +35,20 @@ public class RussianLanguageHandler extends LanguageHandler {
 
     @Override
     public char shiftLetter(int shiftStep, char letterToBeShifted) {
-        shiftStep = shiftStep % 32;
+        shiftStep = shiftStep % 33;
 
         boolean isUpperCase = Character.isUpperCase(letterToBeShifted);
         letterToBeShifted = Character.toLowerCase(letterToBeShifted);
 
-        int letterIndex = (int)letterToBeShifted - 1072;
+        int letterIndex = unicodeToSimpleCode.get((int)letterToBeShifted);
 
-        letterIndex = (letterIndex + shiftStep) % 32;
+        letterIndex = (letterIndex + shiftStep) % 33;
 
         if (letterIndex < 0) {
-            letterIndex = 32 - Math.abs(letterIndex);
+            letterIndex = 33 - Math.abs(letterIndex);
         }
 
-        letterIndex += 1072;
-
-        char shiftedLetter = (char)letterIndex;
+        char shiftedLetter = (char)(int)simpleCodeToUnicode.get(letterIndex);
 
         if (isUpperCase) shiftedLetter = Character.toUpperCase(shiftedLetter);
 
