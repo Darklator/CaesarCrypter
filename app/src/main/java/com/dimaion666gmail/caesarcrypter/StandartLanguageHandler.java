@@ -26,7 +26,7 @@ public class StandartLanguageHandler extends LanguageHandler {
     @Override
     public int getOrderInAlphabet(char letter) {
         letter = Character.toLowerCase(letter);
-        return (int)letter - conversion;
+        return ((int)letter - conversion + 1);
     }
 
     @Override

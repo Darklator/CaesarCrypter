@@ -68,8 +68,7 @@ public class MainActivity extends AppCompatActivity {
             translatedTextView.setText(translatedText);
         }
         catch (InvalidKeyException ikex) {
-            Toast exceptionMessage = new Toast(this);
-            exceptionMessage.makeText(this, ikex.getMessage(), Toast.LENGTH_SHORT);
+            Toast exceptionMessage = Toast.makeText(getApplicationContext(), ikex.getMessage(), Toast.LENGTH_SHORT);
             exceptionMessage.show();
         }
     }

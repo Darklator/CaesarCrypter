@@ -1,7 +1,7 @@
 package com.dimaion666gmail.caesarcrypter;
 
 public class InvalidKeyException extends Exception {
-    public InvalidKeyException(String key) {
+    public InvalidKeyException() {
         super("Your key contains invalid characters!");
     }
 }

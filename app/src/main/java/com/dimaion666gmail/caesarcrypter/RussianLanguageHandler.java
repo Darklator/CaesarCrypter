@@ -1,6 +1,6 @@
 package com.dimaion666gmail.caesarcrypter;
 
-public class RussianLanguageHandler extends LanguageHandler {
+public final class RussianLanguageHandler extends LanguageHandler {
     // "абвгдеёжзийклмнопрстуфхцчшщъыьэюя" [1072; 1103] U [1105]
     private char[] alphabet;
     private int alphabetLength;
@@ -31,11 +31,12 @@ public class RussianLanguageHandler extends LanguageHandler {
                 order = i;
             }
         }
-        return order;
+        return (order + 1);
     }
 
     @Override
     public char shiftLetter(int shiftStep, char letter) {
+        // TODO: Алгоритм можно ускорить, смотреть в ЛС ВК
         shiftStep = shiftStep % alphabetLength; // Отбрасываем лишнюю длину сдвига.
 
         // Если буква в верхнем регистре, то запоминаем, потом возвращаем.
