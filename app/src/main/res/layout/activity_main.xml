@@ -42,7 +42,6 @@
             android:text="@string/translate"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
-            android:background="@drawable/inset_translate_button"
             android:onClick="onClickTranslate"/>
     </LinearLayout>
 
