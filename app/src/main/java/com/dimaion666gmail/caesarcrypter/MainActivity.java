@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        caesarCrypter = new CaesarCrypter();
+
         if (savedInstanceState != null) {
             userKey = savedInstanceState.getString("userKey");
             isDecrypting = savedInstanceState.getBoolean("isDecrypting");
@@ -72,14 +74,14 @@ public class MainActivity extends AppCompatActivity {
         final EditText toBeTranslatedEditTextView = (EditText) findViewById(R.id.text_to_be_translated);
         final TextView translatedTextView = (TextView) findViewById(R.id.translated_text);
 
-        final Handler handler = new Handler();
+        Handler handler = new Handler();
         handler.post(new Runnable() {
             @Override
             public void run() {
                 userKey = String.valueOf(userKeyEditTextView.getText());
                 toBeTranslatedText = String.valueOf(toBeTranslatedEditTextView.getText());
                 try {
-                    translatedText = vigenereCipher.getTranslation(isDecrypting, userKey, toBeTranslatedText);
+                    translatedText = caesarCrypter.translate(isDecrypting, userKey, toBeTranslatedText);
                     translatedTextView.setText(translatedText);
                 }
                 catch (InvalidKeyException ikex) {
@@ -88,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
         Log.i("onClickTranslate speed", Long.toString(System.nanoTime() - startTime));
     }
 }
