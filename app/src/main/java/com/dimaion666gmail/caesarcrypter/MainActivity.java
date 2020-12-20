@@ -61,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
         isDecrypting = isDecryptingToggleButton.isChecked();
     }
 
-    // TODO: Переделать быдлокод
     public void onClickTranslate(View view) {
         long startTime = System.nanoTime();
 
