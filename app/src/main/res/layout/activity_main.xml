@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context="com.dimaion666gmail.vigenerecipher.MainActivity">
 
     <LinearLayout
         android:paddingTop="35dp"
@@ -16,14 +16,14 @@
         android:orientation="horizontal">
 
         <EditText
+            android:id="@+id/user_key"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:hint="@string/enter_key"
-            android:inputType="number"
-            android:digits="0123456789 "
             android:paddingHorizontal="6dp"/>
 
         <ToggleButton
+            android:id="@+id/is_decrypting_toggle_button"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -31,16 +31,19 @@
             android:textOff="@string/toggle_button_encrypt"
             android:textAllCaps="false"
             android:background="@drawable/inset_toggle_en_de_button"
-            android:textColor="@color/textColorHint"/>
+            android:textColor="@color/textColorHint"
+            android:onClick="onClickEncryptingOrDecrypting"/>
 
         <Button
+            android:id="@+id/translate_button"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1.1"
             android:text="@string/translate"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
-            android:background="@drawable/inset_translate_button"/>
+            android:background="@drawable/inset_translate_button"
+            android:onClick="onClickTranslate"/>
     </LinearLayout>
 
     <LinearLayout
@@ -52,6 +55,7 @@
         android:paddingHorizontal="10dp"
         android:paddingBottom="105dp">
             <EditText
+                android:id="@+id/text_to_be_translated"
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -60,9 +64,11 @@
                 android:paddingVertical="15dp"
                 android:hint="@string/text_to_be_translated"
                 android:gravity="left|top"
-                android:background="@drawable/border_for_components"/>
+                android:background="@drawable/border_for_components"
+                android:textStyle="normal"/>
 
             <TextView
+                android:id="@+id/translated_text"
                 android:layout_marginTop="25dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

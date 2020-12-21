@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name = "Caesar Crypter"
+rootProject.name = "Vigenere Cipher"

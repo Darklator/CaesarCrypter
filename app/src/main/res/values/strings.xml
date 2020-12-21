@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Caesar Crypter</string>
+    <string name="app_name" translatable="false">Vigenere Cipher</string>
     <string name="enter_key">Enter a key</string>
     <string name="toggle_button_encrypt">Encrypt</string>
     <string name="toggle_button_decrypt">Decrypt</string>
