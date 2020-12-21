@@ -1,4 +1,4 @@
-package com.dimaion666gmail.caesarcrypter;
+package com.dimaion666gmail.vigenerecipher;
 
 public abstract class LanguageHandler {
     public abstract boolean doesTheLetterExistHere(char letter);

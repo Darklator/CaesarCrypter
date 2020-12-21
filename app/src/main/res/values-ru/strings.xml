@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">Caesar Crypter</string>
     <string name="enter_key">Введите ключ</string>
     <string name="toggle_button_encrypt">Шифровать</string>
     <string name="toggle_button_decrypt">Дешифровать</string>

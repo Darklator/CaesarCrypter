@@ -1,10 +1,10 @@
-package com.dimaion666gmail.caesarcrypter;
+package com.dimaion666gmail.vigenerecipher;
 
-public class CaesarCrypter {
+public class VigenereCipher {
 
     private LanguageHandler[] languageHandlers = new LanguageHandler[2];
 
-    public CaesarCrypter() {
+    public VigenereCipher() {
         // Инициализируем обработчика каждому алфавиту
         languageHandlers[0] = new StandartLanguageHandler(97, 122);  // abcdefghijklmnopqrstuvwxyz - [97; 122]
         languageHandlers[1] = new RussianLanguageHandler();

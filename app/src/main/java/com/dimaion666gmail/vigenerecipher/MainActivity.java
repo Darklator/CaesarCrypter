@@ -1,4 +1,4 @@
-package com.dimaion666gmail.caesarcrypter;
+package com.dimaion666gmail.vigenerecipher;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +11,8 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 import android.widget.Toast;
 
+import com.dimaion666gmail.vigenerecipher.R;
+
 public class MainActivity extends AppCompatActivity {
     // TODO: User paste string must not save its previous font
 
@@ -18,14 +20,14 @@ public class MainActivity extends AppCompatActivity {
     private boolean isDecrypting;
     private String toBeTranslatedText;
     private String translatedText;
-    private CaesarCrypter caesarCrypter;
+    private VigenereCipher vigenereCipher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        caesarCrypter = new CaesarCrypter();
+        vigenereCipher = new VigenereCipher();
 
         if (savedInstanceState != null) {
             userKey = savedInstanceState.getString("userKey");
@@ -75,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                 userKey = String.valueOf(userKeyEditTextView.getText());
                 toBeTranslatedText = String.valueOf(toBeTranslatedEditTextView.getText());
                 try {
-                    translatedText = caesarCrypter.translate(isDecrypting, userKey, toBeTranslatedText);
+                    translatedText = vigenereCipher.translate(isDecrypting, userKey, toBeTranslatedText);
                     translatedTextView.setText(translatedText);
                 }
                 catch (InvalidKeyException ikex) {

@@ -1,4 +1,4 @@
-package com.dimaion666gmail.caesarcrypter;
+package com.dimaion666gmail.vigenerecipher;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.dimaion666gmail.caesarcrypter", appContext.getPackageName());
+        assertEquals("com.dimaion666gmail.vigenerecipher", appContext.getPackageName());
     }
 }
