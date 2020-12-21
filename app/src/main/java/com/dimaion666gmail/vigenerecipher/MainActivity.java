@@ -1,23 +1,33 @@
-package com.dimaion666gmail.caesarcrypter;
+package com.dimaion666gmail.vigenerecipher;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.ToggleButton;
+import android.widget.Toast;
+
+import com.dimaion666gmail.vigenerecipher.R;
 
 public class MainActivity extends AppCompatActivity {
     // TODO: User paste string must not save its previous font
+
     private String userKey;
     private boolean isDecrypting;
     private String toBeTranslatedText;
     private String translatedText;
+    private VigenereCipher vigenereCipher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        vigenereCipher = new VigenereCipher();
 
         if (savedInstanceState != null) {
             userKey = savedInstanceState.getString("userKey");
@@ -54,16 +64,29 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickTranslate(View view) {
-        CaesarCrypter caesarCrypter = new CaesarCrypter();
+        long startTime = System.nanoTime();
 
-        EditText userKeyEditTextView = (EditText) findViewById(R.id.user_key);
-        EditText toBeTranslatedEditTextView = (EditText) findViewById(R.id.text_to_be_translated);
-        TextView translatedTextView = (TextView) findViewById(R.id.translated_text);
+        final EditText userKeyEditTextView = (EditText) findViewById(R.id.user_key);
+        final EditText toBeTranslatedEditTextView = (EditText) findViewById(R.id.text_to_be_translated);
+        final TextView translatedTextView = (TextView) findViewById(R.id.translated_text);
 
-        userKey = String.valueOf(userKeyEditTextView.getText());
-        toBeTranslatedText = String.valueOf(toBeTranslatedEditTextView.getText());
-        translatedText = caesarCrypter.translate(isDecrypting, userKey, toBeTranslatedText);
+        Handler handler = new Handler();
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                userKey = String.valueOf(userKeyEditTextView.getText());
+                toBeTranslatedText = String.valueOf(toBeTranslatedEditTextView.getText());
+                try {
+                    translatedText = vigenereCipher.translate(isDecrypting, userKey, toBeTranslatedText);
+                    translatedTextView.setText(translatedText);
+                }
+                catch (InvalidKeyException ikex) {
+                    Toast exceptionMessage = Toast.makeText(getApplicationContext(), ikex.getMessage(), Toast.LENGTH_SHORT);
+                    exceptionMessage.show();
+                }
+            }
+        });
 
-        translatedTextView.setText(translatedText);
+        Log.i("onClickTranslate speed", Long.toString(System.nanoTime() - startTime));
     }
 }
