@@ -66,30 +66,6 @@ public class MainActivity extends AppCompatActivity {
         savedInstanceState.putString("translatedText", translatedText);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        MenuItem menuItem = menu.findItem(R.id.action_share);
-        shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(menuItem);
-        setShareActionIntent("Want to join me for pizza?");
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    private void setShareActionIntent(String text) {
-        Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.setType("text/plain");
-        intent.putExtra(Intent.EXTRA_TEXT, text);
-        shareActionProvider.setShareIntent(intent);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
     public void onClickEncryptingOrDecrypting(View view) {
         ToggleButton isDecryptingToggleButton = (ToggleButton) view;
         isDecrypting = isDecryptingToggleButton.isChecked();

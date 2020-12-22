@@ -17,9 +17,8 @@
 
         <LinearLayout
             android:paddingHorizontal="20dp"
-            android:paddingVertical="15dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical" >
 
             <LinearLayout
@@ -33,7 +32,10 @@
                     android:layout_width="74dp"
                     android:layout_height="match_parent"
                     android:hint="@string/enter_key"
-                    android:paddingHorizontal="6dp" />
+                    android:paddingHorizontal="6dp"
+                    android:singleLine="true"
+                    android:scrollHorizontally="true"
+                    android:maxLength="35" />
 
                 <ToggleButton
                     android:id="@+id/is_decrypting_toggle_button"
@@ -61,10 +63,10 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="10dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="75dp"
                 android:orientation="vertical"
-                android:layout_marginBottom="75dp">
+                android:paddingHorizontal="10dp">
 
                 <EditText
                     android:id="@+id/text_to_be_translated"
@@ -76,13 +78,14 @@
                     android:hint="@string/text_to_be_translated"
                     android:paddingHorizontal="12dp"
                     android:paddingVertical="15dp"
-                    android:textStyle="normal" />
+                    android:textStyle="normal"
+                    android:maxLength="16000"/>
 
                 <TextView
                     android:id="@+id/translated_text"
                     android:layout_width="match_parent"
-                    android:layout_height="225dp"
-                    android:layout_marginTop="35dp"
+                    android:layout_height="230dp"
+                    android:layout_marginTop="25dp"
                     android:background="@drawable/border_for_components"
                     android:hint="@string/translated_text"
                     android:paddingHorizontal="12dp"
