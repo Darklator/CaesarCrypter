@@ -1,83 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:paddingHorizontal="20dp"
-    android:paddingVertical="15dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.dimaion666gmail.vigenerecipher.MainActivity">
+    android:orientation="vertical">
 
-    <LinearLayout
+    <include
+        layout="@layout/toolbar_main"
+        android:id="@+id/toolbar"/>
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingTop="35dp">
+        android:layout_height="match_parent"
+        tools:context=".MainActivity" >
 
-        <EditText
-            android:id="@+id/user_key"
-            android:layout_width="74dp"
-            android:layout_height="match_parent"
-            android:hint="@string/enter_key"
-            android:paddingHorizontal="6dp" />
+        <LinearLayout
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
-        <ToggleButton
-            android:id="@+id/is_decrypting_toggle_button"
-            android:layout_width="133dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/inset_toggle_en_de_button"
-            android:onClick="onClickEncryptingOrDecrypting"
-            android:textAllCaps="false"
-            android:textColor="@color/textColorHint"
-            android:textOff="@string/toggle_button_encrypt"
-            android:textOn="@string/toggle_button_decrypt" />
-
-        <Button
-            android:id="@+id/translate_button"
-            android:layout_width="149dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/inset_translate_button"
-            android:onClick="onClickTranslate"
-            android:text="@string/translate"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:paddingTop="25dp"
-        android:paddingHorizontal="10dp"
-        android:paddingBottom="105dp">
-            <EditText
-                android:id="@+id/text_to_be_translated"
-                android:layout_marginTop="10dp"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:paddingHorizontal="12dp"
-                android:paddingVertical="15dp"
-                android:hint="@string/text_to_be_translated"
-                android:gravity="left|top"
-                android:background="@drawable/border_for_components"
-                android:textStyle="normal"/>
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="35dp">
 
-            <TextView
-                android:id="@+id/translated_text"
-                android:layout_marginTop="25dp"
+                <EditText
+                    android:id="@+id/user_key"
+                    android:layout_width="74dp"
+                    android:layout_height="match_parent"
+                    android:hint="@string/enter_key"
+                    android:paddingHorizontal="6dp" />
+
+                <ToggleButton
+                    android:id="@+id/is_decrypting_toggle_button"
+                    android:layout_width="133dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/inset_toggle_en_de_button"
+                    android:onClick="onClickEncryptingOrDecrypting"
+                    android:textAllCaps="false"
+                    android:textColor="@color/textColorHint"
+                    android:textOff="@string/toggle_button_encrypt"
+                    android:textOn="@string/toggle_button_decrypt" />
+
+                <Button
+                    android:id="@+id/translate_button"
+                    android:layout_width="149dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/inset_translate_button"
+                    android:onClick="onClickTranslate"
+                    android:text="@string/translate"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:paddingHorizontal="12dp"
-                android:paddingVertical="15dp"
-                android:hint="@string/translated_text"
-                android:textIsSelectable="true"
-                android:background="@drawable/border_for_components"/>
-    </LinearLayout>
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="10dp"
+                android:orientation="vertical"
+                android:layout_marginBottom="75dp">
 
+                <EditText
+                    android:id="@+id/text_to_be_translated"
+                    android:layout_width="match_parent"
+                    android:layout_height="230dp"
+                    android:layout_marginTop="45dp"
+                    android:background="@drawable/border_for_components"
+                    android:gravity="left|top"
+                    android:hint="@string/text_to_be_translated"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="15dp"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/translated_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="225dp"
+                    android:layout_marginTop="35dp"
+                    android:background="@drawable/border_for_components"
+                    android:hint="@string/translated_text"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="15dp"
+                    android:textIsSelectable="true" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

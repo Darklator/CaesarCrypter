@@ -1,20 +1,25 @@
 package com.dimaion666gmail.vigenerecipher;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ShareActionProvider;
 import android.widget.TextView;
-import android.widget.ToggleButton;
 import android.widget.Toast;
-
-import com.dimaion666gmail.vigenerecipher.R;
+import android.widget.ToggleButton;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.MenuItemCompat;
 
 public class MainActivity extends AppCompatActivity {
     // TODO: User paste string must not save its previous font
+
+    private ShareActionProvider shareActionProvider;
 
     private String userKey;
     private boolean isDecrypting;
@@ -26,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         vigenereCipher = new VigenereCipher();
 
@@ -56,6 +64,30 @@ public class MainActivity extends AppCompatActivity {
         savedInstanceState.putBoolean("isDecrypting", isDecrypting);
         savedInstanceState.putString("toBeTranslatedText", toBeTranslatedText);
         savedInstanceState.putString("translatedText", translatedText);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        MenuItem menuItem = menu.findItem(R.id.action_share);
+        shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(menuItem);
+        setShareActionIntent("Want to join me for pizza?");
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    private void setShareActionIntent(String text) {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_TEXT, text);
+        shareActionProvider.setShareIntent(intent);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     public void onClickEncryptingOrDecrypting(View view) {

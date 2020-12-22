@@ -6,4 +6,5 @@
     <string name="text_to_be_translated">Enter the text you want to be translated here</string>
     <string name="translated_text">Your translated text will appear here</string>
     <string name="translate">Translate</string>
+    <string name="action_share">Share</string>
 </resources>
