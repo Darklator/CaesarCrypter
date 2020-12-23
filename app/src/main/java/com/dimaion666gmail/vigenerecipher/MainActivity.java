@@ -8,7 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ShareActionProvider;
+import androidx.appcompat.widget.ShareActionProvider;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -87,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     translatedText = vigenereCipher.translate(isDecrypting, userKey, toBeTranslatedText);
                     translatedTextView.setText(translatedText);
+                    setShareActionProvider(translatedText);
                 }
                 catch (InvalidKeyException ikex) {
                     Toast exceptionMessage = Toast.makeText(getApplicationContext(), ikex.getMessage(), Toast.LENGTH_SHORT);
@@ -96,5 +97,29 @@ public class MainActivity extends AppCompatActivity {
         });
 
         Log.i("onClickTranslate speed", Long.toString(System.nanoTime() - startTime));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        MenuItem menuItem = menu.findItem(R.id.action_share);
+        shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(menuItem);
+        setShareActionProvider(null);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void setShareActionProvider(String text) {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_TEXT, text);
+        shareActionProvider.setShareIntent(intent);
     }
 }
