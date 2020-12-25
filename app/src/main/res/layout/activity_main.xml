@@ -35,7 +35,8 @@
                     android:paddingHorizontal="6dp"
                     android:singleLine="true"
                     android:scrollHorizontally="true"
-                    android:maxLength="35" />
+                    android:maxLength="35"
+                    android:inputType="text"/>
 
                 <ToggleButton
                     android:id="@+id/is_decrypting_toggle_button"
@@ -92,7 +93,8 @@
                             android:hint="@string/text_to_be_translated"
                             android:textStyle="normal"
                             android:maxLength="16000"
-                            android:background="@android:color/transparent"/>
+                            android:background="@android:color/transparent"
+                            android:inputType="text"/>
                     </androidx.core.widget.NestedScrollView>
                 </androidx.cardview.widget.CardView>
 
