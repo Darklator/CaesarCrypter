@@ -5,4 +5,5 @@
     <color name="colorAccent">#03A9F4</color>
     <color name="colorInsideComponents">#F6FBFF</color>
     <color name="textColorHint">#7A7A7A</color>
+    <color name="textColorToolbar">#FFFFFF</color>
 </resources>
