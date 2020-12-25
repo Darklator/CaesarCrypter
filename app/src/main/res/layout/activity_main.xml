@@ -80,22 +80,36 @@
                         android:layout_height="match_parent"
                         android:scaleType="fitXY"/>
 
-                    <androidx.core.widget.NestedScrollView
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:paddingHorizontal="12dp"
-                        android:paddingVertical="15dp">
-                        <EditText
-                            android:id="@+id/text_to_be_translated"
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:id="@+id/text_to_be_translated_toolbar_background"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/textareas_toolbars_background"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"/>
+
+                        <androidx.core.widget.NestedScrollView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:gravity="left|top"
-                            android:hint="@string/text_to_be_translated"
-                            android:textStyle="normal"
-                            android:maxLength="16000"
-                            android:background="@android:color/transparent"
-                            android:inputType="text"/>
-                    </androidx.core.widget.NestedScrollView>
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="15dp"
+                            android:layout_below="@id/text_to_be_translated_toolbar_background">
+                            <EditText
+                                android:id="@+id/text_to_be_translated"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="left|top"
+                                android:hint="@string/text_to_be_translated"
+                                android:textStyle="normal"
+                                android:maxLength="16000"
+                                android:background="@android:color/transparent"
+                                android:inputType="text"/>
+                        </androidx.core.widget.NestedScrollView>
+                    </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 
 
@@ -110,18 +124,32 @@
                         android:layout_height="match_parent"
                         android:scaleType="fitXY"/>
 
-                    <androidx.core.widget.NestedScrollView
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:paddingHorizontal="12dp"
-                        android:paddingVertical="15dp">
-                        <TextView
-                            android:id="@+id/translated_text"
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:id="@+id/translated_text_toolbar_background"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/textareas_toolbars_background"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"/>
+
+                        <androidx.core.widget.NestedScrollView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:hint="@string/translated_text"
-                            android:textIsSelectable="true"/>
-                    </androidx.core.widget.NestedScrollView>
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="15dp"
+                            android:layout_below="@id/translated_text_toolbar_background">
+                            <TextView
+                                android:id="@+id/translated_text"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:hint="@string/translated_text"
+                                android:textIsSelectable="true"/>
+                        </androidx.core.widget.NestedScrollView>
+                    </RelativeLayout>
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
         </LinearLayout>
