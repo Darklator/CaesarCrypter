@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView android:layout_width="match_parent"
+    android:layout_height="230dp"
+    android:layout_marginTop="45dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:src="@drawable/border_for_components"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/text_to_be_translated_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/textareas_toolbars_background" />
+
+            <ViewStub
+                android:id="@+id/toolbar_stub"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </FrameLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="15dp"
+            android:layout_below="@id/text_to_be_translated_toolbar">
+
+            <ViewStub
+                android:id="@+id/text_stub"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </androidx.core.widget.NestedScrollView>
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
