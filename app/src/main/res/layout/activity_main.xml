@@ -12,8 +12,7 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".MainActivity" >
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:paddingHorizontal="20dp"
