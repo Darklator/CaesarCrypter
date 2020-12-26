@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewStub;
 import android.widget.EditText;
 import androidx.appcompat.widget.ShareActionProvider;
 import android.widget.TextView;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.core.view.MenuItemCompat;
 
 public class MainActivity extends AppCompatActivity {
@@ -32,10 +34,32 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         vigenereCipher = new VigenereCipher();
+
+        // Ищем заготовку карточки для входного текста и заполняем отличительными компонентами
+        CardView textToBeTranslatedCard = findViewById(R.id.text_to_be_translated_card);
+
+        ViewStub textToBeTranslatedToolbarStub = textToBeTranslatedCard.findViewById(R.id.toolbar_stub);
+        textToBeTranslatedToolbarStub.setLayoutResource(R.layout.text_to_be_translated_toolbar);
+        textToBeTranslatedToolbarStub.inflate();
+
+        ViewStub textToBeTranslatedTextStub = textToBeTranslatedCard.findViewById(R.id.text_stub);
+        textToBeTranslatedTextStub.setLayoutResource(R.layout.text_to_be_translated_text);
+        textToBeTranslatedTextStub.inflate();
+
+        // Ищем заготовку карточки для выходного текста и заполняем отличительными компонентами
+        CardView translatedTextCard = findViewById(R.id.translated_text_card);
+
+        ViewStub translatedTextToolbarStub = translatedTextCard.findViewById(R.id.toolbar_stub);
+        translatedTextToolbarStub.setLayoutResource(R.layout.translated_text_toolbar);
+        translatedTextToolbarStub.inflate();
+
+        ViewStub translatedTextTextStub = translatedTextCard.findViewById(R.id.text_stub);
+        translatedTextTextStub.setLayoutResource(R.layout.translated_text_text);
+        translatedTextTextStub.inflate();
 
         if (savedInstanceState != null) {
             userKey = savedInstanceState.getString("userKey");
@@ -46,8 +70,8 @@ public class MainActivity extends AppCompatActivity {
 
             EditText userKeyEditTextView = (EditText) findViewById(R.id.user_key);
             ToggleButton isDecryptingToggleButton = (ToggleButton) findViewById(R.id.is_decrypting_toggle_button);
-            EditText toBeTranslatedEditTextView = (EditText) findViewById(R.id.text_to_be_translated);
-            TextView translatedTextView = (TextView) findViewById(R.id.translated_text);
+            EditText toBeTranslatedEditTextView = (EditText) findViewById(R.id.text_to_be_translated_text);
+            TextView translatedTextView = (TextView) findViewById(R.id.translated_text_text);
 
 
             userKeyEditTextView.setText(userKey);
@@ -75,8 +99,8 @@ public class MainActivity extends AppCompatActivity {
         long startTime = System.nanoTime();
 
         final EditText userKeyEditTextView = (EditText) findViewById(R.id.user_key);
-        final EditText toBeTranslatedEditTextView = (EditText) findViewById(R.id.text_to_be_translated);
-        final TextView translatedTextView = (TextView) findViewById(R.id.translated_text);
+        final EditText toBeTranslatedEditTextView = (EditText) findViewById(R.id.text_to_be_translated_text);
+        final TextView translatedTextView = (TextView) findViewById(R.id.translated_text_text);
 
         Handler handler = new Handler();
         handler.post(new Runnable() {
