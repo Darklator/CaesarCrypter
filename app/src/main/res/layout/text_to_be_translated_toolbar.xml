@@ -26,7 +26,7 @@
         android:textColor="@color/colorTextAndHint"
         android:textOff=""
         android:textOn=""
-        android:background="@drawable/encrypt_decrypt_button_state"
+        android:background="@drawable/encrypt_decrypt_button_states"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@id/input_anchor"
         android:layout_marginLeft="@dimen/space_between_toolbar_icons"/>
