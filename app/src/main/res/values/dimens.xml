@@ -4,4 +4,5 @@
     <dimen name="insetVertical_translate_en_de_buttons">5dp</dimen>
     <dimen name="insetHorizontal_translate_en_de_buttons">10dp</dimen>
     <dimen name="card_corner_radius">5dp</dimen>
+    <dimen name="space_between_toolbar_icons">4dp</dimen>
 </resources>

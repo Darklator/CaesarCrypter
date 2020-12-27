@@ -3,7 +3,8 @@
     <color name="colorPrimary">#2196F3</color>
     <color name="colorPrimaryDark">#026FC6</color>
     <color name="colorAccent">#03A9F4</color>
-    <color name="colorInsideComponents">#F6FBFF</color>
-    <color name="textColorHint">#7A7A7A</color>
-    <color name="textColorToolbar">#FFFFFF</color>
+    <color name="colorInsideComponents">#E4F7FF</color>
+    <color name="colorTextAndHint">#7A7A7A</color>
+    <color name="colorTextAndHintToolbar">#FFFFFF</color>
+    <color name="colorRippleToolbar">#36FFFFFF</color>
 </resources>

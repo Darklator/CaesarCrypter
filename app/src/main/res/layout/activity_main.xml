@@ -22,47 +22,6 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingTop="35dp">
-
-                <EditText
-                    android:id="@+id/user_key"
-                    android:layout_width="74dp"
-                    android:layout_height="match_parent"
-                    android:hint="@string/enter_key"
-                    android:paddingHorizontal="6dp"
-                    android:singleLine="true"
-                    android:scrollHorizontally="true"
-                    android:maxLength="35"
-                    android:inputType="text"/>
-
-                <ToggleButton
-                    android:id="@+id/is_decrypting_toggle_button"
-                    android:layout_width="133dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/inset_toggle_en_de_button"
-                    android:onClick="onClickEncryptingOrDecrypting"
-                    android:textAllCaps="false"
-                    android:textColor="@color/textColorHint"
-                    android:textOff="@string/toggle_button_encrypt"
-                    android:textOn="@string/toggle_button_decrypt" />
-
-                <Button
-                    android:id="@+id/translate_button"
-                    android:layout_width="149dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/inset_translate_button"
-                    android:onClick="onClickTranslate"
-                    android:text="@string/translate"
-                    android:textAllCaps="false"
-                    android:textColor="#FFFFFF" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="75dp"
                 android:orientation="vertical"

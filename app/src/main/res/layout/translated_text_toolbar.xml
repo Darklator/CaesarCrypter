@@ -6,7 +6,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/translated_text_label"
-        android:textColor="@color/textColorToolbar"
+        android:textColor="@color/colorTextAndHintToolbar"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="15dp"
