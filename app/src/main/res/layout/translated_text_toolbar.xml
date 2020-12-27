@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:layout_width="match_parent"
+<RelativeLayout
+    android:theme="@style/TextAreasToolbarsTheme"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@android:color/transparent"
+    android:paddingHorizontal="15dp">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -9,6 +13,26 @@
         android:textColor="@color/colorTextAndHintToolbar"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="15dp"
         android:textSize="18sp"/>
+
+    <ImageButton
+        android:id="@+id/copy_anchor"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/baseline_content_copy_white_24"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/share_anchor"
+        android:background="?selectableItemBackgroundBorderless"
+        android:layout_marginRight="@dimen/space_between_toolbar_icons"
+        android:scaleType="fitXY"/>
+
+    <ImageButton
+        android:id="@+id/share_anchor"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/baseline_share_white_24"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:background="?selectableItemBackgroundBorderless"
+        android:scaleType="fitXY"/>
 </RelativeLayout>
