@@ -8,7 +8,7 @@
     card_view:cardCornerRadius="@dimen/card_corner_radius">
 
     <ImageView
-        android:src="@drawable/border_for_components"
+        android:src="@drawable/background_for_components"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"/>
