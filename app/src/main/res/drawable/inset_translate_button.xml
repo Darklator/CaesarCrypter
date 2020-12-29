@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<inset
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:drawable="@drawable/custom_translate_button"
-    android:insetTop="@dimen/insetVertical_translate_en_de_buttons"
-    android:insetRight="@dimen/insetHorizontal_translate_en_de_buttons"
-    android:insetBottom="@dimen/insetVertical_translate_en_de_buttons"
-    android:insetLeft="@dimen/insetHorizontal_translate_en_de_buttons"/>
