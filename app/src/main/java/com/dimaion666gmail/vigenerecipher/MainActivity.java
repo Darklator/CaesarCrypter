@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickEncryptingOrDecrypting(View view) {
-        ToggleButton isDecryptingToggleButton = (ToggleButton) view; // FIXME
+        ToggleButton isDecryptingToggleButton = (ToggleButton) view;
         isDecrypting = isDecryptingToggleButton.isChecked();
     }
 
@@ -113,7 +113,6 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     translatedText = vigenereCipher.translate(isDecrypting, userKey, toBeTranslatedText);
                     translatedTextView.setText(translatedText);
-                    setShareActionProvider(translatedText);
                 }
                 catch (InvalidKeyException ikex) {
                     Toast exceptionMessage = Toast.makeText(getApplicationContext(), R.string.wrong_key, Toast.LENGTH_SHORT);
@@ -157,29 +156,5 @@ public class MainActivity extends AppCompatActivity {
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_TEXT, translatedText);
         startActivity(intent);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        MenuItem menuItem = menu.findItem(R.id.action_share);
-        shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(menuItem);
-        setShareActionProvider(translatedText);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-    private void setShareActionProvider(String text) {
-        Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.setType("text/plain");
-        intent.putExtra(Intent.EXTRA_TEXT, text);
-        shareActionProvider.setShareIntent(intent);
     }
 }
