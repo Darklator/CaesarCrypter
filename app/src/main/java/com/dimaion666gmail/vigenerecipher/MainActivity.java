@@ -1,5 +1,7 @@
 package com.dimaion666gmail.vigenerecipher;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -123,9 +125,30 @@ public class MainActivity extends AppCompatActivity {
         Log.i("onClickTranslate speed", Long.toString(System.nanoTime() - startTime));
     }
 
+    public void onClickPaste(View view) {
+        EditText toBeTranslatedEditTextView = (EditText) findViewById(R.id.text_to_be_translated_text);
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+        if (clipboard.hasPrimaryClip()) {
+            ClipData clipData = clipboard.getPrimaryClip();
+            toBeTranslatedText = clipData.getItemAt(0).coerceToText(this).toString();
+            toBeTranslatedEditTextView.setText(toBeTranslatedText);
+        } else {
+            Toast toast = Toast.makeText(getApplicationContext(), "There is no content to be pasted", Toast.LENGTH_SHORT);
+            toast.show();
+        }
+    }
+
     public void onClickCancel(View view) {
         EditText toBeTranslatedEditTextView = (EditText) findViewById(R.id.text_to_be_translated_text);
         toBeTranslatedEditTextView.setText(null);
+    }
+
+    public void onClickCopy(View view) {
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+        ClipData clipData = ClipData.newPlainText("Translated text", translatedText);
+        clipboard.setPrimaryClip(clipData);
+        Toast message = Toast.makeText(getApplicationContext(), "Translation copied", Toast.LENGTH_SHORT);
+        message.show();
     }
 
     public void onClickShare(View view) {

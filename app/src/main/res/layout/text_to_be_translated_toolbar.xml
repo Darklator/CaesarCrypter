@@ -69,7 +69,8 @@
         android:layout_toLeftOf="@id/cancel_button"
         android:layout_marginRight="@dimen/space_between_toolbar_icons"
         android:background="?selectableItemBackgroundBorderless"
-        android:scaleType="fitXY"/>
+        android:scaleType="fitXY"
+        android:onClick="onClickPaste"/>
 
     <ImageButton
         android:id="@+id/cancel_button"
