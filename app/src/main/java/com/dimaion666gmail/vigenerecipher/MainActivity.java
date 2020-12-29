@@ -129,7 +129,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickShare(View view) {
-
+        TextView translatedTextView = (TextView) findViewById(R.id.translated_text_text);
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_TEXT, translatedText);
+        startActivity(intent);
     }
 
     @Override
