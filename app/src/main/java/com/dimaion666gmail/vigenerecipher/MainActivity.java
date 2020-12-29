@@ -128,12 +128,16 @@ public class MainActivity extends AppCompatActivity {
         toBeTranslatedEditTextView.setText(null);
     }
 
+    public void onClickShare(View view) {
+
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         MenuItem menuItem = menu.findItem(R.id.action_share);
         shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(menuItem);
-        setShareActionProvider(null);
+        setShareActionProvider(translatedText);
         return super.onCreateOptionsMenu(menu);
     }
 

@@ -34,5 +34,6 @@
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
         android:background="?selectableItemBackgroundBorderless"
-        android:scaleType="fitXY"/>
+        android:scaleType="fitXY"
+        android:onClick="onClickShare"/>
 </RelativeLayout>
