@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
             translatedText = savedInstanceState.getString("translatedText");
 
 
-            EditText userKeyEditTextView = (EditText) findViewById(R.id.user_key);
+            EditText userKeyEditTextView = (EditText) findViewById(R.id.key);
             ToggleButton isDecryptingToggleButton = (ToggleButton) findViewById(R.id.is_decrypting_toggle_button);
             EditText toBeTranslatedEditTextView = (EditText) findViewById(R.id.text_to_be_translated_text);
             TextView translatedTextView = (TextView) findViewById(R.id.translated_text_text);
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
     public void onClickTranslate(View view) {
         long startTime = System.nanoTime();
 
-        final EditText userKeyEditTextView = (EditText) findViewById(R.id.user_key);
+        final EditText userKeyEditTextView = (EditText) findViewById(R.id.key);
         final EditText toBeTranslatedEditTextView = (EditText) findViewById(R.id.text_to_be_translated_text);
         final TextView translatedTextView = (TextView) findViewById(R.id.translated_text_text);
 

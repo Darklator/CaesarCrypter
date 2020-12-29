@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<EditText android:id="@+id/text_to_be_translated_text"
+<EditText xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/text_to_be_translated_text"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="start|top"
@@ -7,5 +8,4 @@
     android:textStyle="normal"
     android:maxLength="16000"
     android:background="@android:color/transparent"
-    android:inputType="textMultiLine"
-    xmlns:android="http://schemas.android.com/apk/res/android" />
+    android:inputType="textMultiLine"/>

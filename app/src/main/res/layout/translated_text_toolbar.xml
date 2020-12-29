@@ -16,18 +16,18 @@
         android:textSize="18sp"/>
 
     <ImageButton
-        android:id="@+id/copy_anchor"
+        android:id="@+id/copy_button"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:src="@drawable/baseline_content_copy_white_24"
         android:layout_centerVertical="true"
-        android:layout_toLeftOf="@id/share_anchor"
-        android:background="?selectableItemBackgroundBorderless"
+        android:layout_toLeftOf="@id/share_button"
         android:layout_marginRight="@dimen/space_between_toolbar_icons"
+        android:background="?selectableItemBackgroundBorderless"
         android:scaleType="fitXY"/>
 
     <ImageButton
-        android:id="@+id/share_anchor"
+        android:id="@+id/share_button"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:src="@drawable/baseline_share_white_24"

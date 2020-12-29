@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    android:theme="@style/TextAreasToolbarsTheme"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@android:color/transparent"
-    android:paddingHorizontal="15dp">
+    android:paddingHorizontal="15dp"
+    android:theme="@style/TextAreasToolbarsTheme"
+    android:background="@android:color/transparent">
 
     <TextView
         android:id="@+id/input_anchor"
@@ -13,9 +13,9 @@
         android:layout_height="wrap_content"
         android:text="@string/text_to_be_translated_label"
         android:textColor="@color/colorTextAndHintToolbar"
+        android:textSize="18sp"
         android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:textSize="18sp"/>
+        android:layout_alignParentLeft="true"/>
 
     <ToggleButton
         android:id="@+id/is_decrypting_toggle_button"
@@ -32,7 +32,7 @@
         android:layout_marginLeft="@dimen/space_between_toolbar_icons"/>
 
     <EditText
-        android:id="@+id/user_key"
+        android:id="@+id/key"
         android:textColor="@color/colorTextAndHintToolbar"
         android:layout_width="74dp"
         android:layout_height="wrap_content"
@@ -53,25 +53,25 @@
         android:layout_height="19dp"
         android:src="@drawable/baseline_send_white_24"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@id/user_key"
+        android:layout_toRightOf="@id/key"
         android:background="?selectableItemBackgroundBorderless"
         android:onClick="onClickTranslate"
         android:layout_marginLeft="@dimen/space_between_toolbar_icons"
         android:scaleType="fitXY"/>
 
     <ImageButton
-        android:id="@+id/paste_anchor"
+        android:id="@+id/paste_button"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:src="@drawable/baseline_content_paste_white_24"
         android:layout_centerVertical="true"
-        android:layout_toLeftOf="@id/cancel_anchor"
-        android:background="?selectableItemBackgroundBorderless"
+        android:layout_toLeftOf="@id/cancel_button"
         android:layout_marginRight="@dimen/space_between_toolbar_icons"
+        android:background="?selectableItemBackgroundBorderless"
         android:scaleType="fitXY"/>
 
     <ImageButton
-        android:id="@+id/cancel_anchor"
+        android:id="@+id/cancel_button"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:src="@drawable/baseline_cancel_white_24"

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="230dp"
-    xmlns:card_view="http://schemas.android.com/tools"
     android:layout_marginTop="45dp"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     card_view:cardCornerRadius="@dimen/card_corner_radius">
 
     <ImageView
-        android:src="@drawable/background_for_components"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:src="@drawable/background_for_components"
         android:scaleType="fitXY"/>
 
     <RelativeLayout
@@ -27,8 +27,8 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/textareas_toolbars_background" />
+                android:src="@drawable/textareas_toolbar_background"
+                android:scaleType="fitXY"/>
 
             <ViewStub
                 android:id="@+id/toolbar_stub"
