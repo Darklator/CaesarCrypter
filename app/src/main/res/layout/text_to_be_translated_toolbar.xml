@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingHorizontal="15dp"
+    android:paddingLeft="15dp"
+    android:paddingRight="12dp"
     android:theme="@style/TextAreasToolbarsTheme"
     android:background="@android:color/transparent">
 
@@ -49,36 +50,41 @@
 
     <ImageButton
         android:id="@+id/translate_button"
-        android:layout_width="19dp"
-        android:layout_height="19dp"
+        android:layout_width="@dimen/toolbar_icon_sizes"
+        android:layout_height="@dimen/toolbar_icon_sizes"
         android:src="@drawable/baseline_send_white_24"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@id/key"
         android:background="?selectableItemBackgroundBorderless"
         android:layout_marginLeft="@dimen/space_between_toolbar_icons"
-        android:scaleType="fitXY"
-        android:onClick="onClickTranslate"/>
+        android:scaleType="fitCenter"
+        android:onClick="onClickTranslate"
+        android:adjustViewBounds="true"
+        android:padding="@dimen/toolbar_small_icon_padding_sizes"/>
 
     <ImageButton
         android:id="@+id/paste_button"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="@dimen/toolbar_icon_sizes"
+        android:layout_height="@dimen/toolbar_icon_sizes"
         android:src="@drawable/baseline_content_paste_white_24"
         android:layout_centerVertical="true"
         android:layout_toLeftOf="@id/cancel_button"
-        android:layout_marginRight="@dimen/space_between_toolbar_icons"
         android:background="?selectableItemBackgroundBorderless"
-        android:scaleType="fitXY"
-        android:onClick="onClickPaste"/>
+        android:scaleType="fitCenter"
+        android:onClick="onClickPaste"
+        android:adjustViewBounds="true"
+        android:padding="@dimen/toolbar_icon_padding_sizes"/>
 
     <ImageButton
         android:id="@+id/cancel_button"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="@dimen/toolbar_icon_sizes"
+        android:layout_height="@dimen/toolbar_icon_sizes"
         android:src="@drawable/baseline_cancel_white_24"
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
         android:background="?selectableItemBackgroundBorderless"
-        android:scaleType="fitXY"
-        android:onClick="onClickCancel"/>
+        android:scaleType="fitCenter"
+        android:onClick="onClickCancel"
+        android:adjustViewBounds="true"
+        android:padding="@dimen/toolbar_icon_padding_sizes"/>
 </RelativeLayout>

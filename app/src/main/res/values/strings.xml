@@ -12,4 +12,5 @@
     <string name="no_content">There is no content to be pasted</string>
     <string name="output_copied">Translation copied</string>
     <string name="wrong_key">Something is wrong with your key</string>
+    <string name="no_characters">There is no character to work with</string>
 </resources>

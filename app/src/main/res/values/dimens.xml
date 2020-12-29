@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="components_elevation">30dp</dimen>
-    <dimen name="insetVertical_translate_en_de_buttons">5dp</dimen>
-    <dimen name="insetHorizontal_translate_en_de_buttons">10dp</dimen>
     <dimen name="card_corner_radius">5dp</dimen>
     <dimen name="space_between_toolbar_icons">4dp</dimen>
+    <dimen name="toolbar_icon_sizes">31dp</dimen>
+    <dimen name="toolbar_small_icon_padding_sizes">6dp</dimen>
+    <dimen name="toolbar_icon_padding_sizes">5dp</dimen>
 </resources>
