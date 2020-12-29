@@ -21,7 +21,6 @@
         android:id="@+id/is_decrypting_toggle_button"
         android:layout_width="19dp"
         android:layout_height="19dp"
-        android:onClick="onClickEncryptingOrDecrypting"
         android:textAllCaps="false"
         android:textColor="@color/colorTextAndHint"
         android:textOff=""
@@ -29,7 +28,8 @@
         android:background="@drawable/encrypt_decrypt_button_states"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@id/input_anchor"
-        android:layout_marginLeft="@dimen/space_between_toolbar_icons"/>
+        android:layout_marginLeft="@dimen/space_between_toolbar_icons"
+        android:onClick="onClickEncryptingOrDecrypting"/>
 
     <EditText
         android:id="@+id/key"
@@ -45,7 +45,8 @@
         android:inputType="text"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@id/is_decrypting_toggle_button"
-        android:layout_marginLeft="@dimen/space_between_toolbar_icons"/>
+        android:layout_marginLeft="@dimen/space_between_toolbar_icons"
+        android:onClick="onClickEncryptingOrDecrypting"/>
 
     <ImageButton
         android:id="@+id/translate_button"
@@ -55,9 +56,9 @@
         android:layout_centerVertical="true"
         android:layout_toRightOf="@id/key"
         android:background="?selectableItemBackgroundBorderless"
-        android:onClick="onClickTranslate"
         android:layout_marginLeft="@dimen/space_between_toolbar_icons"
-        android:scaleType="fitXY"/>
+        android:scaleType="fitXY"
+        android:onClick="onClickTranslate"/>
 
     <ImageButton
         android:id="@+id/paste_button"
@@ -78,5 +79,6 @@
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
         android:background="?selectableItemBackgroundBorderless"
-        android:scaleType="fitXY"/>
+        android:scaleType="fitXY"
+        android:onClick="onClickCancel"/>
 </RelativeLayout>

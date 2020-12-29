@@ -123,6 +123,11 @@ public class MainActivity extends AppCompatActivity {
         Log.i("onClickTranslate speed", Long.toString(System.nanoTime() - startTime));
     }
 
+    public void onClickCancel(View view) {
+        EditText toBeTranslatedEditTextView = (EditText) findViewById(R.id.text_to_be_translated_text);
+        toBeTranslatedEditTextView.setText(null);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
