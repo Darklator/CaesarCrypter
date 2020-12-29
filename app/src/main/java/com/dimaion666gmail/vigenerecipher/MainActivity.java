@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickEncryptingOrDecrypting(View view) {
-        ToggleButton isDecryptingToggleButton = (ToggleButton) view;
+        ToggleButton isDecryptingToggleButton = (ToggleButton) view; // FIXME
         isDecrypting = isDecryptingToggleButton.isChecked();
     }
 
@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
                     setShareActionProvider(translatedText);
                 }
                 catch (InvalidKeyException ikex) {
-                    Toast exceptionMessage = Toast.makeText(getApplicationContext(), ikex.getMessage(), Toast.LENGTH_SHORT);
+                    Toast exceptionMessage = Toast.makeText(getApplicationContext(), R.string.wrong_key, Toast.LENGTH_SHORT);
                     exceptionMessage.show();
                 }
             }
@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
             toBeTranslatedText = clipData.getItemAt(0).coerceToText(this).toString();
             toBeTranslatedEditTextView.setText(toBeTranslatedText);
         } else {
-            Toast toast = Toast.makeText(getApplicationContext(), "There is no content to be pasted", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getApplicationContext(), R.string.no_content, Toast.LENGTH_SHORT);
             toast.show();
         }
     }
@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
         ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
         ClipData clipData = ClipData.newPlainText("Translated text", translatedText);
         clipboard.setPrimaryClip(clipData);
-        Toast message = Toast.makeText(getApplicationContext(), "Translation copied", Toast.LENGTH_SHORT);
+        Toast message = Toast.makeText(getApplicationContext(), R.string.output_copied, Toast.LENGTH_SHORT);
         message.show();
     }
 
