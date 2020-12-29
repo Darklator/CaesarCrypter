@@ -6,4 +6,10 @@
     <string name="translated_text">Ваш преобразованный текст появится здесь</string>
     <string name="translate">Преобразовать</string>
     <string name="action_share">Поделиться</string>
+    <string name="text_to_be_translated_label">Ввод:</string>
+    <string name="translated_text_label">Вывод:</string>
+    <string name="no_content">Нечего вставлять</string>
+    <string name="output_copied">Скопировано</string>
+    <string name="wrong_key">Что-то не так с вашим ключом</string>
+    <string name="no_characters">Нет символов для работы</string>
 </resources>

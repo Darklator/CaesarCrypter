@@ -7,4 +7,10 @@
     <string name="translated_text">Your translated text will appear here</string>
     <string name="translate">Translate</string>
     <string name="action_share">Share</string>
+    <string name="text_to_be_translated_label">Input:</string>
+    <string name="translated_text_label">Output:</string>
+    <string name="no_content">There is no content to be pasted</string>
+    <string name="output_copied">Translation copied</string>
+    <string name="wrong_key">Something is wrong with your key</string>
+    <string name="no_characters">There is no character to work with</string>
 </resources>
