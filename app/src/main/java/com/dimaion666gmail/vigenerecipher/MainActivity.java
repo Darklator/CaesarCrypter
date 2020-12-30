@@ -138,7 +138,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickCancel(View view) {
-        textToBeTranslatedEditTextView.setText(null);
+        textToBeTranslated = null;
+        textToBeTranslatedEditTextView.setText(textToBeTranslated);
     }
 
     public void onClickCopy(View view) {
