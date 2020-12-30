@@ -16,10 +16,7 @@ public final class RussianLanguageHandler extends LanguageHandler {
     public boolean doesTheLetterExistHere(char letter) {
         letter = Character.toLowerCase(letter);
 
-        if(1072 <= (int)letter && (int)letter <= 1103 || (int)letter == 1105)
-            return true;
-        else
-            return false;
+        return 1072 <= (int) letter && (int) letter <= 1103 || (int) letter == 1105;
     }
 
     @Override

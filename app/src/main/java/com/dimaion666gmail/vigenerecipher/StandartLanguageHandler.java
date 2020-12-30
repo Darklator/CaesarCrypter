@@ -16,11 +16,7 @@ public class StandartLanguageHandler extends LanguageHandler {
     @Override
     public boolean doesTheLetterExistHere(char letter) {
         letter = Character.toLowerCase(letter);
-
-        if(theStartInUnicode <= (int)letter && (int)letter <= theEndInUnicode)
-            return true;
-        else
-            return false;
+        return theStartInUnicode <= (int) letter && (int) letter <= theEndInUnicode;
     }
 
     @Override

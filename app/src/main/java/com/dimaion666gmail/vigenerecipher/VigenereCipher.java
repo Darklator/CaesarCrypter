@@ -9,14 +9,14 @@ public class VigenereCipher {
 
     private VigenereCipher() {}
 
-    public static String translate(boolean isDecrypting, String letterShifts, String text) throws InvalidKeyException {
+    public static String translate(boolean isDecrypting, String key, String text) throws InvalidKeyException {
         // Получение длин сдвигов в соответствии с порядковым номером каждой буквы
-        if (letterShifts.isEmpty()) return text;
+        if (key.isEmpty()) throw new InvalidKeyException();
 
-        int[] integerLetterShifts = new int[letterShifts.length()];
+        int[] integerLetterShifts = new int[key.length()];
 
-        for (int i = 0; i < letterShifts.length(); i++) {
-            char letterKey = letterShifts.charAt(i);
+        for (int i = 0; i < key.length(); i++) {
+            char letterKey = key.charAt(i);
             boolean letterExistsInAlphabets = false;
             for (int j = 0; j < languageHandlers.length; j++) {
                 if (languageHandlers[j].doesTheLetterExistHere(letterKey)) {
