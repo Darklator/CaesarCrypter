@@ -1,12 +1,12 @@
 package com.dimaion666gmail.vigenerecipher;
 
-public class StandartLanguageHandler extends LanguageHandler {
+public class StandardLanguageHandler extends LanguageHandler {
     private int theStartInUnicode;
     private int theEndInUnicode;
     private int conversion; // Переменная для перехода между unicode и упрощённой кодировкой (порядки в алфавите, начиная с 0)
     private int alphabetLength;
 
-    public StandartLanguageHandler(int startInUnicode, int endInUnicode) {
+    public StandardLanguageHandler(int startInUnicode, int endInUnicode) {
         this.theStartInUnicode = startInUnicode;
         this.theEndInUnicode = endInUnicode;
         this.conversion = startInUnicode;
