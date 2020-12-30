@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
     private boolean isDecrypting;
     private String toBeTranslatedText;
     private String translatedText;
-    private VigenereCipher vigenereCipher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +37,6 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        vigenereCipher = new VigenereCipher();
 
         // Ищем заготовку карточки для входного текста и заполняем отличительными компонентами
         CardView textToBeTranslatedCard = findViewById(R.id.text_to_be_translated_card);
@@ -111,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
                 userKey = String.valueOf(userKeyEditTextView.getText());
                 toBeTranslatedText = String.valueOf(toBeTranslatedEditTextView.getText());
                 try {
-                    translatedText = vigenereCipher.translate(isDecrypting, userKey, toBeTranslatedText);
+                    translatedText = VigenereCipher.translate(isDecrypting, userKey, toBeTranslatedText);
                     translatedTextView.setText(translatedText);
                 }
                 catch (InvalidKeyException ikex) {

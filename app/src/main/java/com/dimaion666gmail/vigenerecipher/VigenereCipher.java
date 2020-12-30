@@ -2,16 +2,15 @@ package com.dimaion666gmail.vigenerecipher;
 
 public class VigenereCipher {
 
-    private LanguageHandler[] languageHandlers = new LanguageHandler[2];
+    // Инициализируем обработчика каждому алфавиту
+    private static LanguageHandler[] languageHandlers = new LanguageHandler[] {
+           new StandartLanguageHandler(97, 122), // abcdefghijklmnopqrstuvwxyz - [97; 122]
+           new RussianLanguageHandler()};
 
-    public VigenereCipher() {
-        // Инициализируем обработчика каждому алфавиту
-        languageHandlers[0] = new StandartLanguageHandler(97, 122);  // abcdefghijklmnopqrstuvwxyz - [97; 122]
-        languageHandlers[1] = new RussianLanguageHandler();
-    }
+    private VigenereCipher() {}
 
-    public String translate(boolean isDecrypting, String letterShifts, String text) throws InvalidKeyException {
-        // Получение длин сдвигов в соответствии с порядковым номером каждой буквы в каждом алфавите
+    public static String translate(boolean isDecrypting, String letterShifts, String text) throws InvalidKeyException {
+        // Получение длин сдвигов в соответствии с порядковым номером каждой буквы
         if (letterShifts.isEmpty()) return text;
 
         int[] integerLetterShifts = new int[letterShifts.length()];
