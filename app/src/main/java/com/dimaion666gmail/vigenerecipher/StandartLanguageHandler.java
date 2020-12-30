@@ -6,11 +6,11 @@ public class StandartLanguageHandler extends LanguageHandler {
     private int conversion; // Переменная для перехода между unicode и упрощённой кодировкой (порядки в алфавите, начиная с 0)
     private int alphabetLength;
 
-    public StandartLanguageHandler(int theStartInUnicode, int theEndInUnicode) {
-        this.theStartInUnicode = theStartInUnicode;
-        this.theEndInUnicode = theEndInUnicode;
-        this.conversion = theStartInUnicode;
-        this.alphabetLength = theEndInUnicode - theStartInUnicode + 1;
+    public StandartLanguageHandler(int startInUnicode, int endInUnicode) {
+        this.theStartInUnicode = startInUnicode;
+        this.theEndInUnicode = endInUnicode;
+        this.conversion = startInUnicode;
+        this.alphabetLength = endInUnicode - startInUnicode + 1;
     }
 
     @Override
