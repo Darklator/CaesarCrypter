@@ -58,6 +58,7 @@ public final class RussianLanguageHandler extends LanguageHandler {
         return shiftedLetter;
     }
 
+    // Получение порядкового номера буквы в алфавите, начиная с 0
     private int findLetterIndexInAlphabet(char letter) {
         int letterIndex = (int) letter;
 
