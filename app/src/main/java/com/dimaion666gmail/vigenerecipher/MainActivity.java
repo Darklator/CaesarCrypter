@@ -15,6 +15,7 @@ import android.widget.ToggleButton;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
+import static android.content.Intent.ACTION_SEND;
 
 public class MainActivity extends AppCompatActivity {
     // TODO: User paste string must not save its previous font
@@ -54,6 +55,17 @@ public class MainActivity extends AppCompatActivity {
         translatedTextTextStub.setLayoutResource(R.layout.translated_text_text);
         translatedTextTextStub.inflate();
 
+
+        Intent intent = getIntent();
+        String action = intent.getAction();
+
+        if (ACTION_SEND.equals(action)) {
+            EditText textToBeTranslatedEditTextView = (EditText) findViewById(R.id.text_to_be_translated_text);
+            textToBeTranslated = intent.getStringExtra(Intent.EXTRA_TEXT);
+            textToBeTranslatedEditTextView.setText(textToBeTranslated);
+        }
+
+        // TODO: Нет нужды?
         if (savedInstanceState != null) {
             key = savedInstanceState.getString("key");
             isDecrypting = savedInstanceState.getBoolean("isDecrypting");
@@ -140,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickShare(View view) {
-        Intent intent = new Intent(Intent.ACTION_SEND);
+        Intent intent = new Intent(ACTION_SEND);
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_TEXT, translatedText);
         startActivity(intent);
