@@ -32,7 +32,7 @@
         android:onClick="onClickEncryptingOrDecrypting"/>
 
     <EditText
-        android:id="@+id/key"
+        android:id="@+id/key_edittext"
         android:textColor="@color/colorTextAndHintToolbar"
         android:layout_width="74dp"
         android:layout_height="wrap_content"
@@ -53,7 +53,7 @@
         android:layout_height="@dimen/toolbar_icon_sizes"
         android:src="@drawable/baseline_send_white_24"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@id/key"
+        android:layout_toRightOf="@id/key_edittext"
         android:background="?selectableItemBackgroundBorderless"
         android:layout_marginLeft="@dimen/space_between_toolbar_icons"
         android:scaleType="fitCenter"
