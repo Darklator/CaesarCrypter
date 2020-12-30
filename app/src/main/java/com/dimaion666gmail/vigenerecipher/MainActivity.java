@@ -60,10 +60,10 @@ public class MainActivity extends AppCompatActivity {
         translatedTextTextStub.setLayoutResource(R.layout.translated_text_text);
         translatedTextTextStub.inflate();
 
+        // Получаем каждое представление только по одному разу
         isDecryptingToggleButton = (ToggleButton) findViewById(R.id.is_decrypting_toggle_button);
         keyEditTextView = (EditText) findViewById(R.id.key_edittext);
         textToBeTranslatedEditTextView = (EditText) findViewById(R.id.text_to_be_translated_text);
-
         translatedTextTextView = (TextView) findViewById(R.id.translated_text_text);
 
 
