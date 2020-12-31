@@ -79,8 +79,7 @@ public class MainActivity extends AppCompatActivity {
             translatedTextTextView.setText(translatedText);
         }
     }
-
-    // TODO: Разобраться с излишеством сохраняемых состояний, либо недостатком сохранений в переменные
+    
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         // Сохраняется только переменная translatedText, так как содержимое других представлений
