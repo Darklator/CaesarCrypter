@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
     private EditText textToBeTranslatedEditTextView;
     private TextView translatedTextTextView;
 
-    private String key;
     private boolean isDecrypting;
     private String textToBeTranslated;
     private String translatedText;
@@ -78,12 +77,10 @@ public class MainActivity extends AppCompatActivity {
 
         if (savedInstanceState != null) {
             // Состояния переменных сохраняются из-за принципов работы ViewStub
-            key = savedInstanceState.getString("key"); // Можно не сохранять
             isDecrypting = savedInstanceState.getBoolean("isDecrypting"); // Нужно сохранять
             textToBeTranslated = savedInstanceState.getString("textToBeTranslated"); // Можно не сохранять
             translatedText = savedInstanceState.getString("translatedText"); // Нужно сохранять
 
-            keyEditTextView.setText(key); // Не нужно
             isDecryptingToggleButton.setChecked(isDecrypting); // Устанавливать заново не нужо
             textToBeTranslatedEditTextView.setText(textToBeTranslated); // Не нужно
             translatedTextTextView.setText(translatedText); // Нужно устанавливать заново
@@ -93,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
     // TODO: Разобраться с излишеством сохраняемых состояний, либо недостатком сохранений в переменные
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
-        savedInstanceState.putString("key", key); // Не нужно сохранять
         savedInstanceState.putBoolean("isDecrypting", isDecrypting); // Нужно сохранять
         savedInstanceState.putString("textToBeTranslated", textToBeTranslated); // Не нужно сохранять
         savedInstanceState.putString("translatedText", translatedText); // Нужно сохранять
@@ -111,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                key = String.valueOf(keyEditTextView.getText()); // key используется только тут, можно глобально удалить
+                String key = String.valueOf(keyEditTextView.getText()); // key используется только тут, можно глобально удалить
                 textToBeTranslated = String.valueOf(textToBeTranslatedEditTextView.getText()); // textToBeTranslated  тоже используется только тут, в принципе. Вне этого места  можно удалить.
                 try {
                     translatedText = VigenereCipher.translate(isDecrypting, key, textToBeTranslated); // Лучше оставить глобально
