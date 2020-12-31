@@ -68,15 +68,14 @@ public class MainActivity extends AppCompatActivity {
         String action = intent.getAction();
 
         // Если приложение было вызвано через ACTION_SEND, то получаем текст, который хочет перевести пользователь
-        if (ACTION_SEND.equals(action)) {
+        if (ACTION_SEND.equals(action))
             textToBeTranslatedEditTextView.setText(intent.getStringExtra(Intent.EXTRA_TEXT));
-        }
 
         if (savedInstanceState != null) {
-            // Состояния переменных сохраняются из-за принципов работы ViewStub
-            translatedText = savedInstanceState.getString("translatedText"); // Нужно сохранять
-
-            translatedTextTextView.setText(translatedText); // Нужно устанавливать заново
+            // Сохраняется только translatedText, потому что её представление сбрасывает содержимое,
+            // а translatedText обнуляется.
+            translatedText = savedInstanceState.getString("translatedText");
+            translatedTextTextView.setText(translatedText);
         }
     }
 
