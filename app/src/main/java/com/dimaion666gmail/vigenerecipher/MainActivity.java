@@ -83,6 +83,9 @@ public class MainActivity extends AppCompatActivity {
     // TODO: Разобраться с излишеством сохраняемых состояний, либо недостатком сохранений в переменные
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
+        // Сохраняется только переменная translatedText, так как содержимое других представлений
+        // не сбрасывается со сменой конфигурации устройства. Скорее всего, такая особенность появилась
+        // из-за использования шаблона карточки через заполнение ViewStub.
         savedInstanceState.putString("translatedText", translatedText); // Нужно сохранять
         super.onSaveInstanceState(savedInstanceState);
     }
