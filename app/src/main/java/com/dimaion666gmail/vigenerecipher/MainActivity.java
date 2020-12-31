@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
     private EditText textToBeTranslatedEditTextView;
     private TextView translatedTextTextView;
 
-    private boolean isDecrypting;
     private String translatedText;
 
     @Override
@@ -75,10 +74,8 @@ public class MainActivity extends AppCompatActivity {
 
         if (savedInstanceState != null) {
             // Состояния переменных сохраняются из-за принципов работы ViewStub
-            isDecrypting = savedInstanceState.getBoolean("isDecrypting"); // Нужно сохранять
             translatedText = savedInstanceState.getString("translatedText"); // Нужно сохранять
 
-            isDecryptingToggleButton.setChecked(isDecrypting); // Устанавливать заново не нужо
             translatedTextTextView.setText(translatedText); // Нужно устанавливать заново
         }
     }
@@ -86,13 +83,8 @@ public class MainActivity extends AppCompatActivity {
     // TODO: Разобраться с излишеством сохраняемых состояний, либо недостатком сохранений в переменные
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
-        savedInstanceState.putBoolean("isDecrypting", isDecrypting); // Нужно сохранять
         savedInstanceState.putString("translatedText", translatedText); // Нужно сохранять
         super.onSaveInstanceState(savedInstanceState);
-    }
-
-    public void onClickEncryptingOrDecrypting(View view) {
-        isDecrypting = isDecryptingToggleButton.isChecked();
     }
 
     public void onClickTranslate(View view) {
@@ -102,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
         handler.post(new Runnable() {
             @Override
             public void run() {
+                boolean isDecrypting = isDecryptingToggleButton.isChecked();
                 String key = String.valueOf(keyEditTextView.getText()); // key используется только тут, можно глобально удалить
                 String textToBeTranslated = String.valueOf(textToBeTranslatedEditTextView.getText()); // textToBeTranslated  тоже используется только тут, в принципе. Вне этого места  можно удалить.
                 try {
