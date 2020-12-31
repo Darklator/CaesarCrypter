@@ -1,16 +1,18 @@
 <resources>
     <string name="app_name" translatable="false">Vigenere Cipher</string>
     <string name="enter_key">Key</string>
-    <string name="toggle_button_encrypt">Encrypt</string>
-    <string name="toggle_button_decrypt">Decrypt</string>
     <string name="text_to_be_translated">Enter the text you want to be translated here</string>
     <string name="translated_text">Your translated text will appear here</string>
-    <string name="translate">Translate</string>
-    <string name="action_share">Share</string>
     <string name="text_to_be_translated_label">Input:</string>
     <string name="translated_text_label">Output:</string>
     <string name="no_content">There is no content to be pasted</string>
     <string name="output_copied">Translation copied</string>
     <string name="wrong_key">Something is wrong with your key</string>
     <string name="no_characters">There is no character to work with</string>
+    <string name="isDecrypting_toggleButton_tip">Encrypt/Decrypt</string>
+    <string name="translate_button_tip">Translate</string>
+    <string name="paste_button_tip">Paste</string>
+    <string name="cancel_button_tip">Delete</string>
+    <string name="copy_button_tip">Copy</string>
+    <string name="share_button_tip">Share</string>
 </resources>
