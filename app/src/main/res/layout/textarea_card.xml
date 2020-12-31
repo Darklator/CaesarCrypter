@@ -41,12 +41,25 @@
             android:layout_height="match_parent"
             android:paddingHorizontal="12dp"
             android:paddingVertical="15dp"
-            android:layout_below="@id/text_to_be_translated_toolbar">
+            android:layout_below="@id/text_to_be_translated_toolbar"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true">
 
-            <ViewStub
+            <!-- TODO: Разобраться с размерами -->
+            <EditText xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/text_to_be_translated_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="start|top"
+                android:hint="@string/text_to_be_translated"
+                android:maxLength="16000"
+                android:inputType="textMultiLine"
+                android:background="@android:color/transparent"/>
+
+           <!-- <ViewStub
                 android:id="@+id/text_stub"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"/> -->
         </androidx.core.widget.NestedScrollView>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
