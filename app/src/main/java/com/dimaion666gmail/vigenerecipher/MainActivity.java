@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
     private TextView translatedTextTextView;
 
     private boolean isDecrypting;
-    private String textToBeTranslated;
     private String translatedText;
 
     @Override
@@ -71,18 +70,15 @@ public class MainActivity extends AppCompatActivity {
 
         // Если приложение было вызвано через ACTION_SEND, то получаем текст, который хочет перевести пользователь
         if (ACTION_SEND.equals(action)) {
-            textToBeTranslated = intent.getStringExtra(Intent.EXTRA_TEXT);
-            textToBeTranslatedEditTextView.setText(textToBeTranslated);
+            textToBeTranslatedEditTextView.setText(intent.getStringExtra(Intent.EXTRA_TEXT));
         }
 
         if (savedInstanceState != null) {
             // Состояния переменных сохраняются из-за принципов работы ViewStub
             isDecrypting = savedInstanceState.getBoolean("isDecrypting"); // Нужно сохранять
-            textToBeTranslated = savedInstanceState.getString("textToBeTranslated"); // Можно не сохранять
             translatedText = savedInstanceState.getString("translatedText"); // Нужно сохранять
 
             isDecryptingToggleButton.setChecked(isDecrypting); // Устанавливать заново не нужо
-            textToBeTranslatedEditTextView.setText(textToBeTranslated); // Не нужно
             translatedTextTextView.setText(translatedText); // Нужно устанавливать заново
         }
     }
@@ -91,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         savedInstanceState.putBoolean("isDecrypting", isDecrypting); // Нужно сохранять
-        savedInstanceState.putString("textToBeTranslated", textToBeTranslated); // Не нужно сохранять
         savedInstanceState.putString("translatedText", translatedText); // Нужно сохранять
         super.onSaveInstanceState(savedInstanceState);
     }
@@ -108,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 String key = String.valueOf(keyEditTextView.getText()); // key используется только тут, можно глобально удалить
-                textToBeTranslated = String.valueOf(textToBeTranslatedEditTextView.getText()); // textToBeTranslated  тоже используется только тут, в принципе. Вне этого места  можно удалить.
+                String textToBeTranslated = String.valueOf(textToBeTranslatedEditTextView.getText()); // textToBeTranslated  тоже используется только тут, в принципе. Вне этого места  можно удалить.
                 try {
                     translatedText = VigenereCipher.translate(isDecrypting, key, textToBeTranslated); // Лучше оставить глобально
                     translatedTextTextView.setText(translatedText);
@@ -127,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
         ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
         if (clipboard.hasPrimaryClip()) {
             ClipData clipData = clipboard.getPrimaryClip();
-            textToBeTranslated = clipData.getItemAt(0).coerceToText(this).toString(); // Глобальное не нужно
+            String textToBeTranslated = clipData.getItemAt(0).coerceToText(this).toString(); // Глобальное не нужно
             textToBeTranslatedEditTextView.setText(textToBeTranslated);
         } else {
             Toast toast = Toast.makeText(getApplicationContext(), R.string.no_content, Toast.LENGTH_SHORT);
@@ -136,8 +131,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickCancel(View view) {
-        textToBeTranslated = null; // Глобальное не нужно
-        textToBeTranslatedEditTextView.setText(textToBeTranslated);
+        textToBeTranslatedEditTextView.setText(null);
     }
 
     public void onClickCopy(View view) {
