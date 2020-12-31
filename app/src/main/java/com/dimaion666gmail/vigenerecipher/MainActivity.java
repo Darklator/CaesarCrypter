@@ -20,9 +20,13 @@ import static android.content.Intent.ACTION_SEND;
 public class MainActivity extends AppCompatActivity {
     // TODO: User paste string must not save its previous font
 
-    private String key;
-    private boolean isDecrypting;
-    private String textToBeTranslated;
+    // Эти переменные используются в нескольких местах, поэтому я решил сделать их глобальными. Так
+    // используется меньше кода.
+    private ToggleButton isDecryptingToggleButton;
+    private EditText keyEditTextView;
+    private EditText textToBeTranslatedEditTextView;
+    private TextView translatedTextTextView;
+
     private String translatedText;
 
     @Override
@@ -55,62 +59,47 @@ public class MainActivity extends AppCompatActivity {
         translatedTextTextStub.setLayoutResource(R.layout.translated_text_text);
         translatedTextTextStub.inflate();
 
+        // Получаем каждое представление только по одному разу
+        isDecryptingToggleButton = (ToggleButton) findViewById(R.id.is_decrypting_toggle_button);
+        keyEditTextView = (EditText) findViewById(R.id.key_edittext);
+        textToBeTranslatedEditTextView = (EditText) findViewById(R.id.text_to_be_translated_text);
+        translatedTextTextView = (TextView) findViewById(R.id.translated_text_text);
 
         Intent intent = getIntent();
         String action = intent.getAction();
 
-        if (ACTION_SEND.equals(action)) {
-            EditText textToBeTranslatedEditTextView = (EditText) findViewById(R.id.text_to_be_translated_text);
-            textToBeTranslated = intent.getStringExtra(Intent.EXTRA_TEXT);
-            textToBeTranslatedEditTextView.setText(textToBeTranslated);
-        }
+        // Если активность была вызвана через ACTION_SEND, то получаем текст, который хочет перевести пользователь
+        if (ACTION_SEND.equals(action))
+            textToBeTranslatedEditTextView.setText(intent.getStringExtra(Intent.EXTRA_TEXT));
 
-        // TODO: Нет нужды?
         if (savedInstanceState != null) {
-            key = savedInstanceState.getString("key");
-            isDecrypting = savedInstanceState.getBoolean("isDecrypting");
-            textToBeTranslated = savedInstanceState.getString("textToBeTranslated");
+            // Сохраняется только translatedText, потому что только её представление сбрасывает содержимое,
+            // а translatedText обнуляется.
             translatedText = savedInstanceState.getString("translatedText");
-
-            EditText keyEditTextView = (EditText) findViewById(R.id.key_edittext);
-            ToggleButton isDecryptingToggleButton = (ToggleButton) findViewById(R.id.is_decrypting_toggle_button);
-            EditText textToBeTranslatedEditTextView = (EditText) findViewById(R.id.text_to_be_translated_text);
-            TextView translatedTextTextView = (TextView) findViewById(R.id.translated_text_text);
-
-            keyEditTextView.setText(key);
-            isDecryptingToggleButton.setChecked(isDecrypting);
-            textToBeTranslatedEditTextView.setText(textToBeTranslated);
             translatedTextTextView.setText(translatedText);
         }
     }
 
+    // TODO: Разобраться с излишеством сохраняемых состояний, либо недостатком сохранений в переменные
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
-        savedInstanceState.putString("key", key);
-        savedInstanceState.putBoolean("isDecrypting", isDecrypting);
-        savedInstanceState.putString("textToBeTranslated", textToBeTranslated);
+        // Сохраняется только переменная translatedText, так как содержимое других представлений
+        // не сбрасывается со сменой конфигурации устройства. Скорее всего, такая особенность появилась
+        // из-за использования шаблона карточки через заполнение ViewStub.
         savedInstanceState.putString("translatedText", translatedText);
         super.onSaveInstanceState(savedInstanceState);
-    }
-
-    public void onClickEncryptingOrDecrypting(View view) {
-        ToggleButton isDecryptingToggleButton = (ToggleButton) view;
-        isDecrypting = isDecryptingToggleButton.isChecked();
     }
 
     public void onClickTranslate(View view) {
         long startTime = System.nanoTime();
 
-        final EditText keyEditTextView = (EditText) findViewById(R.id.key_edittext);
-        final EditText textToBeTranslatedEditTextView = (EditText) findViewById(R.id.text_to_be_translated_text);
-        final TextView translatedTextTextView = (TextView) findViewById(R.id.translated_text_text);
-
         Handler handler = new Handler();
         handler.post(new Runnable() {
             @Override
             public void run() {
-                key = String.valueOf(keyEditTextView.getText());
-                textToBeTranslated = String.valueOf(textToBeTranslatedEditTextView.getText());
+                boolean isDecrypting = isDecryptingToggleButton.isChecked();
+                String key = String.valueOf(keyEditTextView.getText());
+                String textToBeTranslated = String.valueOf(textToBeTranslatedEditTextView.getText());
                 try {
                     translatedText = VigenereCipher.translate(isDecrypting, key, textToBeTranslated);
                     translatedTextTextView.setText(translatedText);
@@ -126,11 +115,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickPaste(View view) {
-        EditText textToBeTranslatedEditTextView = (EditText) findViewById(R.id.text_to_be_translated_text);
         ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
         if (clipboard.hasPrimaryClip()) {
             ClipData clipData = clipboard.getPrimaryClip();
-            textToBeTranslated = clipData.getItemAt(0).coerceToText(this).toString();
+            String textToBeTranslated = clipData.getItemAt(0).coerceToText(this).toString();
             textToBeTranslatedEditTextView.setText(textToBeTranslated);
         } else {
             Toast toast = Toast.makeText(getApplicationContext(), R.string.no_content, Toast.LENGTH_SHORT);
@@ -139,7 +127,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickCancel(View view) {
-        EditText textToBeTranslatedEditTextView = (EditText) findViewById(R.id.text_to_be_translated_text);
         textToBeTranslatedEditTextView.setText(null);
     }
 

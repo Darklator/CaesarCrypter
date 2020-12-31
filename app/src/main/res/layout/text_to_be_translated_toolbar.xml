@@ -28,8 +28,7 @@
         android:background="@drawable/encrypt_decrypt_button_states"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@id/input_anchor"
-        android:layout_marginLeft="@dimen/space_between_toolbar_icons"
-        android:onClick="onClickEncryptingOrDecrypting"/>
+        android:layout_marginLeft="@dimen/space_between_toolbar_icons" />
 
     <EditText
         android:id="@+id/key_edittext"
