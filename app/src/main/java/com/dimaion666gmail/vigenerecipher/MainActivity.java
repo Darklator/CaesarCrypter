@@ -2,12 +2,14 @@ package com.dimaion666gmail.vigenerecipher;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewStub;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,9 +46,9 @@ public class MainActivity extends AppCompatActivity {
         textToBeTranslatedToolbarStub.setLayoutResource(R.layout.text_to_be_translated_toolbar);
         textToBeTranslatedToolbarStub.inflate();
 
-        ViewStub textToBeTranslatedTextStub = textToBeTranslatedCard.findViewById(R.id.text_stub);
-        textToBeTranslatedTextStub.setLayoutResource(R.layout.text_to_be_translated_text);
-        textToBeTranslatedTextStub.inflate();
+       ViewStub textToBeTranslatedTextStub = textToBeTranslatedCard.findViewById(R.id.text_stub);
+       textToBeTranslatedTextStub.setLayoutResource(R.layout.text_to_be_translated_text);
+       textToBeTranslatedTextStub.inflate();
 
         // Ищем заготовку карточки для выходного текста и заполняем отличительными компонентами
         CardView translatedTextCard = findViewById(R.id.translated_text_card);
@@ -55,9 +57,9 @@ public class MainActivity extends AppCompatActivity {
         translatedTextToolbarStub.setLayoutResource(R.layout.translated_text_toolbar);
         translatedTextToolbarStub.inflate();
 
-        ViewStub translatedTextTextStub = translatedTextCard.findViewById(R.id.text_stub);
-        translatedTextTextStub.setLayoutResource(R.layout.translated_text_text);
-        translatedTextTextStub.inflate();
+       ViewStub translatedTextTextStub = translatedTextCard.findViewById(R.id.text_stub);
+       translatedTextTextStub.setLayoutResource(R.layout.translated_text_text);
+       translatedTextTextStub.inflate();
 
         // Получаем каждое представление только по одному разу
         isDecryptingToggleButton = (ToggleButton) findViewById(R.id.is_decrypting_toggle_button);
@@ -80,7 +82,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // TODO: Разобраться с излишеством сохраняемых состояний, либо недостатком сохранений в переменные
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         // Сохраняется только переменная translatedText, так как содержимое других представлений
@@ -111,7 +112,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        closeKeyBoard();
+
         Log.i("onClickTranslate speed", Long.toString(System.nanoTime() - startTime));
+    }
+
+    private void closeKeyBoard() {
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 
     public void onClickPaste(View view) {

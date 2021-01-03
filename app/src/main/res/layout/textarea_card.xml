@@ -41,12 +41,21 @@
             android:layout_height="match_parent"
             android:paddingHorizontal="12dp"
             android:paddingVertical="15dp"
-            android:layout_below="@id/text_to_be_translated_toolbar">
+            android:layout_below="@id/text_to_be_translated_toolbar"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true">
 
-            <ViewStub
-                android:id="@+id/text_stub"
+            <!-- Если убрать LinearLayout и высоте ViewStub присвоить match_parent, то вставляемый
+            текст не будет занимать нужную высоту. Поэтому пришлось сделать так, высоту
+            регулировать вручную. -->
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="wrap_content">
+                <ViewStub
+                     android:id="@+id/text_stub"
+                     android:layout_width="match_parent"
+                     android:layout_height="150dp"/>
+            </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
