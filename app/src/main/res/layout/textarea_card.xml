@@ -45,21 +45,17 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true">
 
-            <!-- TODO: Разобраться с размерами -->
-            <EditText xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/text_to_be_translated_text"
+            <!-- Если убрать LinearLayout и высоте ViewStub присвоить match_parent, то вставляемый
+            текст не будет занимать нужную высоту. Поэтому пришлось сделать так, высоту
+            регулировать вручную. -->
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="start|top"
-                android:hint="@string/text_to_be_translated"
-                android:maxLength="16000"
-                android:inputType="textMultiLine"
-                android:background="@android:color/transparent"/>
-
-           <!-- <ViewStub
-                android:id="@+id/text_stub"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/> -->
+                android:layout_height="wrap_content">
+                <ViewStub
+                     android:id="@+id/text_stub"
+                     android:layout_width="match_parent"
+                     android:layout_height="150dp"/>
+            </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
