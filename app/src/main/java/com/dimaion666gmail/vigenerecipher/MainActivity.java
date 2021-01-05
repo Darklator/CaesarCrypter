@@ -6,6 +6,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.TextWatcher;
+import android.text.style.CharacterStyle;
+import android.text.style.MetricAffectingSpan;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewStub;
@@ -62,10 +68,32 @@ public class MainActivity extends AppCompatActivity {
        translatedTextTextStub.inflate();
 
         // Получаем каждое представление только по одному разу
-        isDecryptingToggleButton = (ToggleButton) findViewById(R.id.is_decrypting_toggle_button);
-        keyEditTextView = (EditText) findViewById(R.id.key_edittext);
-        textToBeTranslatedEditTextView = (EditText) findViewById(R.id.text_to_be_translated_text);
-        translatedTextTextView = (TextView) findViewById(R.id.translated_text_text);
+        isDecryptingToggleButton = findViewById(R.id.is_decrypting_toggle_button);
+        keyEditTextView = findViewById(R.id.key_edittext);
+        textToBeTranslatedEditTextView = findViewById(R.id.text_to_be_translated_text);
+        translatedTextTextView = findViewById(R.id.translated_text_text);
+
+        // TODO: Может понадобиться оптимизация
+        textToBeTranslatedEditTextView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                CharacterStyle[] toBeRemovedSpans = s.getSpans(0, s.length(), MetricAffectingSpan.class);
+
+                for (int index = 0; index < toBeRemovedSpans.length; index++) {
+                    s.removeSpan(toBeRemovedSpans[index]);
+                }
+            }
+        });
 
         Intent intent = getIntent();
         String action = intent.getAction();
@@ -113,6 +141,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         closeKeyBoard();
+        textToBeTranslatedEditTextView.clearFocus();
 
         Log.i("onClickTranslate speed", Long.toString(System.nanoTime() - startTime));
     }
