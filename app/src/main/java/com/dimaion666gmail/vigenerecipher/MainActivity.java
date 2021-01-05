@@ -26,8 +26,6 @@ import androidx.cardview.widget.CardView;
 import static android.content.Intent.ACTION_SEND;
 
 public class MainActivity extends AppCompatActivity {
-    // TODO: User paste string must not save its previous font
-
     // Эти переменные используются в нескольких местах, поэтому я решил сделать их глобальными. Так
     // используется меньше кода.
     private ToggleButton isDecryptingToggleButton;
@@ -73,31 +71,27 @@ public class MainActivity extends AppCompatActivity {
         textToBeTranslatedEditTextView = findViewById(R.id.text_to_be_translated_text);
         translatedTextTextView = findViewById(R.id.translated_text_text);
 
-        // TODO: Может понадобиться оптимизация
+        // Нужно для очищения стиля текста, полученного из какого-либо источника.
+        // Например, если текст в источнике был жирным, то он не должен быть таким в EditText
+        // при вставке.
         textToBeTranslatedEditTextView.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
 
             @Override
             public void afterTextChanged(Editable s) {
                 CharacterStyle[] toBeRemovedSpans = s.getSpans(0, s.length(), MetricAffectingSpan.class);
 
-                for (int index = 0; index < toBeRemovedSpans.length; index++) {
+                for (int index = 0; index < toBeRemovedSpans.length; index++)
                     s.removeSpan(toBeRemovedSpans[index]);
-                }
             }
         });
 
         Intent intent = getIntent();
         String action = intent.getAction();
-
         // Если активность была вызвана через ACTION_SEND, то получаем текст, который хочет перевести пользователь
         if (ACTION_SEND.equals(action))
             textToBeTranslatedEditTextView.setText(intent.getStringExtra(Intent.EXTRA_TEXT));
