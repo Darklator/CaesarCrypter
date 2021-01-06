@@ -36,6 +36,7 @@
                 android:layout_height="match_parent"/>
         </FrameLayout>
 
+        <!-- FIXME: Большой текст не прокручивается до убратия клавиатуры-->
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -43,19 +44,13 @@
             android:paddingVertical="15dp"
             android:layout_below="@id/text_to_be_translated_toolbar"
             android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true">
+            android:layout_centerHorizontal="true"
+            android:fillViewport="true">
 
-            <!-- Если убрать LinearLayout и высоте ViewStub присвоить match_parent, то вставляемый
-            текст не будет занимать нужную высоту. Поэтому пришлось сделать так, высоту
-            регулировать вручную. -->
-            <LinearLayout
+            <ViewStub
+                android:id="@+id/text_stub"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <ViewStub
-                     android:id="@+id/text_stub"
-                     android:layout_width="match_parent"
-                     android:layout_height="150dp"/>
-            </LinearLayout>
+                android:layout_height="wrap_content"/>
         </androidx.core.widget.NestedScrollView>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

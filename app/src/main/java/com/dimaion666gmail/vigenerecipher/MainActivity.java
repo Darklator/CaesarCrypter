@@ -135,7 +135,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         closeKeyBoard();
-        textToBeTranslatedEditTextView.clearFocus();
 
         Log.i("onClickTranslate speed", Long.toString(System.nanoTime() - startTime));
     }
