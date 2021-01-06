@@ -153,6 +153,7 @@ public class MainActivity extends AppCompatActivity {
             ClipData clipData = clipboard.getPrimaryClip();
             String textToBeTranslated = clipData.getItemAt(0).coerceToText(this).toString();
             textToBeTranslatedEditTextView.setText(textToBeTranslated);
+            textToBeTranslatedEditTextView.setSelection(textToBeTranslatedEditTextView.getText().length());
         } else {
             Toast toast = Toast.makeText(getApplicationContext(), R.string.no_content, Toast.LENGTH_SHORT);
             toast.show();

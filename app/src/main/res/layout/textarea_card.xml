@@ -36,7 +36,6 @@
                 android:layout_height="match_parent"/>
         </FrameLayout>
 
-        <!-- FIXME: Большой текст не прокручивается до убратия клавиатуры-->
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
