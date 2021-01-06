@@ -71,6 +71,12 @@ public class MainActivity extends AppCompatActivity {
         textToBeTranslatedEditTextView = findViewById(R.id.text_to_be_translated_text);
         translatedTextTextView = findViewById(R.id.translated_text_text);
 
+        Intent intent = getIntent();
+        String action = intent.getAction();
+        // Если активность была вызвана через ACTION_SEND, то получаем текст, который хочет перевести пользователь
+        if (ACTION_SEND.equals(action))
+            textToBeTranslatedEditTextView.setText(intent.getStringExtra(Intent.EXTRA_TEXT));
+
         // Нужно для очищения стиля текста, полученного из какого-либо источника.
         // Например, если текст в источнике был жирным, то он не должен быть таким в EditText
         // при вставке.
@@ -89,12 +95,6 @@ public class MainActivity extends AppCompatActivity {
                     s.removeSpan(toBeRemovedSpans[index]);
             }
         });
-
-        Intent intent = getIntent();
-        String action = intent.getAction();
-        // Если активность была вызвана через ACTION_SEND, то получаем текст, который хочет перевести пользователь
-        if (ACTION_SEND.equals(action))
-            textToBeTranslatedEditTextView.setText(intent.getStringExtra(Intent.EXTRA_TEXT));
 
         if (savedInstanceState != null) {
             // Сохраняется только translatedText, потому что только её представление сбрасывает содержимое,
@@ -151,8 +151,7 @@ public class MainActivity extends AppCompatActivity {
         ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
         if (clipboard.hasPrimaryClip()) {
             ClipData clipData = clipboard.getPrimaryClip();
-            String textToBeTranslated = clipData.getItemAt(0).coerceToText(this).toString();
-            textToBeTranslatedEditTextView.setText(textToBeTranslated);
+            textToBeTranslatedEditTextView.setText(clipData.getItemAt(0).coerceToText(this));
             textToBeTranslatedEditTextView.setSelection(textToBeTranslatedEditTextView.getText().length());
         } else {
             Toast toast = Toast.makeText(getApplicationContext(), R.string.no_content, Toast.LENGTH_SHORT);
