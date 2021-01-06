@@ -7,8 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
-import android.text.Spannable;
-import android.text.SpannableString;
 import android.text.TextWatcher;
 import android.text.style.CharacterStyle;
 import android.text.style.MetricAffectingSpan;
