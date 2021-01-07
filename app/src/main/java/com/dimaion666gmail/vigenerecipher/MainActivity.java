@@ -69,30 +69,11 @@ public class MainActivity extends AppCompatActivity {
         textToBeTranslatedEditTextView = findViewById(R.id.text_to_be_translated_text);
         translatedTextTextView = findViewById(R.id.translated_text_text);
 
+        // Если активность была вызвана через ACTION_SEND, то получаем текст, который хочет перевести пользователь
         Intent intent = getIntent();
         String action = intent.getAction();
-        // Если активность была вызвана через ACTION_SEND, то получаем текст, который хочет перевести пользователь
         if (ACTION_SEND.equals(action))
             textToBeTranslatedEditTextView.setText(intent.getStringExtra(Intent.EXTRA_TEXT));
-
-        // Нужно для очищения стиля текста, полученного из какого-либо источника.
-        // Например, если текст в источнике был жирным, то он не должен быть таким в EditText
-        // при вставке.
-        textToBeTranslatedEditTextView.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                CharacterStyle[] toBeRemovedSpans = s.getSpans(0, s.length(), MetricAffectingSpan.class);
-
-                for (int index = 0; index < toBeRemovedSpans.length; index++)
-                    s.removeSpan(toBeRemovedSpans[index]);
-            }
-        });
 
         if (savedInstanceState != null) {
             // Сохраняется только translatedText, потому что только её представление сбрасывает содержимое,
