@@ -22,7 +22,7 @@
         android:layout_width="19dp"
         android:layout_height="19dp"
         android:textAllCaps="false"
-        android:textColor="@color/colorTextAndHint"
+        android:textColor="@color/colorHint"
         android:textOff=""
         android:textOn=""
         android:tooltipText="@string/isDecrypting_toggleButton_tip"

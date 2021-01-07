@@ -1,14 +1,15 @@
 package com.dimaion666gmail.vigenerecipher;
 
 public class StandardLanguageHandler extends LanguageHandler {
-    private int theStartInUnicode;
-    private int theEndInUnicode;
-    private int conversion; // Переменная для перехода между unicode и упрощённой кодировкой (порядки в алфавите, начиная с 0)
-    private int alphabetLength;
+    private final int startInUnicode;
+    private final int endInUnicode;
+    private final int conversion; // Переменная для перехода между unicode и упрощённой кодировкой
+    // (порядки в алфавите, начиная с 0).
+    private final int alphabetLength;
 
     public StandardLanguageHandler(int startInUnicode, int endInUnicode) {
-        this.theStartInUnicode = startInUnicode;
-        this.theEndInUnicode = endInUnicode;
+        this.startInUnicode = startInUnicode;
+        this.endInUnicode = endInUnicode;
         this.conversion = startInUnicode;
         this.alphabetLength = endInUnicode - startInUnicode + 1;
     }
@@ -16,7 +17,7 @@ public class StandardLanguageHandler extends LanguageHandler {
     @Override
     public boolean doesTheLetterExistHere(char letter) {
         letter = Character.toLowerCase(letter);
-        return theStartInUnicode <= (int) letter && (int) letter <= theEndInUnicode;
+        return startInUnicode <= (int) letter && (int) letter <= endInUnicode;
     }
 
     @Override
@@ -29,7 +30,7 @@ public class StandardLanguageHandler extends LanguageHandler {
     public char shiftLetter(int shiftStep, char letter) {
         shiftStep = shiftStep % alphabetLength; // Отбрасываем лишнюю длину сдвига.
 
-        // Если буква в верхнем регистре, то запоминаем, потом возвращаем.
+        // Если буква в верхнем регистре, то запоминаем.
         boolean isUpperCase = Character.isUpperCase(letter);
         // В алфавите мы работаем с буквами в нижнем регистре.
         letter = Character.toLowerCase(letter);
@@ -43,9 +44,8 @@ public class StandardLanguageHandler extends LanguageHandler {
 
         // Если номер уходит за границы алфавита в начале, то он всё равно уходит в конец по
         // условию.
-        if (letterIndex < 0) {
+        if (letterIndex < 0)
             letterIndex = alphabetLength - Math.abs(letterIndex);
-        }
 
         // Приводим упрощённый порядковый номер к виду unicode.
         letterIndex += conversion;
@@ -54,7 +54,8 @@ public class StandardLanguageHandler extends LanguageHandler {
         char shiftedLetter = (char)letterIndex;
 
         // Возвращаем верхний регистр, если он был.
-        if (isUpperCase) shiftedLetter = Character.toUpperCase(shiftedLetter);
+        if (isUpperCase)
+            shiftedLetter = Character.toUpperCase(shiftedLetter);
 
         // Вовзращаем смещённую букву.
         return shiftedLetter;

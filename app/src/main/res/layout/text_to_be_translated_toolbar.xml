@@ -1,88 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/transparent"
     android:paddingHorizontal="15dp"
-    android:theme="@style/TextAreasToolbarsTheme"
-    android:background="@android:color/transparent">
+    android:theme="@style/TextAreasToolbarsTheme">
 
     <TextView
         android:id="@+id/input_anchor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
         android:text="@string/text_to_be_translated_label"
         android:textColor="@color/colorTextAndHintToolbar"
-        android:textSize="18sp"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"/>
+        android:textSize="18sp" />
 
     <ToggleButton
         android:id="@+id/is_decrypting_toggle_button"
         android:layout_width="19dp"
         android:layout_height="19dp"
-        android:textAllCaps="false"
-        android:textColor="@color/colorTextAndHint"
-        android:textOff=""
-        android:textOn=""
-        android:background="@drawable/encrypt_decrypt_button_states"
         android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/space_between_toolbar_icons"
         android:layout_toRightOf="@id/input_anchor"
-        android:layout_marginLeft="@dimen/space_between_toolbar_icons" />
+        android:background="@drawable/encrypt_decrypt_button_states"
+        android:textAllCaps="false"
+        android:textColor="@color/colorHint"
+        android:textOff=""
+        android:textOn="" />
 
     <EditText
         android:id="@+id/key_edittext"
-        android:textColor="@color/colorTextAndHintToolbar"
         android:layout_width="74dp"
         android:layout_height="wrap_content"
-        android:hint="@string/enter_key"
-        android:paddingHorizontal="6dp"
-        android:singleLine="true"
-        android:scrollHorizontally="true"
-        android:maxLength="35"
-        android:gravity="center"
-        android:inputType="text"
         android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/space_between_toolbar_icons"
         android:layout_toRightOf="@id/is_decrypting_toggle_button"
-        android:layout_marginLeft="@dimen/space_between_toolbar_icons" />
+        android:gravity="center"
+        android:hint="@string/enter_key"
+        android:inputType="text"
+        android:maxLength="35"
+        android:paddingHorizontal="6dp"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:textColor="@color/colorTextAndHintToolbar" />
 
     <ImageButton
         android:id="@+id/translate_button"
         android:layout_width="@dimen/toolbar_icon_sizes"
         android:layout_height="@dimen/toolbar_icon_sizes"
-        android:src="@drawable/baseline_send_white_24"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@id/key_edittext"
-        android:background="?selectableItemBackgroundBorderless"
         android:layout_marginLeft="@dimen/space_between_toolbar_icons"
-        android:scaleType="fitCenter"
-        android:onClick="onClickTranslate"
+        android:layout_toRightOf="@id/key_edittext"
         android:adjustViewBounds="true"
-        android:padding="@dimen/toolbar_small_icon_padding_sizes"/>
+        android:background="?selectableItemBackgroundBorderless"
+        android:onClick="onClickTranslate"
+        android:padding="@dimen/toolbar_small_icon_padding_sizes"
+        android:scaleType="fitCenter"
+        android:src="@drawable/baseline_send_white_24" />
 
     <ImageButton
         android:id="@+id/paste_button"
         android:layout_width="@dimen/toolbar_icon_sizes"
         android:layout_height="@dimen/toolbar_icon_sizes"
-        android:src="@drawable/baseline_content_paste_white_24"
         android:layout_centerVertical="true"
         android:layout_toLeftOf="@id/cancel_button"
-        android:background="?selectableItemBackgroundBorderless"
-        android:scaleType="fitCenter"
-        android:onClick="onClickPaste"
         android:adjustViewBounds="true"
-        android:padding="@dimen/toolbar_icon_padding_sizes"/>
+        android:background="?selectableItemBackgroundBorderless"
+        android:onClick="onClickPaste"
+        android:padding="@dimen/toolbar_icon_padding_sizes"
+        android:scaleType="fitCenter"
+        android:src="@drawable/baseline_content_paste_white_24" />
 
     <ImageButton
         android:id="@+id/cancel_button"
         android:layout_width="@dimen/toolbar_icon_sizes"
         android:layout_height="@dimen/toolbar_icon_sizes"
-        android:src="@drawable/baseline_cancel_white_24"
-        android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
-        android:background="?selectableItemBackgroundBorderless"
-        android:scaleType="fitCenter"
-        android:onClick="onClickCancel"
+        android:layout_centerVertical="true"
         android:adjustViewBounds="true"
-        android:padding="@dimen/toolbar_icon_padding_sizes"/>
+        android:background="?selectableItemBackgroundBorderless"
+        android:onClick="onClickCancel"
+        android:padding="@dimen/toolbar_icon_padding_sizes"
+        android:scaleType="fitCenter"
+        android:src="@drawable/baseline_cancel_white_24" />
 </RelativeLayout>

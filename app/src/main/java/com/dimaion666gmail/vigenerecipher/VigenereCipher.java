@@ -3,7 +3,7 @@ package com.dimaion666gmail.vigenerecipher;
 public class VigenereCipher {
 
     // Инициализируем обработчика каждому алфавиту
-    private static LanguageHandler[] languageHandlers = new LanguageHandler[] {
+    private static final LanguageHandler[] languageHandlers = new LanguageHandler[] {
            new StandardLanguageHandler(97, 122), // abcdefghijklmnopqrstuvwxyz - [97; 122]
            new RussianLanguageHandler()};
 
@@ -13,12 +13,12 @@ public class VigenereCipher {
         if (key.isEmpty()) throw new InvalidKeyException();
 
         // Получение длин сдвигов в соответствии с порядковым номером каждой буквы
-
         int[] letterShifts = new int[key.length()];
 
         for (int i = 0; i < key.length(); i++) {
             char letterKey = key.charAt(i);
             boolean letterExistsInAlphabets = false;
+
             for (LanguageHandler languageHandler : languageHandlers) {
                 if (languageHandler.doesTheLetterExistHere(letterKey)) {
                     letterShifts[i] = languageHandler.getOrderInAlphabet(letterKey);
@@ -26,7 +26,9 @@ public class VigenereCipher {
                     break;
                 }
             }
-            if (!letterExistsInAlphabets) throw new InvalidKeyException();
+
+            if (!letterExistsInAlphabets)
+                throw new InvalidKeyException();
         }
 
         // Дешифровка или шифровка?
@@ -53,6 +55,7 @@ public class VigenereCipher {
                     break;
                 }
             }
+
             // Включение полученного символа в новую строку
             newString.append(letterToBeChanged);
         }
