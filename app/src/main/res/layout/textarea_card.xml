@@ -10,8 +10,8 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/textarea_card_background"
-        android:scaleType="fitXY"/>
+        android:scaleType="fitXY"
+        android:src="@drawable/textarea_card_background" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -27,29 +27,29 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:src="@drawable/textarea_toolbar_background"
-                android:scaleType="fitXY"/>
+                android:scaleType="fitXY"
+                android:src="@drawable/textarea_toolbar_background" />
 
             <ViewStub
                 android:id="@+id/toolbar_stub"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent" />
         </FrameLayout>
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingHorizontal="12dp"
-            android:paddingVertical="15dp"
             android:layout_below="@id/text_to_be_translated_toolbar"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:fillViewport="true">
+            android:fillViewport="true"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="15dp">
 
             <ViewStub
                 android:id="@+id/text_stub"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </androidx.core.widget.NestedScrollView>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
