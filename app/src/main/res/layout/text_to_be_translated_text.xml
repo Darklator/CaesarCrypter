@@ -5,6 +5,6 @@
     android:layout_height="match_parent"
     android:background="@android:color/transparent"
     android:gravity="start|top"
-    android:hint="@string/text_to_be_translated"
+    android:hint="@string/text_to_be_translated_hint"
     android:inputType="textMultiLine"
     android:maxLength="16000" />

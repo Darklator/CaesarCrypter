@@ -4,5 +4,5 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="start|top"
-    android:hint="@string/translated_text"
+    android:hint="@string/translated_text_hint"
     android:textIsSelectable="true" />

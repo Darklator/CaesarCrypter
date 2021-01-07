@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name" translatable="false">Vigenere Cipher</string>
     <string name="enter_key">Key</string>
-    <string name="text_to_be_translated">Enter the text you want to be translated here</string>
-    <string name="translated_text">Your translated text will appear here</string>
+    <string name="text_to_be_translated_hint">Enter the text you want to be translated here</string>
+    <string name="translated_text_hint">Your translated text will appear here</string>
     <string name="text_to_be_translated_label">Input:</string>
     <string name="translated_text_label">Output:</string>
     <string name="no_content">There is no content to be pasted</string>
