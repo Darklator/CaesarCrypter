@@ -50,7 +50,8 @@ public final class RussianLanguageHandler extends LanguageHandler {
         char shiftedLetter = alphabet[letterIndex];
 
         // Возвращаем верхний регистр, если он был.
-        if (isUpperCase) shiftedLetter = Character.toUpperCase(shiftedLetter);
+        if (isUpperCase)
+            shiftedLetter = Character.toUpperCase(shiftedLetter);
 
         // Вовзращаем смещённую букву.
         return shiftedLetter;
