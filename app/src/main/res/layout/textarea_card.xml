@@ -10,7 +10,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/background_for_components"
+        android:src="@drawable/textarea_card_background"
         android:scaleType="fitXY"/>
 
     <RelativeLayout
@@ -27,7 +27,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:src="@drawable/textareas_toolbar_background"
+                android:src="@drawable/textarea_toolbar_background"
                 android:scaleType="fitXY"/>
 
             <ViewStub
