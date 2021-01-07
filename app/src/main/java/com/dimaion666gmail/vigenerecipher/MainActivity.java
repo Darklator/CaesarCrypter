@@ -6,12 +6,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.text.style.CharacterStyle;
-import android.text.style.MetricAffectingSpan;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewStub;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -69,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
         textToBeTranslatedEditTextView = findViewById(R.id.text_to_be_translated_text);
         translatedTextTextView = findViewById(R.id.translated_text_text);
 
+        setupClosingKeyboardListeners(findViewById(R.id.parent));
+
         // Если активность была вызвана через ACTION_SEND, то получаем текст, который хочет перевести пользователь
         Intent intent = getIntent();
         String action = intent.getAction();
@@ -113,8 +113,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        closeKeyBoard();
-
         Log.i("onClickTranslate speed", Long.toString(System.nanoTime() - startTime));
     }
 
@@ -155,5 +153,34 @@ public class MainActivity extends AppCompatActivity {
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_TEXT, translatedText);
         startActivity(intent);
+    }
+
+    @Override
+    public void onUserInteraction() {
+        Object currentObject = getCurrentFocus();
+        if (currentObject != null)
+            Log.i("Touched class", currentObject.getClass().toString());
+    }
+
+    public void setupClosingKeyboardListeners(View view) {
+        // Установка слушателей касаний для нетекстовых представлений. Эти слушатели будут скрывать
+        // клавиатуру.
+        if (!(view instanceof EditText)) {
+            view.setOnTouchListener(new View.OnTouchListener() {
+                public boolean onTouch(View v, MotionEvent event) {
+                    closeKeyBoard();
+                    return false;
+                }
+            });
+        }
+
+        // Если текущее представление является контейнером, то пробегаемся по его детям посредством
+        // рекурсии.
+        if (view instanceof ViewGroup) {
+            for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
+                View innerView = ((ViewGroup) view).getChildAt(i);
+                setupClosingKeyboardListeners(innerView);
+            }
+        }
     }
 }
