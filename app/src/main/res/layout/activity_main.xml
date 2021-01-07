@@ -14,22 +14,30 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <LinearLayout
-            android:paddingHorizontal="30dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:paddingBottom="75dp">
+            android:orientation="vertical">
 
             <include
                 android:id="@+id/text_to_be_translated_card"
-                layout="@layout/textarea_card"/>
+                layout="@layout/textarea_card"
+                android:layout_width="match_parent"
+                android:layout_height="230dp"
+                android:layout_marginTop="45dp"
+                android:layout_marginHorizontal="30dp"/>
 
             <include
                 android:id="@+id/translated_text_card"
-                layout="@layout/textarea_card"/>
+                layout="@layout/textarea_card"
+                android:layout_width="match_parent"
+                android:layout_height="230dp"
+                android:layout_marginTop="45dp"
+                android:layout_marginBottom="30dp"
+                android:layout_marginHorizontal="30dp"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </LinearLayout>
