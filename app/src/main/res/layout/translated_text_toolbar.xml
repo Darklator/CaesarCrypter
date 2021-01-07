@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    android:theme="@style/TextAreasToolbarsTheme"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@android:color/transparent"
-    android:paddingHorizontal="15dp">
+    android:paddingHorizontal="15dp"
+    android:theme="@style/TextAreasToolbarsTheme">
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
         android:text="@string/translated_text_label"
         android:textColor="@color/colorTextAndHintToolbar"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:textSize="18sp"/>
+        android:textSize="18sp" />
 
     <ImageButton
         android:id="@+id/copy_button"
         android:layout_width="@dimen/toolbar_icon_sizes"
         android:layout_height="@dimen/toolbar_icon_sizes"
-        android:src="@drawable/baseline_content_copy_white_24"
         android:layout_centerVertical="true"
         android:layout_toLeftOf="@id/share_button"
-        android:background="?selectableItemBackgroundBorderless"
-        android:scaleType="fitCenter"
-        android:onClick="onClickCopy"
         android:adjustViewBounds="true"
-        android:padding="@dimen/toolbar_icon_padding_sizes"/>
+        android:background="?selectableItemBackgroundBorderless"
+        android:onClick="onClickCopy"
+        android:padding="@dimen/toolbar_icon_padding_sizes"
+        android:scaleType="fitCenter"
+        android:src="@drawable/baseline_content_copy_white_24" />
 
     <ImageButton
         android:id="@+id/share_button"
         android:layout_width="@dimen/toolbar_icon_sizes"
         android:layout_height="@dimen/toolbar_icon_sizes"
-        android:src="@drawable/baseline_share_white_24"
-        android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
-        android:background="?selectableItemBackgroundBorderless"
-        android:scaleType="fitCenter"
-        android:onClick="onClickShare"
+        android:layout_centerVertical="true"
         android:adjustViewBounds="true"
-        android:padding="@dimen/toolbar_icon_padding_sizes"/>
+        android:background="?selectableItemBackgroundBorderless"
+        android:onClick="onClickShare"
+        android:padding="@dimen/toolbar_icon_padding_sizes"
+        android:scaleType="fitCenter"
+        android:src="@drawable/baseline_share_white_24" />
 </RelativeLayout>
