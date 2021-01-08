@@ -1,8 +1,8 @@
 package com.dimaion666gmail.vigenerecipher;
 
 /**
- * This class is for translating texts due vigenere cipher algorithm
- * NOTE: The first letter means 1
+ * This class is for translating texts due vigenere cipher algorithm.
+ * NOTE: The first letter means 1.
  *
  * @version 1.0 08 Jan 2021
  * @author Dmitry Ionov
@@ -11,7 +11,7 @@ public class VigenereCipher {
 
     /**
      * This variable contains language alphabets handlers:
-     * English, Russian
+     * English, Russian.
      */
     private static final LanguageHandler[] languageHandlers = new LanguageHandler[] {
             // New wished language alphabets handlers should be added here
@@ -20,19 +20,19 @@ public class VigenereCipher {
     };
 
     /**
-     * VigenereCipher doesn't need instances, so its constructor is private
+     * VigenereCipher doesn't need instances, so its constructor is private.
      */
     private VigenereCipher() {}
 
     /**
-     * This method translates input text and returns translated text
+     * This method translates input text and returns translated text.
      *
-     * @param isDecrypting the boolean that defines decrypting key mode if it is true
-     * @param key the String that contains letters to be used as shift steps
-     * @param text the String that wanted to be translated
-     * @return the String that has been built
+     * @param isDecrypting the boolean that defines decrypting key mode if it is true.
+     * @param key the String that contains letters to be used as shift steps.
+     * @param text the String that wanted to be translated.
+     * @return the String that has been built.
      * @throws InvalidKeyException the exception to be thrown if key contains characters not from
-     *                             any allowed alphabet
+     *                             any allowed alphabet.
      */
     public static String translate(boolean isDecrypting, String key, String text)
             throws InvalidKeyException {

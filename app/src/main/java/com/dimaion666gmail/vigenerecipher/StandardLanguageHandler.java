@@ -1,23 +1,43 @@
 package com.dimaion666gmail.vigenerecipher;
 
+/**
+ * This class is for handling language alphabets whose letters are placed in unicode as consistently
+ * as in these alphabets.
+ *
+ * @version 1.0 08 Jan 2021
+ * @author Dmitry Ionov
+ */
 public class StandardLanguageHandler extends LanguageHandler {
     private final int startInUnicode;
     private final int endInUnicode;
-    private final int conversion; // Переменная для перехода между unicode и упрощённой кодировкой
-    // (порядки в алфавите, начиная с 0).
     private final int alphabetLength;
 
+    // Variable that provides conversion between simplified alphabet codes and unicode
+    private final int conversion;
+
+    /**
+     * This constructor defines language alphabet parameters.
+     *
+     * @param startInUnicode this int defines alphabet start in unicode.
+     * @param endInUnicode this int defines alphabet end in unicode.
+     */
     public StandardLanguageHandler(int startInUnicode, int endInUnicode) {
         this.startInUnicode = startInUnicode;
         this.endInUnicode = endInUnicode;
-        this.conversion = startInUnicode;
         this.alphabetLength = endInUnicode - startInUnicode + 1;
+        this.conversion = startInUnicode;
     }
 
+    /**
+     *
+     *
+     * @param letter
+     * @return
+     */
     @Override
     public boolean doesTheLetterExistHere(char letter) {
         letter = Character.toLowerCase(letter);
-        return startInUnicode <= (int) letter && (int) letter <= endInUnicode;
+        return (((int) letter >= startInUnicode) && ((int) letter <= endInUnicode));
     }
 
     @Override
