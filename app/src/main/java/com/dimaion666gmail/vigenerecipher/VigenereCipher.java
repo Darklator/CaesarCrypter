@@ -1,9 +1,3 @@
-/*
- * Dmitry Ionov
- *
- * Copyright notice
- */
-
 package com.dimaion666gmail.vigenerecipher;
 
 /**
@@ -40,12 +34,18 @@ public class VigenereCipher {
      * @throws InvalidKeyException the exception to be thrown if key contains characters not from
      *                             any allowed alphabet
      */
-    public static String translate(boolean isDecrypting, String key, String text) throws InvalidKeyException {
-        if (key.isEmpty()) throw new InvalidKeyException();
-
-        // Получение длин сдвигов в соответствии с порядковым номером каждой буквы
+    public static String translate(boolean isDecrypting, String key, String text)
+            throws InvalidKeyException {
+        StringBuilder newStringBuilder = new StringBuilder();
+        String newString;
         int[] letterShifts = new int[key.length()];
+        int letterShiftIndex = 0;
 
+        if (key.isEmpty()) {
+            throw new InvalidKeyException();
+        }
+
+        // Getting shift steps according to every letter order. Letters are gotten from key.
         for (int i = 0; i < key.length(); i++) {
             char letterKey = key.charAt(i);
             boolean letterExistsInAlphabets = false;
@@ -58,38 +58,41 @@ public class VigenereCipher {
                 }
             }
 
-            if (!letterExistsInAlphabets)
+            if (!letterExistsInAlphabets) {
                 throw new InvalidKeyException();
+            }
         }
 
-        // Дешифровка или шифровка?
-        if (isDecrypting)
-            for (int i = 0; i < letterShifts.length; i++)
+        // Decrypting or encrypting mode
+        if (isDecrypting) {
+            for (int i = 0; i < letterShifts.length; i++) {
                 letterShifts[i] = letterShifts[i] * (-1);
+            }
+        }
 
-        // Перевод пользовательского текста
-        StringBuilder newString = new StringBuilder();
-        int letterShiftIndex = 0; // Какую длину шага сдвига мы используем из letterShifts.
-
-        for (int i = 0; i < text.length(); i++) { // Прохождение по каждой букве.
+        // Translating user's text
+        for (int i = 0; i < text.length(); i++) {
             char letterToBeChanged = text.charAt(i);
+            char changedLetter = letterToBeChanged;
 
-            for (LanguageHandler languageHandler : languageHandlers) { // Поиск нужного обработчика алфавита.
+            for (LanguageHandler languageHandler : languageHandlers) {
                 if (languageHandler.doesTheLetterExistHere(letterToBeChanged)) {
-                    // Если нужный обработчик найден, то мы меняем букву в соответствии с его указаниями.
-                    letterToBeChanged = languageHandler.shiftLetter(letterShifts[letterShiftIndex], letterToBeChanged);
+                    changedLetter = languageHandler.shiftLetter(letterShifts[letterShiftIndex],
+                            letterToBeChanged);
 
-                    letterShiftIndex++; // Используем следующую длину шага сдвига
-                    // Если была использована последняя длина, то начинаем с первой.
-                    if (letterShiftIndex >= letterShifts.length) letterShiftIndex = 0;
+                    letterShiftIndex++;
+                    if (letterShiftIndex >= letterShifts.length) {
+                        letterShiftIndex = 0;
+                    }
 
                     break;
                 }
             }
 
-            // Включение полученного символа в новую строку
-            newString.append(letterToBeChanged);
+            newStringBuilder.append(changedLetter);
         }
-        return newString.toString();
+
+        newString = newStringBuilder.toString();
+        return newString;
     }
 }
