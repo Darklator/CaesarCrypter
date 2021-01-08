@@ -2,7 +2,7 @@ package com.dimaion666gmail.vigenerecipher;
 
 /**
  * This class is for handling language alphabets whose letters are placed in unicode as consistently
- * as in these alphabets.
+ * as in these alphabets. NOTE: alphabet must be lowercase;
  *
  * @version 1.0 08 Jan 2021
  * @author Dmitry Ionov
@@ -41,7 +41,7 @@ public class StandardLanguageHandler extends LanguageHandler {
     }
 
     /**
-     * This method gets letter's order in handler's alphabet.
+     * This method gets letter's order in handler's alphabet starting with 1.
      *
      * @param letter the char that order we look for.
      * @return returns the int that is order in handler's alphabet.
@@ -61,36 +61,29 @@ public class StandardLanguageHandler extends LanguageHandler {
      */
     @Override
     public char shiftLetter(int shiftStep, char letter) {
-        shiftStep = shiftStep % alphabetLength; // Отбрасываем лишнюю длину сдвига.
+        int letterIndex;
+        char shiftedLetter;
+        boolean isUpperCase = Character.isUpperCase(letter); // We remember if letter is uppercase.
 
-        // Если буква в верхнем регистре, то запоминаем.
-        boolean isUpperCase = Character.isUpperCase(letter);
-        // В алфавите мы работаем с буквами в нижнем регистре.
-        letter = Character.toLowerCase(letter);
+        letter = Character.toLowerCase(letter); // In alphabet we work with lowercase letters.
+        letterIndex = getOrderInAlphabet(letter) - 1; // We get letter order in alphabet.
+        shiftStep = shiftStep % alphabetLength; // We drop useless shiftStep length.
 
-        // Получаем порядковый номер буквы в алфавите.
-        int letterIndex = (int)letter - conversion;
-
-        // Сдвигаем порядковый номер и ищем букву. Если номер уходит за границы алфавита в конце,
-        // то он всё равно уходит в начало по формуле.
+        // We move order. If order moves abroad in end, it returns in start anyway.
         letterIndex = (letterIndex + shiftStep) % alphabetLength;
 
-        // Если номер уходит за границы алфавита в начале, то он всё равно уходит в конец по
-        // условию.
-        if (letterIndex < 0)
+        // If order moves abroad in start, it returns in end anyway.
+        if (letterIndex < 0) {
             letterIndex = alphabetLength - Math.abs(letterIndex);
+        }
 
-        // Приводим упрощённый порядковый номер к виду unicode.
-        letterIndex += conversion;
+        letterIndex += conversion; // We get unicode of simplified code.
+        shiftedLetter = (char)letterIndex;
 
-        // Получаем символ.
-        char shiftedLetter = (char)letterIndex;
-
-        // Возвращаем верхний регистр, если он был.
-        if (isUpperCase)
+        if (isUpperCase) {
             shiftedLetter = Character.toUpperCase(shiftedLetter);
-
-        // Вовзращаем смещённую букву.
+        }
+        
         return shiftedLetter;
     }
 }

@@ -14,7 +14,7 @@ public class VigenereCipher {
      * English, Russian.
      */
     private static final LanguageHandler[] languageHandlers = new LanguageHandler[] {
-            // New wished language alphabets handlers should be added here
+            // New wished language alphabets handlers should be added here.
             new StandardLanguageHandler(97, 122),
             new RussianLanguageHandler()
     };
@@ -63,14 +63,14 @@ public class VigenereCipher {
             }
         }
 
-        // Decrypting or encrypting mode
+        // Decrypting or encrypting mode.
         if (isDecrypting) {
             for (int i = 0; i < letterShifts.length; i++) {
                 letterShifts[i] = letterShifts[i] * (-1);
             }
         }
 
-        // Translating user's text
+        // Translating user's text.
         for (int i = 0; i < text.length(); i++) {
             char letterToBeChanged = text.charAt(i);
             char changedLetter = letterToBeChanged;
