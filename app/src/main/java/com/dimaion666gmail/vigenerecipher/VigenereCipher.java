@@ -30,7 +30,7 @@ public class VigenereCipher {
      * @param isDecrypting the boolean that defines decrypting key mode if it is true
      * @param key the String that contains letters to be used as shift steps
      * @param text the String that wanted to be translated
-     * @return TODO: Description must be written
+     * @return the String that has been built
      * @throws InvalidKeyException the exception to be thrown if key contains characters not from
      *                             any allowed alphabet
      */
@@ -45,7 +45,7 @@ public class VigenereCipher {
             throw new InvalidKeyException();
         }
 
-        // Getting shift steps according to every letter order. Letters are gotten from key.
+        // Getting shift steps according to every letter order. Letters will be gotten from key.
         for (int i = 0; i < key.length(); i++) {
             char letterKey = key.charAt(i);
             boolean letterExistsInAlphabets = false;
