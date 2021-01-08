@@ -38,13 +38,13 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
 
+        inflateCardViews();
+
         // We get every view only once.
         isDecryptingToggleButtonView = findViewById(R.id.is_decrypting_toggle_button);
         keyEditTextView = findViewById(R.id.key_edittext);
         textToBeTranslatedEditTextView = findViewById(R.id.text_to_be_translated_text);
         translatedTextTextView = findViewById(R.id.translated_text_text);
-
-        inflateCardViews();
 
         // It is necessary to close keyboard when user clicks everywhere but EditText.
         setupClosingKeyboardListeners(findViewById(R.id.parent));
