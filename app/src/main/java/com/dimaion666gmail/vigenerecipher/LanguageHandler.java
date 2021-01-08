@@ -7,9 +7,29 @@ package com.dimaion666gmail.vigenerecipher;
  * @author Dmitry Ionov
  */
 public abstract class LanguageHandler {
+
+    /**
+     * This method determines is handler's alphabet contains the letter.
+     *
+     * @param letter the char we check.
+     * @return returns boolean.
+     */
     public abstract boolean doesTheLetterExistHere(char letter);
 
+    /**
+     * This method gets letter's order in handler's alphabet starting with 1.
+     *
+     * @param letter the char that order we look for.
+     * @return returns the int that is order in handler's alphabet.
+     */
     public abstract int getOrderInAlphabet(char letter);
 
+    /**
+     * This method shifts letter.
+     *
+     * @param shiftStep the int defines how far we must shift.
+     * @param letter the char we want to shift.
+     * @return returns the char that is shifted letter.
+     */
     public abstract char shiftLetter(int shiftStep, char letter);
 }

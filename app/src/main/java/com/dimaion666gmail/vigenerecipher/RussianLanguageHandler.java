@@ -7,13 +7,15 @@ package com.dimaion666gmail.vigenerecipher;
  * @author Dmitry Ionov
  */
 public final class RussianLanguageHandler extends LanguageHandler {
+
     // "абвгдеёжзийклмнопрстуфхцчшщъыьэюя" [1072; 1103] U [1105]
     private final char[] alphabet;
     private final int alphabetLength;
 
+    /**
+     * This constructor builds Russian alphabet handler.
+     */
     public RussianLanguageHandler() {
-        // Порядок алфавита в unicode нарушен, а работу с массивом я считаю наиболее
-        // оптимальным решением из найденных.
         alphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя".toCharArray();
         alphabetLength = alphabet.length;
     }

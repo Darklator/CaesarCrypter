@@ -28,37 +28,18 @@ public class StandardLanguageHandler extends LanguageHandler {
         this.conversion = startInUnicode;
     }
 
-    /**
-     * This method determines is handler's alphabet contains the letter.
-     *
-     * @param letter the char we check.
-     * @return returns boolean.
-     */
     @Override
     public boolean doesTheLetterExistHere(char letter) {
         letter = Character.toLowerCase(letter);
         return (((int) letter >= startInUnicode) && ((int) letter <= endInUnicode));
     }
 
-    /**
-     * This method gets letter's order in handler's alphabet starting with 1.
-     *
-     * @param letter the char that order we look for.
-     * @return returns the int that is order in handler's alphabet.
-     */
     @Override
     public int getOrderInAlphabet(char letter) {
         letter = Character.toLowerCase(letter);
         return ((int)letter - conversion + 1);
     }
 
-    /**
-     * This method shifts letter.
-     *
-     * @param shiftStep the int defines how far we must shift.
-     * @param letter the char we want to shift.
-     * @return returns the char that is shifted letter.
-     */
     @Override
     public char shiftLetter(int shiftStep, char letter) {
         int letterIndex;
