@@ -29,10 +29,10 @@ public class StandardLanguageHandler extends LanguageHandler {
     }
 
     /**
+     * This method determines is handler's alphabet contains the letter.
      *
-     *
-     * @param letter
-     * @return
+     * @param letter the char we check.
+     * @return returns true or false.
      */
     @Override
     public boolean doesTheLetterExistHere(char letter) {
@@ -40,6 +40,12 @@ public class StandardLanguageHandler extends LanguageHandler {
         return (((int) letter >= startInUnicode) && ((int) letter <= endInUnicode));
     }
 
+    /**
+     * This method gets letter's order in handler's alphabet.
+     *
+     * @param letter the char that order we look for.
+     * @return returns order in handler's alphabet.
+     */
     @Override
     public int getOrderInAlphabet(char letter) {
         letter = Character.toLowerCase(letter);
