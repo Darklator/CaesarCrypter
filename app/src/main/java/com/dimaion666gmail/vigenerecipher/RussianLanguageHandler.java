@@ -23,60 +23,51 @@ public final class RussianLanguageHandler extends LanguageHandler {
     @Override
     public boolean doesTheLetterExistHere(char letter) {
         letter = Character.toLowerCase(letter);
-        return 1072 <= (int) letter && (int) letter <= 1103 || (int) letter == 1105;
+
+        return (((int) letter >= 1072) && ((int) letter <= 1103) || ((int) letter == 1105));
     }
 
     @Override
     public int getOrderInAlphabet(char letter) {
-        letter = Character.toLowerCase(letter);
-        int order = findLetterIndexInAlphabet(letter);
+        int order = Character.toLowerCase(letter);
+
+        // It is written because of letter ё.
+        if ((order > 1077) && (order != 1105)) {
+            order -= 1071;
+        } else if (order == 1105) {
+            order = 6;
+        } else {
+            order -= 1072;
+        }
+
         return (order + 1);
     }
 
     @Override
     public char shiftLetter(int shiftStep, char letter) {
-        shiftStep = shiftStep % alphabetLength; // Отбрасываем лишнюю длину сдвига.
+        int letterIndex;
+        char shiftedLetter;
+        boolean isUpperCase = Character.isUpperCase(letter); // We remember if letter is uppercase.
 
-        // Если буква в верхнем регистре, то запоминаем.
-        boolean isUpperCase = Character.isUpperCase(letter);
-        // В алфавите мы работаем с буквами в нижнем регистре.
-        letter = Character.toLowerCase(letter);
+        letter = Character.toLowerCase(letter); // In alphabet we work with lowercase letters.
+        letterIndex = getOrderInAlphabet(letter) - 1; // We get letter order in alphabet.
+        shiftStep = shiftStep % alphabetLength; // We drop useless shiftStep length.
 
-        // Ищем порядковый номер буквы в алфавите.
-        int letterIndex = findLetterIndexInAlphabet(letter);
-
-        // Сдвигаем порядковый номер и ищем букву. Если номер уходит за границы алфавита в конце,
-        // то он всё равно уходит в начало по формуле.
+        // We move order. If order moves abroad in end, it returns in start anyway.
         letterIndex = (letterIndex + shiftStep) % alphabetLength;
 
-        // Если номер уходит за границы алфавита в начале, то он всё равно уходит в конец по
-        // условию.
-        if (letterIndex < 0)
+        // If order moves abroad in start, it returns in end anyway.
+        if (letterIndex < 0) {
             letterIndex = alphabetLength - Math.abs(letterIndex);
+        }
 
-        // Получаем смещённую букву.
-        char shiftedLetter = alphabet[letterIndex];
+        shiftedLetter = alphabet[letterIndex];
 
-        // Возвращаем верхний регистр, если он был.
-        if (isUpperCase)
+        if (isUpperCase) {
             shiftedLetter = Character.toUpperCase(shiftedLetter);
+        }
 
-        // Вовзращаем смещённую букву.
         return shiftedLetter;
     }
 
-    // Получение порядкового номера буквы в алфавите, начиная с 0
-    private int findLetterIndexInAlphabet(char letter) {
-        int letterIndex = letter;
-
-        // Тут учитывается отличительный индекс буквы ё в кодировке.
-        if (letterIndex > 1077 && letterIndex != 1105)
-            letterIndex -= 1071;
-        else if (letterIndex == 1105)
-            letterIndex = 6;
-        else
-            letterIndex -= 1072;
-
-        return letterIndex;
-    }
 }
