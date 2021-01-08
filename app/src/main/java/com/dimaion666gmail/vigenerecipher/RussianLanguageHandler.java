@@ -1,5 +1,11 @@
 package com.dimaion666gmail.vigenerecipher;
 
+/**
+ * This class is for handling Russian language alphabet.
+ *
+ * @version 1.0 08 Jan 2021
+ * @author Dmitry Ionov
+ */
 public final class RussianLanguageHandler extends LanguageHandler {
     // "абвгдеёжзийклмнопрстуфхцчшщъыьэюя" [1072; 1103] U [1105]
     private final char[] alphabet;

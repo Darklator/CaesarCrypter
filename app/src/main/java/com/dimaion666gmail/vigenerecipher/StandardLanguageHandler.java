@@ -1,7 +1,7 @@
 package com.dimaion666gmail.vigenerecipher;
 
 /**
- * This class is for handling language alphabets whose letters are placed in unicode as consistently
+ * This class is for handling language alphabets that letters are placed in unicode as consistently
  * as in these alphabets. NOTE: alphabet must be lowercase;
  *
  * @version 1.0 08 Jan 2021
@@ -83,7 +83,7 @@ public class StandardLanguageHandler extends LanguageHandler {
         if (isUpperCase) {
             shiftedLetter = Character.toUpperCase(shiftedLetter);
         }
-        
+
         return shiftedLetter;
     }
 }
