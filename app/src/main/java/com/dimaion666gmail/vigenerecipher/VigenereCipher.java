@@ -1,14 +1,45 @@
+/*
+ * Dmitry Ionov
+ *
+ * Copyright notice
+ */
+
 package com.dimaion666gmail.vigenerecipher;
 
+/**
+ * This class is for translating texts due vigenere cipher algorithm
+ * NOTE: The first letter means 1
+ *
+ * @version 1.0 08 Jan 2021
+ * @author Dmitry Ionov
+ */
 public class VigenereCipher {
 
-    // Инициализируем обработчика каждому алфавиту
+    /**
+     * This variable contains language alphabets handlers:
+     * English, Russian
+     */
     private static final LanguageHandler[] languageHandlers = new LanguageHandler[] {
-           new StandardLanguageHandler(97, 122), // abcdefghijklmnopqrstuvwxyz - [97; 122]
-           new RussianLanguageHandler()};
+            // New wished language alphabets handlers should be added here
+            new StandardLanguageHandler(97, 122),
+            new RussianLanguageHandler()
+    };
 
+    /**
+     * VigenereCipher doesn't need instances, so its constructor is private
+     */
     private VigenereCipher() {}
 
+    /**
+     * This method translates input text and returns translated text
+     *
+     * @param isDecrypting the boolean that defines decrypting key mode if it is true
+     * @param key the String that contains letters to be used as shift steps
+     * @param text the String that wanted to be translated
+     * @return TODO: Description must be written
+     * @throws InvalidKeyException the exception to be thrown if key contains characters not from
+     *                             any allowed alphabet
+     */
     public static String translate(boolean isDecrypting, String key, String text) throws InvalidKeyException {
         if (key.isEmpty()) throw new InvalidKeyException();
 
