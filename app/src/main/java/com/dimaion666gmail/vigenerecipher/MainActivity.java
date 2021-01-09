@@ -161,6 +161,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This method defines which views will close keyboard after clicking. All views will close
      * keyboard but EditText.
+     *
      * @param view the view that or its children must be defined for closing.
      */
     public void setupClosingKeyboardListeners(View view) {
