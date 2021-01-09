@@ -40,16 +40,13 @@ public class MainActivity extends AppCompatActivity {
 
         inflateCardViews();
 
-        // We get every view only once.
         isDecryptingToggleButtonView = findViewById(R.id.is_decrypting_toggle_button);
         keyEditTextView = findViewById(R.id.key_edittext);
         textToBeTranslatedEditTextView = findViewById(R.id.text_to_be_translated_text);
         translatedTextTextView = findViewById(R.id.translated_text_text);
 
-        // It is necessary to close keyboard when user clicks everywhere but EditText.
         setupClosingKeyboardListeners(findViewById(R.id.parent));
 
-        // If activity has been called through ACTION_SEND then we get text wanted to be translated.
         Intent intent = getIntent();
         String action = intent.getAction();
         if (ACTION_SEND.equals(action)) {
@@ -77,10 +74,12 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 boolean isDecrypting = isDecryptingToggleButtonView.isChecked();
                 String key = String.valueOf(keyEditTextView.getText());
-                String textToBeTranslated = String.valueOf(textToBeTranslatedEditTextView.getText());
+                String textToBeTranslated = String.valueOf(textToBeTranslatedEditTextView.
+                        getText());
 
                 try {
-                    translatedText = VigenereCipher.translate(isDecrypting, key, textToBeTranslated);
+                    translatedText = VigenereCipher.translate(isDecrypting, key,
+                            textToBeTranslated);
                     translatedTextTextView.setText(translatedText);
                 }
                 catch (InvalidKeyException ikex) {
@@ -97,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (clipboard.hasPrimaryClip()) {
             ClipData clipData = clipboard.getPrimaryClip();
+
             textToBeTranslatedEditTextView.setText(clipData.getItemAt(0).
                     coerceToText(this));
             textToBeTranslatedEditTextView.setSelection(textToBeTranslatedEditTextView.getText().
@@ -104,7 +104,6 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Toast toast = Toast.makeText(getApplicationContext(), R.string.no_content,
                     Toast.LENGTH_SHORT);
-
             toast.show();
         }
     }
@@ -130,7 +129,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * This method inflates card templates for text areas.
+     */
     public void inflateCardViews() {
+
         // We look for input CardView.
         CardView textToBeTranslatedCard = findViewById(R.id.text_to_be_translated_card);
         ViewStub textToBeTranslatedToolbarStub = textToBeTranslatedCard.
@@ -155,6 +158,11 @@ public class MainActivity extends AppCompatActivity {
         translatedTextTextStub.inflate();
     }
 
+    /**
+     * This method defines which views will close keyboard after clicking. All views will close
+     * keyboard but EditText.
+     * @param view the view that or its children must be defined for closing.
+     */
     public void setupClosingKeyboardListeners(View view) {
         if (!(view instanceof EditText)) {
             view.setOnTouchListener(new View.OnTouchListener() {
@@ -173,6 +181,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * This method is for closing keyboard.
+     */
     private void closeKeyBoard() {
         View view = this.getCurrentFocus();
 
