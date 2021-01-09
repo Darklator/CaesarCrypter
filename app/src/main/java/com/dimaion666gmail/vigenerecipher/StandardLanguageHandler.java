@@ -2,7 +2,7 @@ package com.dimaion666gmail.vigenerecipher;
 
 /**
  * This class is for handling language alphabets that letters are placed in unicode as consistently
- * as in these alphabets. NOTE: alphabet must be lowercase;
+ * as in these alphabets. NOTE: an alphabet must be lowercase;
  *
  * @version 1.0 08 Jan 2021
  * @author Dmitry Ionov
@@ -12,14 +12,14 @@ public class StandardLanguageHandler extends LanguageHandler {
     private final int endInUnicode;
     private final int alphabetLength;
 
-    // Variable that provides conversion between simplified alphabet codes and unicode
+    // The variable that provides conversion between simplified alphabet codes and unicode
     private final int conversion;
 
     /**
      * This constructor defines language alphabet parameters.
      *
-     * @param startInUnicode this int defines alphabet start in unicode.
-     * @param endInUnicode this int defines alphabet end in unicode.
+     * @param startInUnicode this int defines the alphabet start in unicode.
+     * @param endInUnicode this int defines the alphabet end in unicode.
      */
     public StandardLanguageHandler(int startInUnicode, int endInUnicode) {
         this.startInUnicode = startInUnicode;
@@ -44,21 +44,25 @@ public class StandardLanguageHandler extends LanguageHandler {
     public char shiftTheLetter(int shiftStep, char letter) {
         int letterIndex;
         char shiftedLetter;
-        boolean isUpperCase = Character.isUpperCase(letter); // We remember if letter is uppercase.
 
-        letter = Character.toLowerCase(letter); // In alphabet we work with lowercase letters.
-        letterIndex = getTheOrderInTheAlphabet(letter) - 1; // We get letter order in alphabet.
-        shiftStep = shiftStep % alphabetLength; // We drop useless shiftStep length.
+        // We remember if the letter is uppercase.
+        boolean isUpperCase = Character.isUpperCase(letter);
 
-        // We move order. If order moves abroad in end, it returns in start anyway.
+        letter = Character.toLowerCase(letter); // We work with lowercase letters in the alphabet.
+
+        // We get the letter order in the alphabet.
+        letterIndex = getTheOrderInTheAlphabet(letter) - 1;
+        shiftStep = shiftStep % alphabetLength; // We drop the useless shiftStep length.
+
+        // We move the order. If the order moves abroad in the end, it returns in the start anyway.
         letterIndex = (letterIndex + shiftStep) % alphabetLength;
 
-        // If order moves abroad in start, it returns in end anyway.
+        // If the order moves abroad in the start, it returns in the end anyway.
         if (letterIndex < 0) {
             letterIndex = alphabetLength - Math.abs(letterIndex);
         }
 
-        letterIndex += conversion; // We get unicode of simplified code.
+        letterIndex += conversion; // We get the unicode of the simplified code.
         shiftedLetter = (char)letterIndex;
 
         if (isUpperCase) {
