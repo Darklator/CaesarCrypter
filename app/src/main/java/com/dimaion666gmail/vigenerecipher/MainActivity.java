@@ -134,24 +134,24 @@ public class MainActivity extends AppCompatActivity {
      */
     public void inflateCardViews() {
 
-        // We look for input CardView.
+        // We look for the input CardView.
         CardView textToBeTranslatedCard = findViewById(R.id.text_to_be_translated_card);
         ViewStub textToBeTranslatedToolbarStub = textToBeTranslatedCard.
                 findViewById(R.id.toolbar_stub);
         ViewStub textToBeTranslatedTextStub = textToBeTranslatedCard.findViewById(R.id.text_stub);
 
-        // We look for output CardView.
+        // We look for the output CardView.
         CardView translatedTextCard = findViewById(R.id.translated_text_card);
         ViewStub translatedTextToolbarStub = translatedTextCard.findViewById(R.id.toolbar_stub);
         ViewStub translatedTextTextStub = translatedTextCard.findViewById(R.id.text_stub);
 
-        // We inflate input CardView.
+        // We inflate the input CardView.
         textToBeTranslatedToolbarStub.setLayoutResource(R.layout.text_to_be_translated_toolbar);
         textToBeTranslatedToolbarStub.inflate();
         textToBeTranslatedTextStub.setLayoutResource(R.layout.text_to_be_translated_text);
         textToBeTranslatedTextStub.inflate();
 
-        // We inflate output CardView.
+        // We inflate the output CardView.
         translatedTextToolbarStub.setLayoutResource(R.layout.translated_text_toolbar);
         translatedTextToolbarStub.inflate();
         translatedTextTextStub.setLayoutResource(R.layout.translated_text_text);
