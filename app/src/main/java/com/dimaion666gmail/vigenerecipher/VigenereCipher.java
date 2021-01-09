@@ -77,7 +77,7 @@ public class VigenereCipher {
 
             for (LanguageHandler languageHandler : languageHandlers) {
                 if (languageHandler.doesTheLetterExistHere(letterToBeChanged)) {
-                    changedLetter = languageHandler.shiftLetter(letterShifts[letterShiftIndex],
+                    changedLetter = languageHandler.shiftTheLetter(letterShifts[letterShiftIndex],
                             letterToBeChanged);
 
                     letterShiftIndex++;

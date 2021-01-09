@@ -44,7 +44,7 @@ public final class RussianLanguageHandler extends LanguageHandler {
     }
 
     @Override
-    public char shiftLetter(int shiftStep, char letter) {
+    public char shiftTheLetter(int shiftStep, char letter) {
         int letterIndex;
         char shiftedLetter;
         boolean isUpperCase = Character.isUpperCase(letter); // We remember if letter is uppercase.
