@@ -13,7 +13,7 @@ public final class RussianLanguageHandler extends LanguageHandler {
     private final int alphabetLength;
 
     /**
-     * This constructor builds Russian alphabet handler.
+     * This constructor builds a Russian alphabet handler.
      */
     public RussianLanguageHandler() {
         alphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя".toCharArray();
@@ -31,7 +31,7 @@ public final class RussianLanguageHandler extends LanguageHandler {
     public int getTheOrderInTheAlphabet(char letter) {
         int order = Character.toLowerCase(letter);
 
-        // It is written because of letter ё.
+        // It is written because of the letter ё.
         if ((order > 1077) && (order != 1105)) {
             order -= 1071;
         } else if (order == 1105) {
@@ -47,16 +47,20 @@ public final class RussianLanguageHandler extends LanguageHandler {
     public char shiftTheLetter(int shiftStep, char letter) {
         int letterIndex;
         char shiftedLetter;
-        boolean isUpperCase = Character.isUpperCase(letter); // We remember if letter is uppercase.
 
-        letter = Character.toLowerCase(letter); // In alphabet we work with lowercase letters.
-        letterIndex = getTheOrderInTheAlphabet(letter) - 1; // We get letter order in alphabet.
-        shiftStep = shiftStep % alphabetLength; // We drop useless shiftStep length.
+        // We remember if the letter is uppercase.
+        boolean isUpperCase = Character.isUpperCase(letter);
 
-        // We move order. If order moves abroad in end, it returns in start anyway.
+        letter = Character.toLowerCase(letter); // We work with lowercase letters in the alphabet.
+
+        // We get the letter order in the alphabet.
+        letterIndex = getTheOrderInTheAlphabet(letter) - 1;
+        shiftStep = shiftStep % alphabetLength; // We drop the useless shiftStep length.
+
+        // We move the order. If the order moves abroad in the end, it returns in the start anyway.
         letterIndex = (letterIndex + shiftStep) % alphabetLength;
 
-        // If order moves abroad in start, it returns in end anyway.
+        // If the order moves abroad in the start, it returns in the end anyway.
         if (letterIndex < 0) {
             letterIndex = alphabetLength - Math.abs(letterIndex);
         }
