@@ -1,63 +1,74 @@
 package com.dimaion666gmail.vigenerecipher;
 
+/**
+ * This class is for handling language alphabets that letters are placed in unicode as consistently
+ * as in these alphabets. NOTE: an alphabet must be lowercase;
+ *
+ * @version 1.0 08 Jan 2021
+ * @author Dmitry Ionov
+ */
 public class StandardLanguageHandler extends LanguageHandler {
     private final int startInUnicode;
     private final int endInUnicode;
-    private final int conversion; // Переменная для перехода между unicode и упрощённой кодировкой
-    // (порядки в алфавите, начиная с 0).
     private final int alphabetLength;
 
+    // The variable that provides conversion between simplified alphabet codes and unicode
+    private final int conversion;
+
+    /**
+     * This constructor defines language alphabet parameters.
+     *
+     * @param startInUnicode this int defines the alphabet start in unicode.
+     * @param endInUnicode this int defines the alphabet end in unicode.
+     */
     public StandardLanguageHandler(int startInUnicode, int endInUnicode) {
         this.startInUnicode = startInUnicode;
         this.endInUnicode = endInUnicode;
-        this.conversion = startInUnicode;
         this.alphabetLength = endInUnicode - startInUnicode + 1;
+        this.conversion = startInUnicode;
     }
 
     @Override
     public boolean doesTheLetterExistHere(char letter) {
         letter = Character.toLowerCase(letter);
-        return startInUnicode <= (int) letter && (int) letter <= endInUnicode;
+        return (((int) letter >= startInUnicode) && ((int) letter <= endInUnicode));
     }
 
     @Override
-    public int getOrderInAlphabet(char letter) {
+    public int getTheOrderInTheAlphabet(char letter) {
         letter = Character.toLowerCase(letter);
         return ((int)letter - conversion + 1);
     }
 
     @Override
-    public char shiftLetter(int shiftStep, char letter) {
-        shiftStep = shiftStep % alphabetLength; // Отбрасываем лишнюю длину сдвига.
+    public char shiftTheLetter(int shiftStep, char letter) {
+        int letterIndex;
+        char shiftedLetter;
 
-        // Если буква в верхнем регистре, то запоминаем.
+        // We remember if the letter is uppercase.
         boolean isUpperCase = Character.isUpperCase(letter);
-        // В алфавите мы работаем с буквами в нижнем регистре.
-        letter = Character.toLowerCase(letter);
 
-        // Получаем порядковый номер буквы в алфавите.
-        int letterIndex = (int)letter - conversion;
+        letter = Character.toLowerCase(letter); // We work with lowercase letters in the alphabet.
 
-        // Сдвигаем порядковый номер и ищем букву. Если номер уходит за границы алфавита в конце,
-        // то он всё равно уходит в начало по формуле.
+        // We get the letter order in the alphabet.
+        letterIndex = getTheOrderInTheAlphabet(letter) - 1;
+        shiftStep = shiftStep % alphabetLength; // We drop the useless shiftStep length.
+
+        // We move the order. If the order moves abroad in the end, it returns in the start anyway.
         letterIndex = (letterIndex + shiftStep) % alphabetLength;
 
-        // Если номер уходит за границы алфавита в начале, то он всё равно уходит в конец по
-        // условию.
-        if (letterIndex < 0)
+        // If the order moves abroad in the start, it returns in the end anyway.
+        if (letterIndex < 0) {
             letterIndex = alphabetLength - Math.abs(letterIndex);
+        }
 
-        // Приводим упрощённый порядковый номер к виду unicode.
-        letterIndex += conversion;
+        letterIndex += conversion; // We get the unicode of the simplified code.
+        shiftedLetter = (char)letterIndex;
 
-        // Получаем символ.
-        char shiftedLetter = (char)letterIndex;
-
-        // Возвращаем верхний регистр, если он был.
-        if (isUpperCase)
+        if (isUpperCase) {
             shiftedLetter = Character.toUpperCase(shiftedLetter);
+        }
 
-        // Вовзращаем смещённую букву.
         return shiftedLetter;
     }
 }

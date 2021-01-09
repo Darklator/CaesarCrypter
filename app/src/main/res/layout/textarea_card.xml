@@ -30,6 +30,7 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/textarea_toolbar_background" />
 
+            <!-- See the MainActivity code to get why it is being used -->
             <ViewStub
                 android:id="@+id/toolbar_stub"
                 android:layout_width="match_parent"
@@ -46,6 +47,7 @@
             android:paddingHorizontal="12dp"
             android:paddingVertical="15dp">
 
+            <!-- See the MainActivity code to get why it is being used -->
             <ViewStub
                 android:id="@+id/text_stub"
                 android:layout_width="match_parent"
