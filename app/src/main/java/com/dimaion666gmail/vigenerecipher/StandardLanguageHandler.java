@@ -35,7 +35,7 @@ public class StandardLanguageHandler extends LanguageHandler {
     }
 
     @Override
-    public int getOrderInAlphabet(char letter) {
+    public int getTheOrderInTheAlphabet(char letter) {
         letter = Character.toLowerCase(letter);
         return ((int)letter - conversion + 1);
     }
@@ -47,7 +47,7 @@ public class StandardLanguageHandler extends LanguageHandler {
         boolean isUpperCase = Character.isUpperCase(letter); // We remember if letter is uppercase.
 
         letter = Character.toLowerCase(letter); // In alphabet we work with lowercase letters.
-        letterIndex = getOrderInAlphabet(letter) - 1; // We get letter order in alphabet.
+        letterIndex = getTheOrderInTheAlphabet(letter) - 1; // We get letter order in alphabet.
         shiftStep = shiftStep % alphabetLength; // We drop useless shiftStep length.
 
         // We move order. If order moves abroad in end, it returns in start anyway.

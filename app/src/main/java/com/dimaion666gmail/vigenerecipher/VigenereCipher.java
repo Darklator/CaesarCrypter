@@ -52,7 +52,7 @@ public class VigenereCipher {
 
             for (LanguageHandler languageHandler : languageHandlers) {
                 if (languageHandler.doesTheLetterExistHere(letterKey)) {
-                    letterShifts[i] = languageHandler.getOrderInAlphabet(letterKey);
+                    letterShifts[i] = languageHandler.getTheOrderInTheAlphabet(letterKey);
                     letterExistsInAlphabets = true;
                     break;
                 }

@@ -22,7 +22,7 @@ public abstract class LanguageHandler {
      * @param letter the char that order we look for.
      * @return returns the int that is the order in handler's alphabet.
      */
-    public abstract int getOrderInAlphabet(char letter);
+    public abstract int getTheOrderInTheAlphabet(char letter);
 
     /**
      * This method shifts a letter.

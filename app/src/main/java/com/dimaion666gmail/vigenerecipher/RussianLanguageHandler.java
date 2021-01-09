@@ -28,7 +28,7 @@ public final class RussianLanguageHandler extends LanguageHandler {
     }
 
     @Override
-    public int getOrderInAlphabet(char letter) {
+    public int getTheOrderInTheAlphabet(char letter) {
         int order = Character.toLowerCase(letter);
 
         // It is written because of letter ё.
@@ -50,7 +50,7 @@ public final class RussianLanguageHandler extends LanguageHandler {
         boolean isUpperCase = Character.isUpperCase(letter); // We remember if letter is uppercase.
 
         letter = Character.toLowerCase(letter); // In alphabet we work with lowercase letters.
-        letterIndex = getOrderInAlphabet(letter) - 1; // We get letter order in alphabet.
+        letterIndex = getTheOrderInTheAlphabet(letter) - 1; // We get letter order in alphabet.
         shiftStep = shiftStep % alphabetLength; // We drop useless shiftStep length.
 
         // We move order. If order moves abroad in end, it returns in start anyway.
