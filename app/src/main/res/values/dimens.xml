@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="card_corner_radius">5dp</dimen>
+    <dimen name="space_between_toolbar_icons">4dp</dimen>
+    <dimen name="toolbar_icon_sizes">31dp</dimen>
+    <dimen name="toolbar_small_icon_padding_sizes">6dp</dimen>
+    <dimen name="toolbar_icon_padding_sizes">5dp</dimen>
+</resources>
